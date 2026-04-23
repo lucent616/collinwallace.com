@@ -20,13 +20,27 @@ import json
 import os
 import re
 import sys
+import time
+import urllib.error
+import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime
 
 DEFAULT_FEED = "https://collinwallace.substack.com/feed"
 DEFAULT_OUT = "data/essays.json"
-USER_AGENT = "Mozilla/5.0 (collinwallace.com site sync)"
+
+# Substack sits behind Cloudflare which rejects anything that looks like a
+# scripted client. Use a plausible browser UA (no "bot"/"sync"/"python" tokens)
+# and a full set of Accept-* headers. Rotate through a few UAs on retry.
+USER_AGENTS = [
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 "
+    "(KHTML, like Gecko) Version/17.3 Safari/605.1.15",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
+]
 
 NS = {
     "content": "http://purl.org/rss/1.0/modules/content/",
@@ -37,10 +51,44 @@ NS = {
 WPM = 220
 
 
-def fetch(url: str) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+def _request(url: str, ua: str, accept: str) -> bytes:
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": ua,
+            "Accept": accept,
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept-Encoding": "identity",  # skip gzip so we can read raw bytes
+            "Cache-Control": "no-cache",
+            "Pragma": "no-cache",
+            "Connection": "keep-alive",
+            "Upgrade-Insecure-Requests": "1",
+            "Sec-Fetch-Dest": "document",
+            "Sec-Fetch-Mode": "navigate",
+            "Sec-Fetch-Site": "none",
+        },
+    )
     with urllib.request.urlopen(req, timeout=30) as resp:
         return resp.read()
+
+
+def fetch_with_retry(url: str, accept: str) -> bytes:
+    last_exc = None
+    for attempt, ua in enumerate(USER_AGENTS):
+        try:
+            return _request(url, ua, accept)
+        except urllib.error.HTTPError as e:
+            last_exc = e
+            # 429 / 5xx are worth retrying; 403 sometimes clears on a retry too.
+            if e.code in (403, 429, 500, 502, 503, 504):
+                time.sleep(2 + attempt * 3)
+                continue
+            raise
+        except Exception as e:
+            last_exc = e
+            time.sleep(2 + attempt * 3)
+    assert last_exc is not None
+    raise last_exc
 
 
 def strip_html(s: str) -> str:
@@ -82,6 +130,52 @@ def estimate_read_time(html_body: str) -> str:
     words = len(strip_html(html_body).split())
     minutes = max(1, round(words / WPM))
     return f"{minutes} min"
+
+
+def posts_from_archive_json(base_url: str) -> list[dict]:
+    """Fallback: Substack's public /api/v1/archive returns JSON and is usually
+    less aggressively rate-limited than /feed.
+    """
+    base = base_url.rstrip("/").replace("/feed", "")
+    url = f"{base}/api/v1/archive?sort=new&limit=50"
+    raw = fetch_with_retry(url, "application/json")
+    data = json.loads(raw.decode("utf-8"))
+
+    posts: list[dict] = []
+    for p in data:
+        title = p.get("title") or ""
+        slug = p.get("slug") or ""
+        canon = p.get("canonical_url") or (f"{base}/p/{slug}" if slug else "")
+        pub = p.get("post_date") or p.get("published_at") or ""
+        # post_date is ISO-8601 like "2026-04-16T12:58:24.000Z"
+        try:
+            dt = datetime.fromisoformat(pub.replace("Z", "+00:00"))
+            human_date = dt.strftime("%b %-d, %Y")
+            iso_date = dt.strftime("%Y-%m-%d")
+        except Exception:
+            human_date, iso_date = pub, ""
+
+        # Archive items don't carry full body, but they have description / subtitle.
+        excerpt_src = p.get("description") or p.get("subtitle") or ""
+        excerpt = first_sentences(strip_html(excerpt_src))
+        wordcount = p.get("wordcount") or 0
+        if wordcount:
+            read_time = f"{max(1, round(wordcount / WPM))} min"
+        else:
+            read_time = estimate_read_time(excerpt_src) if excerpt_src else ""
+
+        posts.append({
+            "title": html.unescape(title),
+            "date": human_date,
+            "date_iso": iso_date,
+            "url": canon,
+            "excerpt": excerpt,
+            "read_time": read_time,
+            "tags": [],
+        })
+
+    posts.sort(key=lambda p: p["date_iso"] or "", reverse=True)
+    return posts
 
 
 def parse_feed(xml_bytes: bytes) -> list[dict]:
@@ -137,11 +231,20 @@ def main() -> int:
     ap.add_argument("--out", default=DEFAULT_OUT)
     args = ap.parse_args()
 
-    xml_bytes = fetch(args.feed)
-    posts = parse_feed(xml_bytes)
+    # Try RSS first; if Cloudflare blocks us (often 403 from CI IPs),
+    # fall back to the public JSON archive endpoint.
+    posts: list[dict]
+    try:
+        xml_bytes = fetch_with_retry(args.feed, "application/rss+xml,application/xml,text/xml,*/*;q=0.8")
+        posts = parse_feed(xml_bytes)
+        source_used = args.feed
+    except Exception as rss_err:
+        print(f"RSS fetch failed ({rss_err}); falling back to archive JSON…", file=sys.stderr)
+        posts = posts_from_archive_json(args.feed)
+        source_used = args.feed.rstrip("/").replace("/feed", "") + "/api/v1/archive"
 
     payload = {
-        "source": args.feed,
+        "source": source_used,
         "fetched_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
         "count": len(posts),
         "posts": posts,
