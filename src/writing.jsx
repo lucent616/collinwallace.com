@@ -1,18 +1,70 @@
-// Writing page — essay index with tags + search
-const { useState: useStateWriting, useMemo: useMemoWriting } = React;
+// Writing page — essay index sourced from Substack (data/essays.json).
+const {
+  useState: useStateWriting,
+  useMemo: useMemoWriting,
+  useEffect: useEffectWriting,
+} = React;
+
+// Normalize whatever shape we have into the one the render expects.
+function normalizeEssay(e) {
+  return {
+    title: e.title || "",
+    date: e.date || "",
+    readTime: e.readTime || e.read_time || "",
+    excerpt: e.excerpt || "",
+    url: e.url || "",
+    tags: Array.isArray(e.tags) ? e.tags : [],
+  };
+}
 
 function WritingPage({ go, tweaks }) {
   const [activeTag, setActiveTag] = useStateWriting("all");
   const [query, setQuery] = useStateWriting("");
+  const [essays, setEssays] = useStateWriting(
+    (window.DATA && window.DATA.essays ? window.DATA.essays : []).map(normalizeEssay)
+  );
+  const [loadState, setLoadState] = useStateWriting("loading"); // loading | live | fallback
+
+  useEffectWriting(() => {
+    let cancelled = false;
+    fetch("data/essays.json", { cache: "no-store" })
+      .then((r) => {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .then((payload) => {
+        if (cancelled) return;
+        const list = (payload.posts || []).map(normalizeEssay);
+        if (list.length) {
+          setEssays(list);
+          setLoadState("live");
+        } else {
+          setLoadState("fallback");
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setLoadState("fallback");
+      });
+    return () => { cancelled = true; };
+  }, []);
+
+  // Derive the tag list from whatever we're rendering; only show filters if
+  // there are actually tags to filter by.
+  const tagList = useMemoWriting(() => {
+    const set = new Set();
+    essays.forEach((e) => e.tags.forEach((t) => set.add(t)));
+    const tags = Array.from(set).sort();
+    return tags.length ? ["all", ...tags] : [];
+  }, [essays]);
 
   const filtered = useMemoWriting(() => {
-    return window.DATA.essays.filter((e) => {
+    return essays.filter((e) => {
       const tagOk = activeTag === "all" || e.tags.includes(activeTag);
       const q = query.trim().toLowerCase();
       const qOk = !q || e.title.toLowerCase().includes(q) || e.excerpt.toLowerCase().includes(q);
       return tagOk && qOk;
     });
-  }, [activeTag, query]);
+  }, [essays, activeTag, query]);
 
   return (
     <div>
@@ -43,19 +95,25 @@ function WritingPage({ go, tweaks }) {
         </div>
       </section>
 
-      {/* Search + tags */}
+      {/* Search + optional tags */}
       <section className="section-sm">
         <div className="container">
-          <div style={{display:"grid", gridTemplateColumns: "minmax(0, 1fr) minmax(240px, 360px)", gap: 24, alignItems:"center", marginBottom: 28}}>
-            <div style={{display:"flex", gap: 8, flexWrap:"wrap"}}>
-              {window.DATA.tagList.map((t) => (
-                <button
-                  key={t}
-                  className={"tag" + (activeTag === t ? " active" : "")}
-                  onClick={() => setActiveTag(t)}
-                >{t}</button>
-              ))}
-            </div>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: tagList.length ? "minmax(0, 1fr) minmax(240px, 360px)" : "1fr",
+            gap: 24, alignItems: "center", marginBottom: 28,
+          }}>
+            {tagList.length > 0 && (
+              <div style={{display:"flex", gap: 8, flexWrap:"wrap"}}>
+                {tagList.map((t) => (
+                  <button
+                    key={t}
+                    className={"tag" + (activeTag === t ? " active" : "")}
+                    onClick={() => setActiveTag(t)}
+                  >{t}</button>
+                ))}
+              </div>
+            )}
             <div style={{position:"relative"}}>
               <input
                 value={query}
@@ -76,24 +134,33 @@ function WritingPage({ go, tweaks }) {
           </div>
 
           <div style={{marginTop: 24}}>
-            {filtered.length === 0 && (
+            {loadState === "loading" && essays.length === 0 && (
+              <div className="body" style={{padding: "60px 0", textAlign:"center"}}>
+                Loading essays…
+              </div>
+            )}
+            {loadState !== "loading" && filtered.length === 0 && (
               <div className="body" style={{padding: "60px 0", textAlign:"center"}}>
                 No essays match that filter.
               </div>
             )}
-            {filtered.map((e, i) => (
-              <a key={i} className="essay-card" href="#" onClick={(ev)=>ev.preventDefault()}>
-                <div className="essay-meta">
-                  <span>{e.date}</span>
-                  <span className="dot" />
-                  <span>{e.readTime}</span>
-                  <span className="dot" />
-                  <span>{e.tags[0]}</span>
-                </div>
-                <h3 className="essay-title">{e.title}</h3>
-                <p className="essay-excerpt">{e.excerpt}</p>
-              </a>
-            ))}
+            {filtered.map((e, i) => {
+              const hasUrl = !!e.url;
+              const cardProps = hasUrl
+                ? { href: e.url, target: "_blank", rel: "noopener noreferrer" }
+                : { href: "#", onClick: (ev) => ev.preventDefault() };
+              return (
+                <a key={e.url || i} className="essay-card" {...cardProps}>
+                  <div className="essay-meta">
+                    <span>{e.date}</span>
+                    {e.readTime && <><span className="dot" /><span>{e.readTime}</span></>}
+                    {e.tags[0] && <><span className="dot" /><span>{e.tags[0]}</span></>}
+                  </div>
+                  <h3 className="essay-title">{e.title}</h3>
+                  <p className="essay-excerpt">{e.excerpt}</p>
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -1,8 +1,36 @@
 // Homepage
 const HomeReveal = window.Reveal;
+const { useState: useStateHome, useEffect: useEffectHome } = React;
+
+function normalizeFeaturedEssay(e) {
+  return {
+    title: e.title || "",
+    date: e.date || "",
+    readTime: e.readTime || e.read_time || "",
+    excerpt: e.excerpt || "",
+    url: e.url || "",
+    tags: Array.isArray(e.tags) ? e.tags : [],
+  };
+}
 
 function HomePage({ go, tweaks }) {
-  const featured = window.DATA.essays.slice(0, 3);
+  const [featured, setFeatured] = useStateHome(
+    (window.DATA && window.DATA.essays ? window.DATA.essays : [])
+      .slice(0, 3)
+      .map(normalizeFeaturedEssay)
+  );
+  useEffectHome(() => {
+    let cancelled = false;
+    fetch("data/essays.json", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((payload) => {
+        if (cancelled || !payload || !Array.isArray(payload.posts)) return;
+        setFeatured(payload.posts.slice(0, 3).map(normalizeFeaturedEssay));
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
+
   const venues = window.DATA.venues;
   const press = ["Bloomberg", "TechCrunch", "The Information", "Fortune", "Forbes", "The Verge"];
 
@@ -104,21 +132,25 @@ function HomePage({ go, tweaks }) {
             link={<a href="#/writing" className="btn-link" onClick={(e)=>{e.preventDefault();go("writing");}}>Read all essays <Arrow /></a>}
           />
           <div>
-            {featured.map((e, i) => (
-              <Reveal key={i} delay={i * 80}>
-                <a className="essay-card" href="#" onClick={(ev)=>ev.preventDefault()}>
-                  <div className="essay-meta">
-                    <span>{e.date}</span>
-                    <span className="dot" />
-                    <span>{e.readTime}</span>
-                    <span className="dot" />
-                    <span>{e.tags[0]}</span>
-                  </div>
-                  <h3 className="essay-title">{e.title}</h3>
-                  <p className="essay-excerpt">{e.excerpt}</p>
-                </a>
-              </Reveal>
-            ))}
+            {featured.map((e, i) => {
+              const hasUrl = !!e.url;
+              const cardProps = hasUrl
+                ? { href: e.url, target: "_blank", rel: "noopener noreferrer" }
+                : { href: "#", onClick: (ev) => ev.preventDefault() };
+              return (
+                <Reveal key={e.url || i} delay={i * 80}>
+                  <a className="essay-card" {...cardProps}>
+                    <div className="essay-meta">
+                      <span>{e.date}</span>
+                      {e.readTime && <><span className="dot" /><span>{e.readTime}</span></>}
+                      {e.tags[0] && <><span className="dot" /><span>{e.tags[0]}</span></>}
+                    </div>
+                    <h3 className="essay-title">{e.title}</h3>
+                    <p className="essay-excerpt">{e.excerpt}</p>
+                  </a>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>

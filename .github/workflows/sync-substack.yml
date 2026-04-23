@@ -1,0 +1,47 @@
+name: Sync Substack essays
+
+on:
+  # Run every day at 07:00 UTC (~midnight Pacific). Adjust cron if desired.
+  schedule:
+    - cron: "0 7 * * *"
+  # Let me trigger it by hand from the Actions tab.
+  workflow_dispatch: {}
+  # Re-run whenever the script itself changes.
+  push:
+    branches:
+      - dev
+    paths:
+      - "scripts/sync_substack.py"
+      - ".github/workflows/sync-substack.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-substack
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dev branch
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+
+      - name: Fetch feed and write data/essays.json
+        run: python3 scripts/sync_substack.py
+
+      - name: Commit changes if any
+        run: |
+          if [[ -z "$(git status --porcelain data/essays.json)" ]]; then
+            echo "No changes — feed hasn't moved since last run."
+            exit 0
+          fi
+
+          git config user.name  "collinwallace-bot"
+          git config user.email "noreply@collinwallace.com"
+          git add data/essays.json
+          git commit -m "Sync Substack essays (auto)"
+          git push origin dev
