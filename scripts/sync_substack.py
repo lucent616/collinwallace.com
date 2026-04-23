@@ -91,6 +91,38 @@ def fetch_with_retry(url: str, accept: str) -> bytes:
     raise last_exc
 
 
+# Public CORS proxies that have worked for this feed. Tried in order.
+# Cloudflare blocks GitHub Actions' IP range from hitting Substack directly,
+# so these are the primary route when running on CI.
+PROXY_TEMPLATES = [
+    "https://cors.eu.org/{url}",
+    "https://api.codetabs.com/v1/proxy?quest={url}",
+]
+
+
+def fetch_via_proxy(url: str, accept: str) -> bytes:
+    last_exc: Exception | None = None
+    for template in PROXY_TEMPLATES:
+        proxied = template.format(url=url)
+        try:
+            # Proxies don't need the full bot-evasion header set; keep it simple.
+            req = urllib.request.Request(
+                proxied,
+                headers={"User-Agent": USER_AGENTS[0], "Accept": accept},
+            )
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                data = resp.read()
+                if not data:
+                    raise RuntimeError("empty response")
+                return data
+        except Exception as e:
+            last_exc = e
+            print(f"  proxy {template.split('/')[2]} failed: {e}", file=sys.stderr)
+            continue
+    assert last_exc is not None
+    raise last_exc
+
+
 def strip_html(s: str) -> str:
     # Remove tags, collapse whitespace, decode entities.
     s = re.sub(r"<[^>]+>", " ", s or "")
@@ -231,17 +263,39 @@ def main() -> int:
     ap.add_argument("--out", default=DEFAULT_OUT)
     args = ap.parse_args()
 
-    # Try RSS first; if Cloudflare blocks us (often 403 from CI IPs),
-    # fall back to the public JSON archive endpoint.
-    posts: list[dict]
-    try:
-        xml_bytes = fetch_with_retry(args.feed, "application/rss+xml,application/xml,text/xml,*/*;q=0.8")
-        posts = parse_feed(xml_bytes)
-        source_used = args.feed
-    except Exception as rss_err:
-        print(f"RSS fetch failed ({rss_err}); falling back to archive JSON…", file=sys.stderr)
-        posts = posts_from_archive_json(args.feed)
-        source_used = args.feed.rstrip("/").replace("/feed", "") + "/api/v1/archive"
+    # Strategy cascade — Substack is fronted by Cloudflare and aggressively blocks
+    # scripted clients from CI IP ranges (Azure / GitHub Actions). In order:
+    #   1. Direct fetch of /feed with browser-looking headers (works locally).
+    #   2. Direct fetch of /api/v1/archive (JSON, sometimes less blocked).
+    #   3. Public CORS proxy chain (cors.eu.org, codetabs) as a last resort.
+    posts: list[dict] = []
+    source_used = args.feed
+    accept_rss = "application/rss+xml,application/xml,text/xml,*/*;q=0.8"
+
+    strategies = [
+        ("direct RSS",
+         lambda: parse_feed(fetch_with_retry(args.feed, accept_rss))),
+        ("direct archive JSON",
+         lambda: posts_from_archive_json(args.feed)),
+        ("proxied RSS",
+         lambda: parse_feed(fetch_via_proxy(args.feed, accept_rss))),
+    ]
+
+    last_err: Exception | None = None
+    for label, run in strategies:
+        try:
+            print(f"trying: {label}…", file=sys.stderr)
+            posts = run()
+            if not posts:
+                raise RuntimeError("strategy returned 0 posts")
+            source_used = f"{args.feed} (via {label})"
+            print(f"  → {label} got {len(posts)} posts", file=sys.stderr)
+            break
+        except Exception as e:
+            last_err = e
+            print(f"  → {label} failed: {e}", file=sys.stderr)
+    else:
+        raise RuntimeError(f"all fetch strategies failed; last: {last_err}")
 
     payload = {
         "source": source_used,
