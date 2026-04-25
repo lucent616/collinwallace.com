@@ -1,0 +1,189 @@
+# Sveltia CMS configuration — collinwallace.com
+# https://github.com/sveltia/sveltia-cms
+#
+# Backend: GitHub repo, dev branch. Sveltia commits straight to the repo via
+# the GitHub API using a Personal Access Token you paste at sign-in. There is
+# no OAuth proxy and no server.
+
+backend:
+  name: github
+  repo: lucent616/collinwallace.com
+  branch: dev
+  # No auth-config keys needed. Sveltia's login screen shows both
+  # "Sign In with GitHub" (OAuth) and "Sign In with Token" (PAT) buttons.
+  # Click the token one, paste a fine-grained PAT scoped to this repo,
+  # and Sveltia stores it in this admin page's localStorage.
+
+# Public site URL (used for "View live" buttons in the admin).
+site_url: https://collinwallace.com
+display_url: https://collinwallace.com
+
+# Where image uploads land in the repo / how the site refers to them.
+media_folder: assets
+public_folder: assets
+
+# Workflow: simple = save = commit. Use "editorial_workflow" later if you want
+# a draft → review → publish pipeline.
+publish_mode: simple
+
+collections:
+  # ─────────────────────────────────────────────────────────────────────
+  # SINGLETONS — one fixed file per item
+  # ─────────────────────────────────────────────────────────────────────
+  - name: pages
+    label: Pages
+    description: One-off content like the home, about, and book pages.
+    files:
+      - file: data/site/home.json
+        name: home
+        label: Home page
+        fields:
+          - {name: eyebrow, label: Eyebrow tag, widget: string}
+          - name: headline_lines
+            label: Headline (one entry per visual line — last line is italicized accent)
+            widget: list
+            field: {name: line, label: Line, widget: string}
+          - {name: lede, label: Lede paragraph, widget: text, hint: "Markdown allowed: **bold**, _italic_."}
+          - {name: subscribe_note, label: Subscribe note (without subscriber count), widget: string}
+          - {name: subscribe_note_with_count, label: Subscribe note (with count), widget: string}
+          - {name: essays_section_eyebrow, label: Essays section · eyebrow, widget: string}
+          - {name: essays_section_title, label: Essays section · title, widget: string}
+          - {name: essays_section_link, label: Essays section · link text, widget: string}
+          - {name: book_section_eyebrow, label: Book teaser · eyebrow, widget: string}
+          - {name: book_section_blurb, label: Book teaser · blurb, widget: text}
+
+      - file: data/site/about.json
+        name: about
+        label: About page
+        fields:
+          - {name: eyebrow, label: Eyebrow, widget: string}
+          - {name: headline, label: Headline, widget: text}
+          - {name: lede, label: Lede paragraph, widget: text}
+          - name: bio_paragraphs
+            label: Bio (one paragraph per entry)
+            widget: list
+            field: {name: paragraph, label: Paragraph, widget: text, hint: "Markdown: **bold**, _italic_."}
+          - {name: outro_heading, label: Outro · heading, widget: string}
+          - {name: outro_subheading, label: Outro · subheading, widget: string}
+
+      - file: data/site/book.json
+        name: book
+        label: Book page
+        fields:
+          - {name: status_pill, label: Status pill, widget: string, hint: "e.g. 'In progress — 2026'"}
+          - {name: title, label: Book title, widget: string}
+          - {name: hero_blurb, label: Hero blurb, widget: text}
+          - {name: waitlist_note, label: Hero · waitlist note, widget: string}
+          - {name: argument_eyebrow, label: Argument section · eyebrow, widget: string}
+          - {name: argument_heading, label: Argument section · heading, widget: text}
+          - name: argument_paragraphs
+            label: Argument paragraphs
+            widget: list
+            field: {name: paragraph, label: Paragraph, widget: text, hint: "Markdown: **bold**, _italic_."}
+          - {name: toc_eyebrow, label: TOC · eyebrow, widget: string}
+          - {name: toc_caption, label: TOC · caption, widget: string}
+          - name: toc
+            label: Table of contents
+            widget: list
+            fields:
+              - {name: number, label: Roman numeral, widget: string, hint: "e.g. 'IV.'"}
+              - {name: title, label: Chapter title, widget: string}
+          - {name: endorsements_eyebrow, label: Endorsements · eyebrow, widget: string}
+          - {name: endorsements_heading, label: Endorsements · heading, widget: string}
+          - name: endorsements
+            label: Endorsements (placeholder allowed)
+            widget: list
+            fields:
+              - {name: quote, label: Quote, widget: text}
+              - {name: person, label: Person / role line, widget: string}
+          - {name: author_note_eyebrow, label: Author note · eyebrow, widget: string}
+          - {name: author_note_heading, label: Author note · heading, widget: string}
+          - name: author_note_paragraphs
+            label: Author note paragraphs
+            widget: list
+            field: {name: paragraph, label: Paragraph, widget: text}
+          - {name: author_note_signature, label: Author note · signature, widget: string}
+          - {name: waitlist_heading, label: Waitlist CTA · heading, widget: string}
+          - {name: waitlist_subheading, label: Waitlist CTA · subheading, widget: string}
+
+  # ─────────────────────────────────────────────────────────────────────
+  # COLLECTIONS — many items inside one file (edited as a list)
+  # ─────────────────────────────────────────────────────────────────────
+  - name: speaking
+    label: Speaking
+    description: Talks, past venues, host testimonials.
+    files:
+      - file: data/site/talks.json
+        name: talks
+        label: Signature talks
+        fields:
+          - name: items
+            label: Talks
+            widget: list
+            fields:
+              - {name: number, label: Number, widget: string, hint: "e.g. '01'"}
+              - {name: title, label: Title, widget: string}
+              - {name: abstract, label: Abstract, widget: text}
+              - {name: audience, label: Audience, widget: string}
+
+      - file: data/site/venues.json
+        name: venues
+        label: Past venues
+        fields:
+          - name: items
+            label: Venues (logo strip)
+            widget: list
+            field: {name: venue, label: Venue name, widget: string}
+
+      - file: data/site/testimonials.json
+        name: testimonials
+        label: Host testimonials
+        fields:
+          - name: items
+            label: Testimonials
+            widget: list
+            fields:
+              - {name: quote, label: Quote, widget: text}
+              - {name: person, label: Person, widget: string}
+              - {name: role, label: Role, widget: string}
+
+  - name: media
+    label: Press & podcasts
+    description: Where Collin has been featured.
+    files:
+      - file: data/site/press.json
+        name: press
+        label: Press mentions
+        fields:
+          - name: items
+            label: Press
+            widget: list
+            fields:
+              - {name: outlet, label: Outlet, widget: string}
+              - {name: title, label: Headline, widget: string}
+              - {name: quote, label: Pull quote, widget: text}
+              - {name: url, label: Link (optional), widget: string, required: false}
+
+      - file: data/site/podcasts.json
+        name: podcasts
+        label: Podcast appearances
+        fields:
+          - name: items
+            label: Podcasts
+            widget: list
+            fields:
+              - {name: title, label: Show name, widget: string}
+              - {name: episode, label: Episode title, widget: string}
+              - {name: url, label: Link (optional), widget: string, required: false}
+
+  - name: profile
+    label: Credentials
+    files:
+      - file: data/site/credentials.json
+        name: credentials
+        label: Credentials (logo strip on About)
+        fields:
+          - name: items
+            label: Credentials
+            widget: list
+            field: {name: credential, label: Credential, widget: string}

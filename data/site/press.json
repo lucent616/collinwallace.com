@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "outlet": "Bloomberg",
+      "title": "The investor betting on 'perishable' knowledge.",
+      "quote": "A contrarian read on where edge lives in the AI era.",
+      "url": ""
+    },
+    {
+      "outlet": "TechCrunch",
+      "title": "From Grubhub to Stanford to Lobby Capital.",
+      "quote": "Wallace's path through startups has produced a distinctive thesis on founder edge.",
+      "url": ""
+    },
+    {
+      "outlet": "The Information",
+      "title": "Vibe investing is not a joke.",
+      "quote": "A surprisingly rigorous frame for a phrase that started as a meme.",
+      "url": ""
+    },
+    {
+      "outlet": "Fortune",
+      "title": "The skills AI can't commoditize.",
+      "quote": "Required reading for anyone planning a career across the next decade.",
+      "url": ""
+    },
+    {
+      "outlet": "Forbes",
+      "title": "Teaching founders in the age of AI.",
+      "quote": "Wallace is quietly rewriting the Stanford GSB startup curriculum.",
+      "url": ""
+    },
+    {
+      "outlet": "The Verge",
+      "title": "Why demos stopped meaning anything.",
+      "quote": "A calm, clear-eyed piece on diligence in 2026.",
+      "url": ""
+    }
+  ]
+}

@@ -2,6 +2,10 @@
 const { useState: useStateSpeak } = React;
 
 function SpeakingPage({ go }) {
+  const venues = useCmsData("data/site/venues.json", { items: window.DATA.venues });
+  const talks = useCmsData("data/site/talks.json", { items: window.DATA.talks });
+  const testimonials = useCmsData("data/site/testimonials.json", { items: window.DATA.testimonials });
+
   const [form, setForm] = useStateSpeak({
     name: "", email: "", org: "", event: "", date: "", size: "", topic: "", message: ""
   });
@@ -39,7 +43,7 @@ function SpeakingPage({ go }) {
       <section className="section-sm" style={{background:"var(--bg-2)", borderTop:"1px solid var(--rule)", borderBottom:"1px solid var(--rule)"}}>
         <div className="container">
           <div className="eyebrow" style={{marginBottom: 28, textAlign:"center"}}>Past venues</div>
-          <LogoStrip items={window.DATA.venues} />
+          <LogoStrip items={venues.items || []} />
         </div>
       </section>
 
@@ -47,7 +51,7 @@ function SpeakingPage({ go }) {
         <div className="container">
           <SectionHead eyebrow="Signature Talks" title="Five talks, refined over fifty rooms." />
           <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fill, minmax(320px, 1fr))", gap: 20}}>
-            {window.DATA.talks.map((t, i) => (
+            {(talks.items || []).map((t, i) => (
               <Reveal key={i} delay={i * 60}>
                 <div className="talk-card">
                   <div className="talk-number">TALK · {t.number}</div>
@@ -65,7 +69,7 @@ function SpeakingPage({ go }) {
         <div className="container">
           <div className="eyebrow" style={{marginBottom: 28}}>What hosts say</div>
           <div className="grid-3">
-            {window.DATA.testimonials.map((t, i) => (
+            {(testimonials.items || []).map((t, i) => (
               <div key={i}>
                 <div className="quote" style={{fontSize: 20, lineHeight: 1.4}}>{t.quote}</div>
                 <div style={{marginTop: 20, display:"flex", gap: 10, alignItems:"center"}}>
@@ -113,7 +117,7 @@ function SpeakingPage({ go }) {
                 <label>Topic interest</label>
                 <select value={form.topic} onChange={update("topic")}>
                   <option value="">Select a talk…</option>
-                  {window.DATA.talks.map((t) => <option key={t.number}>{t.title}</option>)}
+                  {(talks.items || []).map((t) => <option key={t.number}>{t.title}</option>)}
                   <option>Other / custom</option>
                 </select>
               </div>

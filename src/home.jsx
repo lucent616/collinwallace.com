@@ -13,7 +13,24 @@ function normalizeFeaturedEssay(e) {
   };
 }
 
+const HOME_FALLBACK = {
+  eyebrow: "Perishable Knowledge · Est. 2024",
+  headline_lines: ["Writer. Investor.", "Entrepreneur.", "Lecturer at Stanford GSB."],
+  lede: "I write about _Perishable Knowledge_ — the idea that the best founders exploit time-bound information advantages. I'm a GP at Lobby Capital, a lecturer at Stanford GSB, and I'm writing a book by the same name.",
+  subscribe_note: "New essay every Tuesday. Unsubscribe in one click.",
+  subscribe_note_with_count: "12,400+ readers. New essay every Tuesday. Unsubscribe in one click.",
+  essays_section_eyebrow: "The Newsletter",
+  essays_section_title: "Recent essays.",
+  essays_section_link: "Read all essays",
+  book_section_eyebrow: "The Book — In Progress",
+  book_section_blurb: "Ten years of teaching, investing, and writing, distilled into a single framework for anyone building in the AI era. Expected early 2027."
+};
+
 function HomePage({ go, tweaks }) {
+  const home = useCmsData("data/site/home.json", HOME_FALLBACK);
+  const venuesData = useCmsData("data/site/venues.json", { items: window.DATA.venues });
+  const venues = venuesData.items || [];
+
   const [featured, setFeatured] = useStateHome(
     (window.DATA && window.DATA.essays ? window.DATA.essays : [])
       .slice(0, 3)
@@ -31,32 +48,35 @@ function HomePage({ go, tweaks }) {
     return () => { cancelled = true; };
   }, []);
 
-  const venues = window.DATA.venues;
   const press = ["Bloomberg", "TechCrunch", "The Information", "Fortune", "Forbes", "The Verge"];
+
+  // Render headline lines: last line gets accent-italic styling.
+  const renderHeadline = () => {
+    const lines = home.headline_lines || [];
+    if (!lines.length) return null;
+    const last = lines[lines.length - 1];
+    const rest = lines.slice(0, -1);
+    return (
+      <>
+        {rest.map((l, i) => <React.Fragment key={i}>{l}<br/></React.Fragment>)}
+        <span style={{color: "var(--accent-ink)", fontStyle: "italic"}}>{last}</span>
+      </>
+    );
+  };
+  const subscribeNote = tweaks.subscriberCount ? home.subscribe_note_with_count : home.subscribe_note;
 
   const renderHero = () => {
     const layout = tweaks.heroLayout || "split-right";
     const headline = (
       <>
-        <div className="eyebrow reveal in" style={{marginBottom: 20}}>Perishable Knowledge · Est. 2024</div>
-        <h1 className="h-display">
-          Writer. Investor.<br/>
-          Entrepreneur.<br/>
-          <span style={{color: "var(--accent-ink)", fontStyle: "italic"}}>Lecturer at Stanford GSB.</span>
-        </h1>
+        <div className="eyebrow reveal in" style={{marginBottom: 20}}>{home.eyebrow}</div>
+        <h1 className="h-display">{renderHeadline()}</h1>
         <p className="lede" style={{marginTop: 28, maxWidth: 560}}>
-          I write about <em>Perishable Knowledge</em> — the idea that the best founders exploit time-bound information advantages. I'm a GP at Lobby Capital, a lecturer at Stanford GSB, and I'm writing a book by the same name.
+          <Md>{home.lede}</Md>
         </p>
         <div style={{marginTop: 36, maxWidth: 520}}>
           <EmailCapture cta="Subscribe" placeholder="Your email address" />
-          <div className="capture-note">
-            {tweaks.subscriberCount && (
-              <><strong>12,400+ readers.</strong> New essay every Tuesday. Unsubscribe in one click.</>
-            )}
-            {!tweaks.subscriberCount && (
-              <>New essay every Tuesday. Unsubscribe in one click.</>
-            )}
-          </div>
+          <div className="capture-note"><Md>{subscribeNote}</Md></div>
         </div>
       </>
     );
@@ -78,27 +98,27 @@ function HomePage({ go, tweaks }) {
       );
     }
     if (layout === "inline-portrait") {
+      const lines = home.headline_lines || [];
+      const last = lines[lines.length - 1] || "";
+      const rest = lines.slice(0, -1).join(" ");
       return (
         <div>
           <div style={{display:"flex", alignItems:"center", gap: 20, marginBottom: 28}}>
             <div style={{width: 64, height: 64, borderRadius: "50%", overflow:"hidden", flex:"0 0 64px"}}>
               <img src={window.PHOTOS.portrait} alt="Collin Wallace" style={{width:"100%",height:"100%",objectFit:"cover",objectPosition:"center 22%"}}/>
             </div>
-            <div className="eyebrow">Perishable Knowledge · Est. 2024</div>
+            <div className="eyebrow">{home.eyebrow}</div>
           </div>
           <h1 className="h-display">
-            Writer. Investor. Entrepreneur.{" "}
-            <span style={{color: "var(--accent-ink)", fontStyle: "italic"}}>Lecturer at Stanford GSB.</span>
+            {rest}{rest && " "}
+            <span style={{color: "var(--accent-ink)", fontStyle: "italic"}}>{last}</span>
           </h1>
           <p className="lede" style={{marginTop: 28, maxWidth: 640}}>
-            I write about <em>Perishable Knowledge</em> — the idea that the best founders exploit time-bound information advantages. I'm a GP at Lobby Capital, a lecturer at Stanford GSB, and I'm writing a book by the same name.
+            <Md>{home.lede}</Md>
           </p>
           <div style={{marginTop: 36, maxWidth: 520}}>
             <EmailCapture cta="Subscribe" placeholder="Your email address" />
-            <div className="capture-note">
-              {tweaks.subscriberCount && <><strong>12,400+ readers.</strong> New essay every Tuesday. Unsubscribe in one click.</>}
-              {!tweaks.subscriberCount && <>New essay every Tuesday. Unsubscribe in one click.</>}
-            </div>
+            <div className="capture-note"><Md>{subscribeNote}</Md></div>
           </div>
         </div>
       );
@@ -127,9 +147,9 @@ function HomePage({ go, tweaks }) {
       <section className="section">
         <div className="container">
           <SectionHead
-            eyebrow="The Newsletter"
-            title="Recent essays."
-            link={<a href="#/writing" className="btn-link" onClick={(e)=>{e.preventDefault();go("writing");}}>Read all essays <Arrow /></a>}
+            eyebrow={home.essays_section_eyebrow}
+            title={home.essays_section_title}
+            link={<a href="#/writing" className="btn-link" onClick={(e)=>{e.preventDefault();go("writing");}}>{home.essays_section_link} <Arrow /></a>}
           />
           <div>
             {featured.map((e, i) => {
@@ -165,13 +185,13 @@ function HomePage({ go, tweaks }) {
               </div>
             </Reveal>
             <Reveal delay={120}>
-              <div className="eyebrow" style={{marginBottom: 18}}>The Book — In Progress</div>
+              <div className="eyebrow" style={{marginBottom: 18}}>{home.book_section_eyebrow}</div>
               <h2 className="h-xl"><em>Perishable Knowledge.</em><br/>A book, in progress.</h2>
               <p className="lede" style={{marginTop: 24, maxWidth: 500}}>
                 An argument for a new kind of expertise — one built not on what you know, but on how fast you can find the insight the market hasn't priced in yet.
               </p>
               <p className="body" style={{marginTop: 14, maxWidth: 500}}>
-                Ten years of teaching, investing, and writing, distilled into a single framework for anyone building in the AI era. Expected early 2027.
+                {home.book_section_blurb}
               </p>
               <div style={{marginTop: 28, maxWidth: 440}}>
                 <EmailCapture cta="Join waitlist" placeholder="Your email address" />
