@@ -1,12 +1,16 @@
 {
   "eyebrow": "Perishable Knowledge · Est. 2024",
-  "headline_lines": ["Writer. Investor.", "Entrepreneur.", "Lecturer at Stanford GSB."],
-  "lede": "I write about _Perishable Knowledge_ — the idea that the best founders exploit time-bound information advantages. I'm a GP at Lobby Capital, a lecturer at Stanford GSB, and I'm writing a book by the same name.",
-  "subscribe_note": "New essay every Tuesday. Unsubscribe in one click.",
+  "headline_lines": [
+    "Writer. Investor.",
+    "Entrepreneur.",
+    "Lecturer at Stanford University."
+  ],
+  "lede": "I write about _Perishable Knowledge_ — the idea that the best founders exploit time-bound information advantages. I'm a venture capitalist a lecturer at Stanford University, and I'm writing a book by the same name.",
+  "subscribe_note": "New essay every week. Unsubscribe in one click.",
   "subscribe_note_with_count": "12,400+ readers. New essay every Tuesday. Unsubscribe in one click.",
   "essays_section_eyebrow": "The Newsletter",
   "essays_section_title": "Recent essays.",
   "essays_section_link": "Read all essays",
   "book_section_eyebrow": "The Book — In Progress",
-  "book_section_blurb": "Ten years of teaching, investing, and writing, distilled into a single framework for anyone building in the AI era. Expected early 2027."
+  "book_section_blurb": "Ten years of teaching, investing, and writing, distilled into a single framework for anyone building in the post-AI era. Expected early 2027."
 }
