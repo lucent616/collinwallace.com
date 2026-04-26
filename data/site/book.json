@@ -6,37 +6,70 @@
   "argument_eyebrow": "The Argument",
   "argument_heading": "Codified knowledge is becoming free. That changes what it means to be an expert.",
   "argument_paragraphs": [
-    "For most of the last century, expertise meant access to a library and a few years to read it. Codified knowledge — the kind you can look up, cite, and test against — was the moat. It was hard to acquire and hard to fake.",
+    "For most of the last century, expertise meant access to a library and a few years to read it. Static knowledge — the kind you can look up, cite, and test against — was the moat. It was hard to acquire and even harder to fake.",
     "That era is ending. Not because knowledge is less valuable, but because the cost of retrieving and synthesizing it has collapsed. Anyone can ask a good question and get a competent answer in seconds. Which means the advantage has moved.",
-    "It has moved upstream, to the act of picking what to look into in the first place. It has moved sideways, into the relationships and contexts that produce non-public information. And it has moved forward, into a strange new resource I have started calling _perishable knowledge_ — insights that are only true for a little while, that degrade as they spread, and that reward the people who get to them first and act on them fastest.",
-    "This book is an attempt to take that seriously as a skill, a practice, and — for founders and investors especially — a strategy. It draws on a decade of building and investing in startups, five years of teaching the Startup Garage course at Stanford, and the essays I have been publishing every Saturday to an audience of operators, investors, and students figuring this out alongside me."
+    "It has moved upstream, to the act of picking what to look into in the first place. It has moved sideways, into the relationships and contexts that produce non-public information. And it has moved forward, into what I call _perishable knowledge_ — insights that are only true for a little while, that degrade as they spread, and that reward the people who get to them first and act on them fastest.",
+    "This book is an attempt to take that seriously as a skill, a practice, and — for students, athletes, founders, executives, managers and investors — a strategy. It draws on decades of building and investing in startups, years of teaching entrepreneurship and innovation at Stanford, University and the essays I have been publishing every week to an audience of students, operators and investors figuring this out alongside me."
   ],
   "toc_eyebrow": "Table of Contents",
   "toc_caption": "Placeholder — final outline pending. Subject to change.",
   "toc": [
-    {"number": "I.",   "title": "The End of Codified Expertise"},
-    {"number": "II.",  "title": "What Perishable Knowledge Is"},
-    {"number": "III.", "title": "Sourcing: Where It Hides"},
-    {"number": "IV.",  "title": "Pricing: The Half-Life Problem"},
-    {"number": "V.",   "title": "Building a Practice"},
-    {"number": "VI.",  "title": "A Field Guide for Founders"},
-    {"number": "VII.", "title": "A Field Guide for Investors"},
-    {"number": "VIII.","title": "Teaching It"}
+    {
+      "number": "I.",
+      "title": "The End of Static Knowledge"
+    },
+    {
+      "number": "II.",
+      "title": "What Perishable Knowledge Is"
+    },
+    {
+      "number": "III.",
+      "title": "Sourcing: Where It Hides"
+    },
+    {
+      "number": "IV.",
+      "title": "Pricing: The Half-Life Problem"
+    },
+    {
+      "number": "V.",
+      "title": "Building a Practice"
+    },
+    {
+      "number": "VI.",
+      "title": "A Field Guide for Founders"
+    },
+    {
+      "number": "VII.",
+      "title": "A Field Guide for Investors"
+    },
+    {
+      "number": "VIII.",
+      "title": "Teaching It"
+    }
   ],
   "endorsements_eyebrow": "Endorsements",
   "endorsements_heading": "Early readers.",
   "endorsements": [
-    {"quote": "Endorsement to come.", "person": "forthcoming"},
-    {"quote": "Endorsement to come.", "person": "forthcoming"},
-    {"quote": "Endorsement to come.", "person": "forthcoming"}
+    {
+      "quote": "Endorsement to come.",
+      "person": "forthcoming"
+    },
+    {
+      "quote": "Endorsement to come.",
+      "person": "forthcoming"
+    },
+    {
+      "quote": "Endorsement to come.",
+      "person": "forthcoming"
+    }
   ],
   "author_note_eyebrow": "Why I'm Writing This",
   "author_note_heading": "A short note from the author.",
   "author_note_paragraphs": [
     "I have spent the last decade on both sides of the table — first building companies, then picking them. In that time, one pattern kept showing up in the founders who outperformed the rest. It wasn't grit, or taste, or any of the usual explanations. It was how they handled information that was about to stop being true.",
-    "I started writing _Perishable Knowledge_ as a newsletter because I wanted to think out loud about what that looked like. The book is what happens when you follow a good question for four years and discover it is bigger than you thought."
+    "I started writing _Perishable Knowledge_ as a newsletter because I wanted to think out loud about what that looked like. The book is what happens when you follow a good question for years and discover it is bigger than you thought."
   ],
   "author_note_signature": "— Collin",
   "waitlist_heading": "Be the first to read it.",
-  "waitlist_subheading": "Waitlist subscribers get early chapters and a month's notice before publication."
+  "waitlist_subheading": "Waitlist subscribers get early notes and a month's notice before publication."
 }
