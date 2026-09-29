@@ -30,7 +30,11 @@ jobs:
         with:
           ref: dev
 
-      - name: Fetch feed and write data/essays.json
+      # Substack/Cloudflare and the public proxies both throttle GitHub's IP ranges,
+      # so this step is best-effort here. The authoritative sync runs from a
+      # scheduled Claude task that fetches directly and pushes to dev + main.
+      - name: Fetch feed and write data/essays.json (best effort)
+        continue-on-error: true
         run: python3 scripts/sync_substack.py
 
       - name: Commit changes if any
