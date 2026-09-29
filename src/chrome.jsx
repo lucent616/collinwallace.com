@@ -78,10 +78,10 @@ function Footer({ go }) {
           </div>
           <div>
             <h4>Elsewhere</h4>
-            <a href="https://perishableknowledge.substack.com" target="_blank" rel="noopener">Substack</a>
-            <a href="#" onClick={(e)=>e.preventDefault()}>Twitter / X</a>
+            <a href="https://collinwallace.substack.com/" target="_blank" rel="noopener">Substack</a>
+            <a href="https://x.com/CollinWallace" target="_blank" rel="noopener">Twitter / X</a>
             <a href="https://www.linkedin.com/in/collin-wallace/" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="#" onClick={(e)=>e.preventDefault()}>RSS</a>
+            <a href="https://collinwallace.substack.com/feed" target="_blank" rel="noopener">RSS</a>
           </div>
           <div>
             <h4>Contact</h4>

@@ -5,8 +5,25 @@ function ContactPage({ go }) {
   const [intent, setIntent] = useStateContact("hi");
   const [form, setForm] = useStateContact({name:"", email:"", org:"", date:"", size:"", outlet:"", deadline:"", message:""});
   const [sent, setSent] = useStateContact(false);
+  const [sending, setSending] = useStateContact(false);
+  const [error, setError] = useStateContact("");
   const update = (k) => (e) => setForm({...form, [k]: e.target.value});
-  const submit = (e) => { e.preventDefault(); if (!form.name || !form.email || !form.message) return; setSent(true); };
+  const submit = async (e) => {
+    e.preventDefault();
+    if (!form.name || !form.email || !form.message || sending) return;
+    if (form.botcheck) return;
+    setSending(true); setError("");
+    try {
+      const label = (intents.find((i) => i.v === intent) || {}).label || intent;
+      const r = await submitForm("Contact — " + label, {
+        name: form.name, email: form.email, organization: form.org, event_date: form.date,
+        audience_size: form.size, outlet: form.outlet, deadline: form.deadline, message: form.message
+      });
+      if (r.via === "relay") setSent(true);
+    } catch (err) {
+      setError("Something went wrong sending that. Please email me directly instead.");
+    } finally { setSending(false); }
+  };
 
   const intents = [
     {v:"speaking", label:"Speaking"},
@@ -94,7 +111,9 @@ function ContactPage({ go }) {
                 />
               </div>
 
-              <button type="submit" className="btn btn-primary">Send message <Arrow /></button>
+              <input type="checkbox" name="botcheck" tabIndex="-1" autoComplete="off" style={{display:"none"}} onChange={(e)=>setForm({...form, botcheck: e.target.checked})} />
+              <button type="submit" className="btn btn-primary" disabled={sending}>{sending ? "Sending…" : "Send message"} <Arrow /></button>
+              {error && <p className="small" style={{marginTop: 12, color:"var(--accent-ink)"}}>{error}</p>}
               <p className="tiny" style={{marginTop: 16}}>
                 Prefer email? <ContactEmail label="Email me directly" className="inline-link" />
               </p>

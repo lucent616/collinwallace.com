@@ -89,6 +89,34 @@ function ContactEmail({ label = "Email me", className = "" }) {
   return <a href="#email" onClick={onClick} className={className}>{label}</a>;
 }
 
+
+// Form relay. Posts to Web3Forms when an access key is configured in data/site/forms.json;
+// otherwise falls back to opening a prefilled email so a message is never silently dropped.
+async function submitForm(kind, fields) {
+  let cfg = window.__CMS_CACHE["data/site/forms.json"];
+  if (!cfg) {
+    try { cfg = await fetch("data/site/forms.json", { cache: "no-store" }).then(r => r.ok ? r.json() : null); } catch (e) { cfg = null; }
+    if (cfg) window.__CMS_CACHE["data/site/forms.json"] = cfg;
+  }
+  const key = cfg && cfg.web3forms_access_key;
+  const prefix = (cfg && cfg.subject_prefix) || "[collinwallace.com]";
+  const subject = prefix + " " + kind + (fields.name ? " from " + fields.name : "");
+  if (key) {
+    const body = { access_key: key, subject, from_name: fields.name || "Website form", replyto: fields.email || "", form: kind, ...fields };
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(body)
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || json.success === false) throw new Error(json.message || "Submission failed");
+    return { via: "relay" };
+  }
+  // Fallback: prefilled email
+  const lines = Object.entries(fields).filter(([k, v]) => v).map(([k, v]) => k + ": " + v).join("\n");
+  const parts = ["collin", "lifemademobile", "com"];
+  window.location.href = "mailto:" + parts[0] + "@" + parts[1] + "." + parts[2] + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines);
+  return { via: "mailto" };
+}
+
 // Editorial headshot — real photo
 const PHOTOS = {
   hero: "assets/hero-postit.jpg",
@@ -143,4 +171,4 @@ function Arrow({ size = 14 }) {
   );
 }
 
-Object.assign(window, { EmailCapture, Reveal, SectionHead, LogoStrip, ContactEmail, Headshot, BookCover, Arrow });
+Object.assign(window, { EmailCapture, Reveal, SectionHead, LogoStrip, ContactEmail, submitForm, Headshot, BookCover, Arrow });

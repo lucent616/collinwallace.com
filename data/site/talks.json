@@ -3,39 +3,285 @@
   "intro_title": "Rooms I've been in recently.",
   "intro_caption": "Keynotes, panels, workshops and guest lectures. Formats range from a 15-minute keynote to a 90-minute working session.",
   "items": [
-    {"date": "Jul 2026", "event": "BLCK VC Institute", "host": "BLCK VC", "format": "Guest lecture", "topic": "Building an Investment Thesis", "where": "Virtual"},
-    {"date": "Apr 2026", "event": "Black & Brown Founders Conversation Series", "host": "1821", "format": "Fireside chat", "topic": "With Jonathan Speed, founder of 1821", "where": "San Francisco"},
-    {"date": "Apr 2026", "event": "Pre-Series A Offsite", "host": "nextNYC", "format": "Panel", "topic": "Investor panel for 60 pre-seed and seed NYC companies", "where": "Brooklyn, NY"},
-    {"date": "Mar 2026", "event": "State of Latino Entrepreneurship Summit", "host": "Stanford Latino Entrepreneurship Initiative · LBAN", "format": "Panel", "topic": "2026 Investment Trends: Navigating Opportunity in the Current Business Landscape", "where": "Stanford GSB, CEMEX Auditorium"},
-    {"date": "Feb 2026", "event": "Black Founders Showcase", "host": "Stanford GSB BBSA", "format": "Panel", "topic": "", "where": "Stanford GSB"},
-    {"date": "Feb 2026", "event": "Fundraising Sprint", "host": "StartX", "format": "Workshop", "topic": "The Investor Mindset: What VCs Want", "where": "Virtual"},
-    {"date": "Oct 2025", "event": "Fundraising Sprint", "host": "StartX", "format": "Workshop", "topic": "The Investor Mindset: What VCs Want", "where": "Virtual"},
-    {"date": "Sep 2025", "event": "Elite Founders Retreat", "host": "", "format": "Panel + AMA", "topic": "Venture fundraising", "where": "Santa Rosa, CA"},
-    {"date": "Aug 2025", "event": "Lectures After Dark", "host": "NextUp", "format": "Talk", "topic": "Perishable Knowledge", "where": "Oakland, CA"},
-    {"date": "Jun 2025", "event": "Pathfinder Perspectives Speaker Series", "host": "Stanford GSB", "format": "Moderated conversation", "topic": "", "where": "Stanford GSB"},
-    {"date": "May 2025", "event": "Formation of New Ventures", "host": "Stanford GSB", "format": "Guest lecture", "topic": "The FanGo case", "where": "Stanford GSB"},
-    {"date": "Apr 2025", "event": "Off The Stage", "host": "", "format": "Fireside chat", "topic": "Q&A for high-school founders", "where": "Virtual"},
-    {"date": "Apr 2025", "event": "Black & Brown Founder Reception", "host": "1821", "format": "Remarks", "topic": "The state of venture capital", "where": "San Francisco"},
-    {"date": "Apr 2025", "event": "Google Cloud Next", "host": "Google for Startups Cloud AI Accelerator", "format": "Fireside chat", "topic": "", "where": "Las Vegas"},
-    {"date": "Mar 2025", "event": "NVIDIA GTC — VC Reverse Pitch", "host": "NVIDIA Inception", "format": "Pitch", "topic": "Five minutes to pitch Lobby Capital, one of ten firms", "where": "San Jose"},
-    {"date": "Mar 2025", "event": "NVIDIA GTC — AI Day for Startups", "host": "NVIDIA Inception", "format": "Panel", "topic": "The Anti-Portfolio: VCs Share the Startups That Got Away", "where": "San Jose"},
-    {"date": "Feb 2025", "event": "Black History Month Celebration", "host": "Silicon Valley Bank", "format": "Panel + judge", "topic": "Unlocking Capital: The Shifts Reshaping Venture Funding", "where": "San Francisco"},
-    {"date": "Jan 2025", "event": "Context Studio", "host": "Context VC", "format": "Guest session", "topic": "", "where": "San Francisco"},
-    {"date": "Jan 2025", "event": "Global AI Summit SV", "host": "Bay Area Founders Club", "format": "Keynote + judge", "topic": "Knowledge Arbitrage: The Unobvious Playbook for AI Startup Success", "where": "Plug and Play, Sunnyvale"},
-    {"date": "Dec 2024", "event": "BullMont Speaker Series", "host": "University of Hawaiʻi Student Venture Fund", "format": "Guest speaker", "topic": "", "where": "Virtual"},
-    {"date": "Nov 2024", "event": "Pre-Seed Fundraising Bootcamp", "host": "Precursor Ventures", "format": "Panel", "topic": "Seed investor panel, moderated by Charles Hudson", "where": "Google, San Francisco"},
-    {"date": "Nov 2024", "event": "Georgia Tech + Stanford GSB", "host": "Stanford GSB MBA Admissions", "format": "Panel", "topic": "For Georgia Tech students considering deferred enrollment", "where": "Virtual"},
-    {"date": "Oct 2024", "event": "SF Tech Week", "host": "Toasted Life × Perkins Coie", "format": "Panel", "topic": "From Idea to Traction: Go-to-Market Strategies and Raising Capital", "where": "San Francisco"},
-    {"date": "May 2024", "event": "GenAI Summit San Francisco", "host": "GPT DAO", "format": "Judge", "topic": "", "where": "Palace of Fine Arts"},
-    {"date": "May 2024", "event": "Black Leadership Conference", "host": "Stanford GSB BBSA", "format": "Panel", "topic": "Tech & AI", "where": "Stanford GSB"},
-    {"date": "Apr 2024", "event": "Google Cloud Next", "host": "Google for Startups", "format": "Panel", "topic": "AI Startups & Tech, with Amit Zavery and Beth Rogozinski", "where": "Las Vegas"},
-    {"date": "Feb 2024", "event": "Formation of New Ventures", "host": "Stanford GSB", "format": "Guest lecture", "topic": "The FanGo case", "where": "Stanford GSB"},
-    {"date": "Oct 2023", "event": "Fintech Incubator", "host": "Franklin Templeton", "format": "Guest speaker", "topic": "Fundraising", "where": "Virtual"},
-    {"date": "Sep 2023", "event": "B-School Disrupt", "host": "UC Berkeley", "format": "Panel", "topic": "", "where": "INSEAD SF Hub"},
-    {"date": "Aug 2023", "event": "Expert Office Hours", "host": "Galvanizer", "format": "Workshop", "topic": "Product-market fit", "where": "Stanford"},
-    {"date": "May 2023", "event": "Culture Shifting Summit Silicon Valley", "host": "Culture Shift Labs", "format": "Panel", "topic": "Entrepreneurs with Successful Exits", "where": "San Jose"},
-    {"date": "Apr 2023", "event": "Building Momentum: Diversity & Entrepreneurship Conference", "host": "Stanford GSB", "format": "Panel", "topic": "Going from 0 to 1", "where": "Stanford GSB"},
-    {"date": "Jul 2022", "event": "Botha Chan Innovation Internship", "host": "Stanford GSB", "format": "Talk + AMA", "topic": "Product-market fit", "where": "Virtual"},
-    {"date": "Jul 2022", "event": "Inaugural cohort", "host": "RHouse", "format": "Talk", "topic": "", "where": "Virtual"}
+    {
+      "date": "Jul 2026",
+      "event": "BLCK VC Institute",
+      "host": "BLCK VC",
+      "format": "Guest lecture",
+      "topic": "Building an Investment Thesis",
+      "where": "Virtual"
+    },
+    {
+      "date": "Apr 2026",
+      "event": "Black & Brown Founders Conversation Series",
+      "host": "1821",
+      "format": "Fireside chat",
+      "topic": "With Jonathan Speed, founder of 1821",
+      "where": "San Francisco"
+    },
+    {
+      "date": "Apr 2026",
+      "event": "Pre-Series A Offsite",
+      "host": "nextNYC",
+      "format": "Panel",
+      "topic": "Investor panel for 60 pre-seed and seed NYC companies",
+      "where": "Brooklyn, NY"
+    },
+    {
+      "date": "Mar 2026",
+      "event": "State of Latino Entrepreneurship Summit",
+      "host": "Stanford Latino Entrepreneurship Initiative · LBAN",
+      "format": "Panel",
+      "topic": "2026 Investment Trends: Navigating Opportunity in the Current Business Landscape",
+      "where": "Stanford GSB, CEMEX Auditorium"
+    },
+    {
+      "date": "Feb 2026",
+      "event": "Black Founders Showcase",
+      "host": "Stanford GSB BBSA",
+      "format": "Panel",
+      "topic": "",
+      "where": "Stanford GSB"
+    },
+    {
+      "date": "Feb 2026",
+      "event": "Fundraising Sprint",
+      "host": "StartX",
+      "format": "Workshop",
+      "topic": "The Investor Mindset: What VCs Want",
+      "where": "Virtual"
+    },
+    {
+      "date": "Oct 2025",
+      "event": "Fundraising Sprint",
+      "host": "StartX",
+      "format": "Workshop",
+      "topic": "The Investor Mindset: What VCs Want",
+      "where": "Virtual"
+    },
+    {
+      "date": "Sep 2025",
+      "event": "Elite Founders Retreat",
+      "host": "",
+      "format": "Panel + AMA",
+      "topic": "Venture fundraising",
+      "where": "Santa Rosa, CA"
+    },
+    {
+      "date": "Aug 2025",
+      "event": "Lectures After Dark",
+      "host": "NextUp",
+      "format": "Talk",
+      "topic": "Perishable Knowledge",
+      "where": "Oakland, CA"
+    },
+    {
+      "date": "Jun 2025",
+      "event": "Pathfinder Perspectives Speaker Series",
+      "host": "Stanford GSB",
+      "format": "Moderated conversation",
+      "topic": "",
+      "where": "Stanford GSB"
+    },
+    {
+      "date": "May 2025",
+      "event": "Formation of New Ventures",
+      "host": "Stanford GSB",
+      "format": "Guest lecture",
+      "topic": "The FanGo case",
+      "where": "Stanford GSB"
+    },
+    {
+      "date": "Apr 2025",
+      "event": "Off The Stage",
+      "host": "",
+      "format": "Fireside chat",
+      "topic": "Q&A for high-school founders",
+      "where": "Virtual"
+    },
+    {
+      "date": "Apr 2025",
+      "event": "Black & Brown Founder Reception",
+      "host": "1821",
+      "format": "Remarks",
+      "topic": "The state of venture capital",
+      "where": "San Francisco"
+    },
+    {
+      "date": "Apr 2025",
+      "event": "Google Cloud Next",
+      "host": "Google for Startups Cloud AI Accelerator",
+      "format": "Fireside chat",
+      "topic": "",
+      "where": "Las Vegas"
+    },
+    {
+      "date": "Mar 2025",
+      "event": "NVIDIA GTC — VC Reverse Pitch",
+      "host": "NVIDIA Inception",
+      "format": "Pitch",
+      "topic": "Five minutes to pitch Lobby Capital, one of ten firms",
+      "where": "San Jose"
+    },
+    {
+      "date": "Mar 2025",
+      "event": "NVIDIA GTC — AI Day for Startups",
+      "host": "NVIDIA Inception",
+      "format": "Panel",
+      "topic": "The Anti-Portfolio: VCs Share the Startups That Got Away",
+      "where": "San Jose"
+    },
+    {
+      "date": "Feb 2025",
+      "event": "Black History Month Celebration",
+      "host": "Silicon Valley Bank",
+      "format": "Panel + judge",
+      "topic": "Unlocking Capital: The Shifts Reshaping Venture Funding",
+      "where": "San Francisco"
+    },
+    {
+      "date": "Jan 2025",
+      "event": "Context Studio",
+      "host": "Context VC",
+      "format": "Guest session",
+      "topic": "",
+      "where": "San Francisco"
+    },
+    {
+      "date": "Jan 2025",
+      "event": "Global AI Summit SV",
+      "host": "Bay Area Founders Club",
+      "format": "Keynote + judge",
+      "topic": "Knowledge Arbitrage: The Unobvious Playbook for AI Startup Success",
+      "where": "Plug and Play, Sunnyvale"
+    },
+    {
+      "date": "Dec 2024",
+      "event": "BullMont Speaker Series",
+      "host": "University of Hawaiʻi Student Venture Fund",
+      "format": "Guest speaker",
+      "topic": "",
+      "where": "Virtual"
+    },
+    {
+      "date": "Nov 2024",
+      "event": "Pre-Seed Fundraising Bootcamp",
+      "host": "Precursor Ventures",
+      "format": "Panel",
+      "topic": "Seed investor panel, moderated by Charles Hudson",
+      "where": "Google, San Francisco"
+    },
+    {
+      "date": "Nov 2024",
+      "event": "Georgia Tech + Stanford GSB",
+      "host": "Stanford GSB MBA Admissions",
+      "format": "Panel",
+      "topic": "For Georgia Tech students considering deferred enrollment",
+      "where": "Virtual"
+    },
+    {
+      "date": "Oct 2024",
+      "event": "SF Tech Week",
+      "host": "Toasted Life × Perkins Coie",
+      "format": "Panel",
+      "topic": "From Idea to Traction: Go-to-Market Strategies and Raising Capital",
+      "where": "San Francisco"
+    },
+    {
+      "date": "May 2024",
+      "event": "GenAI Summit San Francisco",
+      "host": "GPT DAO",
+      "format": "Judge",
+      "topic": "",
+      "where": "Palace of Fine Arts"
+    },
+    {
+      "date": "May 2024",
+      "event": "Black Leadership Conference",
+      "host": "Stanford GSB BBSA",
+      "format": "Panel",
+      "topic": "Tech & AI",
+      "where": "Stanford GSB"
+    },
+    {
+      "date": "Apr 2024",
+      "event": "Google Cloud Next",
+      "host": "Google for Startups",
+      "format": "Panel",
+      "topic": "AI Startups & Tech, with Amit Zavery and Beth Rogozinski",
+      "where": "Las Vegas"
+    },
+    {
+      "date": "Feb 2024",
+      "event": "Formation of New Ventures",
+      "host": "Stanford GSB",
+      "format": "Guest lecture",
+      "topic": "The FanGo case",
+      "where": "Stanford GSB"
+    },
+    {
+      "date": "Oct 2023",
+      "event": "Fintech Incubator",
+      "host": "Franklin Templeton",
+      "format": "Guest speaker",
+      "topic": "Fundraising",
+      "where": "Virtual"
+    },
+    {
+      "date": "Sep 2023",
+      "event": "B-School Disrupt",
+      "host": "UC Berkeley",
+      "format": "Panel",
+      "topic": "",
+      "where": "INSEAD SF Hub"
+    },
+    {
+      "date": "Aug 2023",
+      "event": "Expert Office Hours",
+      "host": "Galvanizer",
+      "format": "Workshop",
+      "topic": "Product-market fit",
+      "where": "Stanford"
+    },
+    {
+      "date": "May 2023",
+      "event": "Culture Shifting Summit Silicon Valley",
+      "host": "Culture Shift Labs",
+      "format": "Panel",
+      "topic": "Entrepreneurs with Successful Exits",
+      "where": "San Jose"
+    },
+    {
+      "date": "Apr 2023",
+      "event": "Building Momentum: Diversity & Entrepreneurship Conference",
+      "host": "Stanford GSB",
+      "format": "Panel",
+      "topic": "Going from 0 to 1",
+      "where": "Stanford GSB"
+    },
+    {
+      "date": "Jul 2022",
+      "event": "Botha Chan Innovation Internship",
+      "host": "Stanford GSB",
+      "format": "Talk + AMA",
+      "topic": "Product-market fit",
+      "where": "Virtual"
+    },
+    {
+      "date": "Jul 2022",
+      "event": "Inaugural cohort",
+      "host": "RHouse",
+      "format": "Talk",
+      "topic": "",
+      "where": "Virtual"
+    },
+    {
+      "date": "May 2019",
+      "event": "Culture Shifting Weekend",
+      "host": "Culture Shift Labs",
+      "format": "Talk",
+      "topic": "Culture Shifter spotlight",
+      "where": "Silicon Valley"
+    }
   ]
 }

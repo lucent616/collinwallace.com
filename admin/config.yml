@@ -212,6 +212,18 @@ collections:
               - {name: date, label: Year, widget: string, required: false}
               - {name: id, label: YouTube video ID, widget: string, hint: "Thumbnail must exist at assets/video/<id>.jpg"}
 
+  - name: forms
+    label: Forms
+    description: Where contact and speaking form submissions go.
+    files:
+      - file: data/site/forms.json
+        name: forms
+        label: Form relay settings
+        fields:
+          - {name: provider, label: Provider, widget: hidden, default: web3forms}
+          - {name: web3forms_access_key, label: Web3Forms access key, widget: string, required: false, hint: "Paste the key emailed by web3forms.com. Leave blank and forms fall back to opening an email."}
+          - {name: subject_prefix, label: Email subject prefix, widget: string, default: "[collinwallace.com]"}
+
   - name: profile
     label: Credentials
     files:

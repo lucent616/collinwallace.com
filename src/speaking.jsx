@@ -10,12 +10,24 @@ function SpeakingPage({ go }) {
     name: "", email: "", org: "", event: "", date: "", size: "", topic: "", message: ""
   });
   const [sent, setSent] = useStateSpeak(false);
+  const [sending, setSending] = useStateSpeak(false);
+  const [error, setError] = useStateSpeak("");
   const [showAll, setShowAll] = useStateSpeak(false);
   const update = (k) => (e) => setForm({...form, [k]: e.target.value});
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) return;
-    setSent(true);
+    if (!form.name || !form.email || !form.message || sending) return;
+    if (form.botcheck) return;
+    setSending(true); setError("");
+    try {
+      const r = await submitForm("Speaking inquiry", {
+        name: form.name, email: form.email, organization: form.org, event: form.event,
+        event_date: form.date, audience_size: form.size, topic: form.topic, message: form.message
+      });
+      if (r.via === "relay") setSent(true);
+    } catch (err) {
+      setError("Something went wrong sending that. Please email me directly instead.");
+    } finally { setSending(false); }
   };
 
   return (
@@ -138,7 +150,9 @@ function SpeakingPage({ go }) {
                 <label>Message</label>
                 <textarea value={form.message} onChange={update("message")} required placeholder="Anything else I should know about your audience, format, or goals." />
               </div>
-              <button type="submit" className="btn btn-primary">Send inquiry <Arrow /></button>
+              <input type="checkbox" name="botcheck" tabIndex="-1" autoComplete="off" style={{display:"none"}} onChange={(e)=>setForm({...form, botcheck: e.target.checked})} />
+              <button type="submit" className="btn btn-primary" disabled={sending}>{sending ? "Sending…" : "Send inquiry"} <Arrow /></button>
+              {error && <p className="small" style={{marginTop: 12, color:"var(--accent-ink)"}}>{error}</p>}
               <p className="tiny" style={{marginTop: 16}}>Prefer email? <ContactEmail label="Email me directly" className="inline-link" /></p>
             </form>
           )}

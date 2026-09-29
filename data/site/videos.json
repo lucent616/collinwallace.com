@@ -1,12 +1,58 @@
 {
   "items": [
-    {"title": "Collin Wallace on Perishable Knowledge and Compounding Curiosity", "channel": "Full Stack", "date": "2026", "id": "_DqUh0tNFik"},
-    {"title": "Venture funds, billion-dollar outcomes, and how founders stack the odds", "channel": "Fondo", "date": "2025", "id": "yS4QjjwjWWw"},
-    {"title": "The AI Edge with Investor and Builder Collin Wallace", "channel": "Pioneers", "date": "2025", "id": "hs4yHQb8AYk"},
-    {"title": "Perishable Knowledge & the Implications of AI", "channel": "AJonStartups", "date": "2025", "id": "bp1K3nL1c-Q"},
-    {"title": "MassChallenge Board Member Spotlight", "channel": "MassChallenge", "date": "2025", "id": "cWN3W5o2vEI"},
-    {"title": "Driving Innovation in Tech and Venture Capital", "channel": "Grace Gong", "date": "2024", "id": "SZ2NfkvyrwI"},
-    {"title": "Are Startup Accelerators Worth It for Founders?", "channel": "Next Unicorn", "date": "2024", "id": "sGBS8w0iLv0"},
-    {"title": "Collin Wallace, Partner at Lobby Capital — The Fabric, Ep. 9", "channel": "LobbyTV", "date": "2023", "id": "OUI8Zg5DmX4"}
+    {
+      "title": "Collin Wallace on Perishable Knowledge and Compounding Curiosity",
+      "channel": "Full Stack",
+      "date": "2026",
+      "id": "_DqUh0tNFik"
+    },
+    {
+      "title": "Venture funds, billion-dollar outcomes, and how founders stack the odds",
+      "channel": "Fondo",
+      "date": "2025",
+      "id": "yS4QjjwjWWw"
+    },
+    {
+      "title": "The AI Edge with Investor and Builder Collin Wallace",
+      "channel": "Pioneers",
+      "date": "2025",
+      "id": "hs4yHQb8AYk"
+    },
+    {
+      "title": "Perishable Knowledge & the Implications of AI",
+      "channel": "AJonStartups",
+      "date": "2025",
+      "id": "bp1K3nL1c-Q"
+    },
+    {
+      "title": "MassChallenge Board Member Spotlight",
+      "channel": "MassChallenge",
+      "date": "2025",
+      "id": "cWN3W5o2vEI"
+    },
+    {
+      "title": "Driving Innovation in Tech and Venture Capital",
+      "channel": "Grace Gong",
+      "date": "2024",
+      "id": "SZ2NfkvyrwI"
+    },
+    {
+      "title": "Are Startup Accelerators Worth It for Founders?",
+      "channel": "Next Unicorn",
+      "date": "2024",
+      "id": "sGBS8w0iLv0"
+    },
+    {
+      "title": "Collin Wallace, Partner at Lobby Capital — The Fabric, Ep. 9",
+      "channel": "LobbyTV",
+      "date": "2023",
+      "id": "OUI8Zg5DmX4"
+    },
+    {
+      "title": "Culture Shifter: Collin Wallace",
+      "channel": "Culture Shift Labs",
+      "date": "2019",
+      "id": "p8zm4Hmxvg8"
+    }
   ]
 }
