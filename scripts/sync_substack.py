@@ -95,30 +95,42 @@ def fetch_with_retry(url: str, accept: str) -> bytes:
 # Cloudflare blocks GitHub Actions' IP range from hitting Substack directly,
 # so these are the primary route when running on CI.
 PROXY_TEMPLATES = [
+    "https://api.allorigins.win/raw?url={enc}",
     "https://cors.eu.org/{url}",
     "https://api.codetabs.com/v1/proxy?quest={url}",
 ]
+PROXY_ATTEMPTS = 3          # each proxy is tried this many times (they 522 intermittently)
+PROXY_BACKOFF_SECONDS = 8
+
+
+def _looks_like_error(data: bytes) -> bool:
+    head = data[:200].lstrip().lower()
+    return (not data) or head.startswith(b"error code") or b"<!doctype html" in head[:40]
 
 
 def fetch_via_proxy(url: str, accept: str) -> bytes:
+    """Fetch through public CORS proxies, each retried a few times with backoff."""
     last_exc: Exception | None = None
-    for template in PROXY_TEMPLATES:
-        proxied = template.format(url=url)
-        try:
-            # Proxies don't need the full bot-evasion header set; keep it simple.
-            req = urllib.request.Request(
-                proxied,
-                headers={"User-Agent": USER_AGENTS[0], "Accept": accept},
-            )
-            with urllib.request.urlopen(req, timeout=30) as resp:
-                data = resp.read()
-                if not data:
-                    raise RuntimeError("empty response")
+    enc = urllib.parse.quote(url, safe="")
+    for attempt in range(PROXY_ATTEMPTS):
+        for template in PROXY_TEMPLATES:
+            proxied = template.format(url=url, enc=enc)
+            host = template.split("/")[2]
+            try:
+                req = urllib.request.Request(
+                    proxied,
+                    headers={"User-Agent": USER_AGENTS[attempt % len(USER_AGENTS)], "Accept": accept},
+                )
+                with urllib.request.urlopen(req, timeout=30) as resp:
+                    data = resp.read()
+                if _looks_like_error(data):
+                    raise RuntimeError(f"proxy returned an error page ({data[:40]!r})")
                 return data
-        except Exception as e:
-            last_exc = e
-            print(f"  proxy {template.split('/')[2]} failed: {e}", file=sys.stderr)
-            continue
+            except Exception as e:
+                last_exc = e
+                print(f"  proxy {host} failed (attempt {attempt + 1}): {e}", file=sys.stderr)
+                continue
+        time.sleep(PROXY_BACKOFF_SECONDS * (attempt + 1))
     assert last_exc is not None
     raise last_exc
 
@@ -164,13 +176,13 @@ def estimate_read_time(html_body: str) -> str:
     return f"{minutes} min"
 
 
-def posts_from_archive_json(base_url: str) -> list[dict]:
+def posts_from_archive_json(base_url: str, via_proxy: bool = False) -> list[dict]:
     """Fallback: Substack's public /api/v1/archive returns JSON and is usually
     less aggressively rate-limited than /feed.
     """
     base = base_url.rstrip("/").replace("/feed", "")
     url = f"{base}/api/v1/archive?sort=new&limit=50"
-    raw = fetch_with_retry(url, "application/json")
+    raw = fetch_via_proxy(url, "application/json") if via_proxy else fetch_with_retry(url, "application/json")
     data = json.loads(raw.decode("utf-8"))
 
     posts: list[dict] = []
@@ -267,7 +279,8 @@ def main() -> int:
     # scripted clients from CI IP ranges (Azure / GitHub Actions). In order:
     #   1. Direct fetch of /feed with browser-looking headers (works locally).
     #   2. Direct fetch of /api/v1/archive (JSON, sometimes less blocked).
-    #   3. Public CORS proxy chain (cors.eu.org, codetabs) as a last resort.
+    #   3. Public CORS proxy chain, archive JSON first (small payload; the big
+    #      RSS body gets truncated by some proxies), each proxy retried with backoff.
     posts: list[dict] = []
     source_used = args.feed
     accept_rss = "application/rss+xml,application/xml,text/xml,*/*;q=0.8"
@@ -277,6 +290,8 @@ def main() -> int:
          lambda: parse_feed(fetch_with_retry(args.feed, accept_rss))),
         ("direct archive JSON",
          lambda: posts_from_archive_json(args.feed)),
+        ("proxied archive JSON",
+         lambda: posts_from_archive_json(args.feed, via_proxy=True)),
         ("proxied RSS",
          lambda: parse_feed(fetch_via_proxy(args.feed, accept_rss))),
     ]
