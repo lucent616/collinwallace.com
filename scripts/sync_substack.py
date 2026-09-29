@@ -365,6 +365,17 @@ def main() -> int:
         "posts": posts,
     }
 
+    # Skip the write when nothing but the timestamp would change, so scheduled
+    # runs don't create a commit every day.
+    try:
+        with open(args.out, encoding="utf-8") as f:
+            existing = json.load(f)
+        if existing.get("posts") == posts:
+            print(f"no change — {len(posts)} posts already current in {args.out}", file=sys.stderr)
+            return 0
+    except (OSError, ValueError):
+        pass
+
     os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
