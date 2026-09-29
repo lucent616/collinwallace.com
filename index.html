@@ -277,22 +277,16 @@ button { font-family: inherit; }
 .wordmark{
   font-family: var(--serif);
   font-weight: 500;
-  font-size: 23px;
-  letter-spacing: -0.022em;
+  font-size: 19px;
+  letter-spacing: -0.01em;
   color: var(--ink);
   text-decoration: none;
-  display: inline-flex; align-items: baseline; gap: 11px;
-  line-height: 1;
+  display: inline-flex; align-items: center; gap:10px;
 }
-.wordmark .wm-first{ font-weight: 400; font-style: italic; color: var(--ink-2); }
-.wordmark .wm-last{ font-weight: 700; color: var(--ink); }
-.wordmark:hover .dot{ transform: translateY(-1px) scale(1.25); }
 .wordmark .dot{
-  width:9px; height:9px; border-radius:50%;
+  width:8px; height:8px; border-radius:50%;
   background: var(--accent);
   transform: translateY(-1px);
-  align-self: center;
-  transition: transform .2s ease;
 }
 .nav{
   display:flex; gap:28px; align-items:center;
