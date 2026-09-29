@@ -48,7 +48,14 @@ function HomePage({ go, tweaks }) {
     return () => { cancelled = true; };
   }, []);
 
-  const press = ["The Atlantic", "Business Insider", "The New Yorker", "TechCrunch", "The Guardian", "The Washington Post"];
+  const press = [
+    {name: "The Atlantic", logo: "assets/logos/press-atlantic.svg", scale: 1.7},
+    {name: "Business Insider", logo: "assets/logos/press-businessinsider.svg"},
+    {name: "The New Yorker", logo: "assets/logos/press-newyorker.svg"},
+    {name: "TechCrunch", logo: "assets/logos/press-techcrunch.svg", scale: 0.8},
+    {name: "The Guardian", logo: "assets/logos/press-guardian.svg"},
+    {name: "The Washington Post", logo: "assets/logos/press-washingtonpost.svg"}
+  ];
 
   // Render headline lines: last line gets accent-italic styling.
   const renderHeadline = () => {
@@ -231,7 +238,7 @@ function HomePage({ go, tweaks }) {
       <section className="section-sm" style={{background: "var(--bg-2)", borderTop: "1px solid var(--rule)", borderBottom: "1px solid var(--rule)"}}>
         <div className="container">
           <div className="eyebrow" style={{marginBottom: 28, textAlign:"center"}}>As seen in</div>
-          <LogoStrip items={press} sans />
+          <LogoStrip items={press} />
         </div>
       </section>
 

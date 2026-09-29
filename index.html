@@ -277,16 +277,22 @@ button { font-family: inherit; }
 .wordmark{
   font-family: var(--serif);
   font-weight: 500;
-  font-size: 19px;
-  letter-spacing: -0.01em;
+  font-size: 23px;
+  letter-spacing: -0.022em;
   color: var(--ink);
   text-decoration: none;
-  display: inline-flex; align-items: center; gap:10px;
+  display: inline-flex; align-items: baseline; gap: 11px;
+  line-height: 1;
 }
+.wordmark .wm-first{ font-weight: 400; font-style: italic; color: var(--ink-2); }
+.wordmark .wm-last{ font-weight: 700; color: var(--ink); }
+.wordmark:hover .dot{ transform: translateY(-1px) scale(1.25); }
 .wordmark .dot{
-  width:8px; height:8px; border-radius:50%;
+  width:9px; height:9px; border-radius:50%;
   background: var(--accent);
   transform: translateY(-1px);
+  align-self: center;
+  transition: transform .2s ease;
 }
 .nav{
   display:flex; gap:28px; align-items:center;
@@ -665,6 +671,7 @@ button { font-family: inherit; }
 .logo-strip .logo-img{ display:flex; align-items:center; justify-content:center; height: 44px; opacity: .78; filter: grayscale(1); transition: opacity .2s ease, filter .2s ease; }
 .logo-strip .logo-img img{ max-height: 100%; max-width: 100%; width:auto; height:auto; object-fit: contain; }
 .logo-strip .logo-img:hover{ opacity: 1; filter: none; }
+.logo-strip .logo-img.tall{ height: auto; }
 .logo-strip.wide{ grid-template-columns: repeat(6, 1fr); row-gap: 40px; }
 @media (max-width: 820px){ .logo-strip.wide{ grid-template-columns: repeat(3, 1fr); } .logo-strip .logo-img{ height: 36px; } }
 .inline-link{ color: var(--accent-ink); border-bottom: 1px solid var(--rule-2); text-decoration: none; }

@@ -73,10 +73,10 @@ function LogoStrip({ items, sans }) {
     <div className="logo-strip">
       {items.map((l, i) => {
         if (typeof l === "string") return <div key={i} className={"logo" + (sans ? " sans" : "")}>{l}</div>;
-        const img = <img src={l.logo} alt={l.name} title={l.name} loading="lazy" />;
+        const img = <img src={l.logo} alt={l.name} title={l.name} style={l.scale ? {height: (44 * l.scale) + "px", maxHeight: "none"} : undefined} />;
         return l.url
-          ? <a key={i} className="logo logo-img" href={l.url} target="_blank" rel="noopener noreferrer" aria-label={l.name}>{img}</a>
-          : <div key={i} className="logo logo-img" aria-label={l.name}>{img}</div>;
+          ? <a key={i} className={"logo logo-img" + (l.scale ? " tall" : "")} href={l.url} target="_blank" rel="noopener noreferrer" aria-label={l.name}>{img}</a>
+          : <div key={i} className={"logo logo-img" + (l.scale ? " tall" : "")} aria-label={l.name}>{img}</div>;
       })}
     </div>
   );
@@ -84,7 +84,7 @@ function LogoStrip({ items, sans }) {
 
 // Obfuscated contact address — assembled at click time so it never sits in the HTML as text.
 function ContactEmail({ label = "Email me", className = "" }) {
-  const parts = ["collin", "lifemademobile", "com"];
+  const parts = ["tooltip.clark.0n", "icloud", "com"];
   const onClick = (e) => { e.preventDefault(); window.location.href = "mailto:" + parts[0] + "@" + parts[1] + "." + parts[2]; };
   return <a href="#email" onClick={onClick} className={className}>{label}</a>;
 }
@@ -112,7 +112,7 @@ async function submitForm(kind, fields) {
   }
   // Fallback: prefilled email
   const lines = Object.entries(fields).filter(([k, v]) => v).map(([k, v]) => k + ": " + v).join("\n");
-  const parts = ["collin", "lifemademobile", "com"];
+  const parts = ["tooltip.clark.0n", "icloud", "com"];
   window.location.href = "mailto:" + parts[0] + "@" + parts[1] + "." + parts[2] + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines);
   return { via: "mailto" };
 }

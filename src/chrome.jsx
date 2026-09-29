@@ -29,7 +29,7 @@ function Header({ route, go }) {
       <div className="container header-inner">
         <a href="#/home" className="wordmark" onClick={(e) => { e.preventDefault(); go("home"); }}>
           <span className="dot" />
-          Collin Wallace
+          <span className="wm-first">Collin</span> <span className="wm-last">Wallace</span>
         </a>
         <nav className={"nav" + (open ? " open" : "")}>
           {nav.map((n) => link(n.key, n.label))}
