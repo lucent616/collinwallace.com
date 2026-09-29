@@ -70,8 +70,9 @@ collections:
         name: book
         label: Book page
         fields:
-          - {name: status_pill, label: Status pill, widget: string, hint: "e.g. 'In progress — 2026'"}
+          - {name: status_pill, label: Status pill, widget: string, hint: "e.g. 'Harper Business · June 8, 2027'"}
           - {name: title, label: Book title, widget: string}
+          - {name: subtitle, label: Book subtitle, widget: string, required: false}
           - {name: hero_blurb, label: Hero blurb, widget: text}
           - {name: waitlist_note, label: Hero · waitlist note, widget: string}
           - {name: argument_eyebrow, label: Argument section · eyebrow, widget: string}
@@ -87,11 +88,12 @@ collections:
             widget: list
             fields:
               - {name: number, label: Roman numeral, widget: string, hint: "e.g. 'IV.'"}
-              - {name: title, label: Chapter title, widget: string}
+              - {name: part, label: Part header (only on the first law of each part), widget: string, required: false}
+              - {name: title, label: Law title, widget: string}
           - {name: endorsements_eyebrow, label: Endorsements · eyebrow, widget: string}
           - {name: endorsements_heading, label: Endorsements · heading, widget: string}
           - name: endorsements
-            label: Endorsements (placeholder allowed)
+            label: Endorsements (section is hidden on the site until this list has entries)
             widget: list
             fields:
               - {name: quote, label: Quote, widget: text}

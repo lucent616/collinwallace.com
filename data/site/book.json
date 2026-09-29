@@ -1,75 +1,76 @@
 {
-  "status_pill": "In progress — 2026",
+  "status_pill": "Harper Business · June 8, 2027",
   "title": "Perishable Knowledge.",
-  "hero_blurb": "Why the best founders exploit time-bound information advantages — and how the rest of us can build a practice around finding them.",
-  "waitlist_note": "You'll get chapter drafts, notes from the margins, and a heads up a month before publication.",
+  "subtitle": "9 Laws for Becoming Irreplaceable",
+  "hero_blurb": "Everyone is asking the same question: how do I stay valuable in a world that knows everything? The answer is older than AI. Based on the popular Stanford University course, here are nine laws for finding your edge.",
+  "waitlist_note": "Waitlist subscribers get early chapters, notes from the margins, and first word when pre-orders open.",
   "argument_eyebrow": "The Argument",
-  "argument_heading": "Codified knowledge is becoming free. That changes what it means to be an expert.",
+  "argument_heading": "Success has never belonged to the smartest person in the room. Not before AI — and not now.",
   "argument_paragraphs": [
-    "For most of the last century, expertise meant access to a library and a few years to read it. Static knowledge — the kind you can look up, cite, and test against — was the moat. It was hard to acquire and even harder to fake.",
-    "That era is ending. Not because knowledge is less valuable, but because the cost of retrieving and synthesizing it has collapsed. Anyone can ask a good question and get a competent answer in seconds. Which means the advantage has moved.",
-    "It has moved upstream, to the act of picking what to look into in the first place. It has moved sideways, into the relationships and contexts that produce non-public information. And it has moved forward, into what I call _perishable knowledge_ — insights that are only true for a little while, that degrade as they spread, and that reward the people who get to them first and act on them fastest.",
-    "This book is an attempt to take that seriously as a skill, a practice, and — for students, athletes, founders, executives, managers and investors — a strategy. It draws on decades of building and investing in startups, years of teaching entrepreneurship and innovation at Stanford, University and the essays I have been publishing every week to an audience of students, operators and investors figuring this out alongside me."
+    "I have been answering one question for years at the Stanford Graduate School of Business, in the packed class where companies like DoorDash, Zūm, and Guild Education were born: how do I stay valuable in a world that knows everything? My students arrive believing their job is to out-smart everyone. They leave knowing something better.",
+    "Every breakthrough starts the same way. Someone — a Marie Curie, a Henry Ford, a Steve Jobs — spots something many brilliant people missed and acts on it before the window closes. I call it _perishable knowledge_, and it can't be Googled or generated, because it doesn't exist until someone discovers it. And it spoils: the moment an insight is revealed, it starts turning into static knowledge, the kind anyone can look up, and the edge is gone.",
+    "I have made millions following its nine laws — and lost millions ignoring them. The book teaches all nine, following the lifecycle of a perishable insight: how to find one worth having, how to capture the value while it's live, and how to let go before it costs you.",
+    "Applicable to any industry, experience level, or career stage, _Perishable Knowledge_ is more than proof that humans still matter in the age of AI. It's proof that winning was never reserved for the smartest person in the room. You don't have to be a genius. You have to see the right insights first."
   ],
-  "toc_eyebrow": "Table of Contents",
-  "toc_caption": "Placeholder — final outline pending. Subject to change.",
+  "toc_eyebrow": "The Nine Laws",
+  "toc_caption": "Three parts, following the lifecycle of a perishable insight: explore, exploit, expire.",
   "toc": [
     {
       "number": "I.",
-      "title": "The End of Static Knowledge"
+      "part": "Explore — finding insights worth having",
+      "title": "Hunt small but significant"
     },
     {
       "number": "II.",
-      "title": "What Perishable Knowledge Is"
+      "part": "",
+      "title": "Look stupid, get smart"
     },
     {
       "number": "III.",
-      "title": "Sourcing: Where It Hides"
+      "part": "",
+      "title": "Create knowledge"
     },
     {
       "number": "IV.",
-      "title": "Pricing: The Half-Life Problem"
+      "part": "Exploit — capturing the value while it's live",
+      "title": "Outlearn everyone"
     },
     {
       "number": "V.",
-      "title": "Building a Practice"
+      "part": "",
+      "title": "Get close to the source"
     },
     {
       "number": "VI.",
-      "title": "A Field Guide for Founders"
+      "part": "",
+      "title": "Work the seams"
     },
     {
       "number": "VII.",
-      "title": "A Field Guide for Investors"
+      "part": "Expire — letting go before it costs you",
+      "title": "Hear what isn't said"
     },
     {
       "number": "VIII.",
-      "title": "Teaching It"
+      "part": "",
+      "title": "Question what you know"
+    },
+    {
+      "number": "IX.",
+      "part": "",
+      "title": "Compound your knowledge"
     }
   ],
   "endorsements_eyebrow": "Endorsements",
   "endorsements_heading": "Early readers.",
-  "endorsements": [
-    {
-      "quote": "Endorsement to come.",
-      "person": "forthcoming"
-    },
-    {
-      "quote": "Endorsement to come.",
-      "person": "forthcoming"
-    },
-    {
-      "quote": "Endorsement to come.",
-      "person": "forthcoming"
-    }
-  ],
+  "endorsements": [],
   "author_note_eyebrow": "Why I'm Writing This",
   "author_note_heading": "A short note from the author.",
   "author_note_paragraphs": [
     "I have spent the last decade on both sides of the table — first building companies, then picking them. In that time, one pattern kept showing up in the founders who outperformed the rest. It wasn't grit, or taste, or any of the usual explanations. It was how they handled information that was about to stop being true.",
-    "I started writing _Perishable Knowledge_ as a newsletter because I wanted to think out loud about what that looked like. The book is what happens when you follow a good question for years and discover it is bigger than you thought."
+    "I started writing _Perishable Knowledge_ as a newsletter because I wanted to think out loud about what that looked like. The book is what happens when you follow a good question for four years and discover it is bigger than you thought."
   ],
   "author_note_signature": "— Collin",
   "waitlist_heading": "Be the first to read it.",
-  "waitlist_subheading": "Waitlist subscribers get early notes and a month's notice before publication."
+  "waitlist_subheading": "Waitlist subscribers get early chapters and first word when pre-orders open. Publishing June 8, 2027 from Harper Business."
 }

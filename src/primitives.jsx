@@ -117,7 +117,7 @@ function BookCover({ small }) {
       boxShadow: "0 1px 0 rgba(31,27,23,0.04), 0 24px 50px -20px rgba(31,27,23,0.35), -6px 0 0 -3px rgba(0,0,0,0.18)",
       maxWidth: small ? 220 : "100%"
     }}>
-      <img src="assets/book-cover.png" alt="Perishable Knowledge — book cover"
+      <img src="assets/book-cover.jpg" alt="Perishable Knowledge — book cover"
         style={{width:"100%", height:"100%", objectFit:"cover", display:"block"}} />
     </div>
   );

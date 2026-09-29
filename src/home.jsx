@@ -22,8 +22,8 @@ const HOME_FALLBACK = {
   essays_section_eyebrow: "The Newsletter",
   essays_section_title: "Recent essays.",
   essays_section_link: "Read all essays",
-  book_section_eyebrow: "The Book — In Progress",
-  book_section_blurb: "Ten years of teaching, investing, and writing, distilled into a single framework for anyone building in the AI era. Expected early 2027."
+  book_section_eyebrow: "The Book — Coming June 2027",
+  book_section_blurb: "Ten years of teaching, investing, and writing, distilled into a single framework for anyone building in the AI era. Harper Business, June 8, 2027."
 };
 
 function HomePage({ go, tweaks }) {
@@ -186,9 +186,9 @@ function HomePage({ go, tweaks }) {
             </Reveal>
             <Reveal delay={120}>
               <div className="eyebrow" style={{marginBottom: 18}}>{home.book_section_eyebrow}</div>
-              <h2 className="h-xl"><em>Perishable Knowledge.</em><br/>A book, in progress.</h2>
+              <h2 className="h-xl"><em>Perishable Knowledge.</em><br/>9 Laws for Becoming Irreplaceable.</h2>
               <p className="lede" style={{marginTop: 24, maxWidth: 500}}>
-                An argument for a new kind of expertise — one built not on what you know, but on how fast you can find the insight the market hasn't priced in yet.
+                Everyone is asking the same question: how do I stay valuable in a world that knows everything? The answer is older than AI.
               </p>
               <p className="body" style={{marginTop: 14, maxWidth: 500}}>
                 {home.book_section_blurb}

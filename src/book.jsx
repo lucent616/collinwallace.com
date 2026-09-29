@@ -1,8 +1,9 @@
 // /book page
 
 const BOOK_FALLBACK = {
-  status_pill: "In progress — 2026",
+  status_pill: "Harper Business · June 8, 2027",
   title: "Perishable Knowledge.",
+  subtitle: "9 Laws for Becoming Irreplaceable",
   hero_blurb: "",
   waitlist_note: "You'll get chapter drafts, notes from the margins, and a heads up a month before publication.",
   argument_eyebrow: "The Argument",
@@ -38,6 +39,9 @@ function BookPage({ go }) {
                 <span style={{width:6,height:6,borderRadius:"50%",background:"var(--accent)"}}/> {book.status_pill}
               </div>
               <h1 className="h-xl"><em>{book.title}</em></h1>
+              {book.subtitle && (
+                <div className="eyebrow" style={{marginTop: 18, letterSpacing:"0.12em"}}>{book.subtitle}</div>
+              )}
               <p className="lede" style={{marginTop: 22, maxWidth: 540}}>
                 <Md>{book.hero_blurb}</Md>
               </p>
@@ -75,22 +79,30 @@ function BookPage({ go }) {
               <p className="small">{book.toc_caption}</p>
             </div>
             <div>
-              {(book.toc || []).map(({ number, title }, i) => (
-                <div key={i} style={{
-                  display:"grid", gridTemplateColumns:"60px 1fr", gap: 20,
-                  padding: "18px 0", borderTop: i === 0 ? "1px solid var(--rule)" : "none",
-                  borderBottom: "1px solid var(--rule)"
-                }}>
-                  <div className="mono" style={{color:"var(--accent-ink)", fontSize: 12, letterSpacing:"0.1em"}}>{number}</div>
-                  <div className="h-md">{title}</div>
-                </div>
+              {(book.toc || []).map(({ number, title, part }, i) => (
+                <React.Fragment key={i}>
+                  {part && (
+                    <div className="eyebrow" style={{
+                      color:"var(--accent-ink)", padding: i === 0 ? "0 0 12px" : "36px 0 12px"
+                    }}>{part}</div>
+                  )}
+                  <div style={{
+                    display:"grid", gridTemplateColumns:"60px 1fr", gap: 20,
+                    padding: "18px 0", borderTop: (i === 0 || part) ? "1px solid var(--rule)" : "none",
+                    borderBottom: "1px solid var(--rule)"
+                  }}>
+                    <div className="mono" style={{color:"var(--accent-ink)", fontSize: 12, letterSpacing:"0.1em"}}>{number}</div>
+                    <div className="h-md">{title}</div>
+                  </div>
+                </React.Fragment>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Endorsements */}
+      {/* Endorsements — hidden until there are real ones */}
+      {(book.endorsements || []).length > 0 && (
       <section className="section">
         <div className="container">
           <div className="eyebrow" style={{marginBottom: 16}}>{book.endorsements_eyebrow}</div>
@@ -110,6 +122,7 @@ function BookPage({ go }) {
           </div>
         </div>
       </section>
+      )}
 
       {/* Author note */}
       <section className="section" style={{background: "var(--bg-2)"}}>
