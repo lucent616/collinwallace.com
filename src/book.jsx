@@ -28,9 +28,9 @@ function BookPage({ go }) {
 
   return (
     <div>
-      <section className="section">
+      <section className="section book-hero">
         <div className="container">
-          <div className="grid-hero" style={{gridTemplateColumns: "minmax(0,1fr) minmax(0,1fr)", gap: 80, alignItems:"center"}}>
+          <div className="grid-hero book-hero-grid">
             <div style={{width:"100%", maxWidth: 300}}>
               <BookCover />
             </div>
@@ -38,9 +38,9 @@ function BookPage({ go }) {
               <div className="pill" style={{marginBottom: 18}}>
                 <span style={{width:6,height:6,borderRadius:"50%",background:"var(--accent)"}}/> {book.status_pill}
               </div>
-              <h1 className="h-xl"><em>{book.title}</em></h1>
+              <h1 className="h-xl brand-display"><em>{book.title}</em></h1>
               {book.subtitle && (
-                <div className="eyebrow" style={{marginTop: 18, letterSpacing:"0.12em"}}>{book.subtitle}</div>
+                <div className="eyebrow brand-subtitle" style={{marginTop: 18, letterSpacing:"0.12em"}}>{book.subtitle}</div>
               )}
               <p className="lede" style={{marginTop: 22, maxWidth: 540}}>
                 <Md>{book.hero_blurb}</Md>
@@ -91,7 +91,7 @@ function BookPage({ go }) {
                     padding: "18px 0", borderTop: (i === 0 || part) ? "1px solid var(--rule)" : "none",
                     borderBottom: "1px solid var(--rule)"
                   }}>
-                    <div className="mono" style={{color:"var(--accent-ink)", fontSize: 12, letterSpacing:"0.1em"}}>{number}</div>
+                    <div className="mono brand-numeral" style={{color:"var(--accent-ink)", fontSize: 12, letterSpacing:"0.1em"}}>{number}</div>
                     <div className="h-md">{title}</div>
                   </div>
                 </React.Fragment>

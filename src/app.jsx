@@ -10,7 +10,12 @@ function parseRoute() {
 
 function App() {
   const [route, setRoute] = useStateApp(parseRoute());
-  const [tweaks, setTweaks] = useStateApp(window.__TWEAKS);
+  const [tweaks, setTweaks] = useStateApp(() => {
+    const q = new URLSearchParams(window.location.search);
+    const o = { ...window.__TWEAKS };
+    ["accent","brand","warmth","serif","rhythm"].forEach(k => { if (q.get(k)) o[k] = q.get(k); });
+    return o;
+  });
   const [floatVisible, setFloatVisible] = useStateApp(false);
 
   useEffectApp(() => {
@@ -29,6 +34,7 @@ function App() {
     root.setAttribute("data-serif", tweaks.serif);
     root.setAttribute("data-warmth", tweaks.warmth);
     root.setAttribute("data-rhythm", tweaks.rhythm);
+    root.setAttribute("data-brand", tweaks.brand || "none");
 
     // lazy-load extra fonts if needed
     const need = {

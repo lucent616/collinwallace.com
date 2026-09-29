@@ -2,7 +2,7 @@
 
 const ABOUT_FALLBACK = {
   eyebrow: "About",
-  headline: "I build things, pick things, teach things, and write about all of it on Saturdays.",
+  headline: "I build things, pick things, teach things, and write about all of it every week.",
   lede: "The version that fits on a business card: writer, investor, entrepreneur, lecturer at Stanford GSB. The version that doesn't is below.",
   bio_paragraphs: [],
   outro_heading: "Thanks for reading this far.",
