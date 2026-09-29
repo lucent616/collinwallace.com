@@ -80,12 +80,12 @@ function Footer({ go }) {
             <h4>Elsewhere</h4>
             <a href="https://perishableknowledge.substack.com" target="_blank" rel="noopener">Substack</a>
             <a href="#" onClick={(e)=>e.preventDefault()}>Twitter / X</a>
-            <a href="#" onClick={(e)=>e.preventDefault()}>LinkedIn</a>
+            <a href="https://www.linkedin.com/in/collin-wallace/" target="_blank" rel="noopener">LinkedIn</a>
             <a href="#" onClick={(e)=>e.preventDefault()}>RSS</a>
           </div>
           <div>
             <h4>Contact</h4>
-            <a href="mailto:collin@lifemademobile.com">collin@lifemademobile.com</a>
+            <ContactEmail label="Email" />
             <a href="#/contact" onClick={(e)=>{e.preventDefault();go("contact");}}>Speaking inquiries</a>
             <p className="tiny" style={{marginTop: 10, maxWidth: 240}}>
               If you're raising, please reach out via <a href="#" onClick={(e)=>e.preventDefault()} style={{padding:0, display:"inline", borderBottom:"1px solid var(--rule-2)"}}>Lobby Capital</a>.

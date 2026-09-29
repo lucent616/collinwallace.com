@@ -117,25 +117,32 @@ collections:
     files:
       - file: data/site/talks.json
         name: talks
-        label: Signature talks
+        label: Speaking engagements
         fields:
+          - {name: intro_eyebrow, label: Section eyebrow, widget: string, required: false}
+          - {name: intro_title, label: Section title, widget: string, required: false}
+          - {name: intro_caption, label: Section caption, widget: text, required: false}
           - name: items
-            label: Talks
+            label: Engagements (most recent first)
             widget: list
             fields:
-              - {name: number, label: Number, widget: string, hint: "e.g. '01'"}
-              - {name: title, label: Title, widget: string}
-              - {name: abstract, label: Abstract, widget: text}
-              - {name: audience, label: Audience, widget: string}
+              - {name: date, label: Date, widget: string, hint: "e.g. 'Mar 2026'"}
+              - {name: event, label: Event, widget: string}
+              - {name: host, label: Host organization, widget: string, required: false}
+              - {name: format, label: Format, widget: string, hint: "Keynote, Panel, Workshop, Fireside chat…"}
+              - {name: topic, label: Topic / session title, widget: string, required: false}
+              - {name: where, label: Location, widget: string, required: false}
 
       - file: data/site/venues.json
         name: venues
-        label: Past venues
+        label: Past venues (logo strip)
         fields:
           - name: items
-            label: Venues (logo strip)
+            label: Venues
             widget: list
-            field: {name: venue, label: Venue name, widget: string}
+            fields:
+              - {name: name, label: Organization, widget: string}
+              - {name: logo, label: Logo path, widget: string, hint: "e.g. assets/logos/nvidia.svg"}
 
       - file: data/site/testimonials.json
         name: testimonials
@@ -155,16 +162,26 @@ collections:
     files:
       - file: data/site/press.json
         name: press
-        label: Press mentions
+        label: Press
         fields:
-          - name: items
-            label: Press
+          - name: featured
+            label: Featured (up to 6 cards)
             widget: list
             fields:
               - {name: outlet, label: Outlet, widget: string}
               - {name: title, label: Headline, widget: string}
-              - {name: quote, label: Pull quote, widget: text}
-              - {name: url, label: Link (optional), widget: string, required: false}
+              - {name: quote, label: Blurb or pull quote, widget: text}
+              - {name: pull, label: Blurb is a verbatim quote (adds quote marks), widget: boolean, required: false, default: false}
+              - {name: date, label: Date, widget: string, required: false}
+              - {name: url, label: Link, widget: string, required: false}
+          - name: more
+            label: More coverage (compact list)
+            widget: list
+            fields:
+              - {name: outlet, label: Outlet, widget: string}
+              - {name: title, label: Headline, widget: string}
+              - {name: date, label: Year, widget: string, required: false}
+              - {name: url, label: Link, widget: string}
 
       - file: data/site/podcasts.json
         name: podcasts
@@ -176,7 +193,24 @@ collections:
             fields:
               - {name: title, label: Show name, widget: string}
               - {name: episode, label: Episode title, widget: string}
-              - {name: url, label: Link (optional), widget: string, required: false}
+              - {name: host, label: Host / network, widget: string, required: false}
+              - {name: date, label: Date, widget: string, required: false}
+              - {name: art, label: Artwork path, widget: string, required: false, hint: "e.g. assets/podcasts/show.jpg"}
+              - {name: url, label: Listen link, widget: string, required: false}
+              - {name: video, label: Video link (optional), widget: string, required: false}
+
+      - file: data/site/videos.json
+        name: videos
+        label: Video appearances
+        fields:
+          - name: items
+            label: Videos
+            widget: list
+            fields:
+              - {name: title, label: Title, widget: string}
+              - {name: channel, label: Channel, widget: string}
+              - {name: date, label: Year, widget: string, required: false}
+              - {name: id, label: YouTube video ID, widget: string, hint: "Thumbnail must exist at assets/video/<id>.jpg"}
 
   - name: profile
     label: Credentials
@@ -188,4 +222,7 @@ collections:
           - name: items
             label: Credentials
             widget: list
-            field: {name: credential, label: Credential, widget: string}
+            fields:
+              - {name: name, label: Organization, widget: string}
+              - {name: logo, label: Logo path, widget: string}
+              - {name: url, label: Link, widget: string, required: false}

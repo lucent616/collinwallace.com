@@ -1,3 +1,15 @@
 {
-  "items": ["SaaStr", "TechCrunch Disrupt", "Web Summit", "SXSW", "Stanford GSB", "Techstars"]
+  "items": [
+    {"name": "NVIDIA GTC", "logo": "assets/logos/nvidia.svg"},
+    {"name": "Google Cloud Next", "logo": "assets/logos/googlecloud.svg"},
+    {"name": "Silicon Valley Bank", "logo": "assets/logos/svb.svg"},
+    {"name": "Stanford GSB", "logo": "assets/logos/gsb.svg"},
+    {"name": "Precursor Ventures", "logo": "assets/logos/precursor.png"},
+    {"name": "Franklin Templeton", "logo": "assets/logos/franklin-templeton.png"},
+    {"name": "UC Berkeley", "logo": "assets/logos/berkeley.svg"},
+    {"name": "Georgia Tech", "logo": "assets/logos/georgiatech.svg"},
+    {"name": "BLCK VC", "logo": "assets/logos/blckvc.png"},
+    {"name": "1821", "logo": "assets/logos/1821.png"},
+    {"name": "StartX", "logo": "assets/logos/startx.png"}
+  ]
 }

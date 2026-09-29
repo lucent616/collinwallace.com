@@ -48,7 +48,7 @@ function HomePage({ go, tweaks }) {
     return () => { cancelled = true; };
   }, []);
 
-  const press = ["Bloomberg", "TechCrunch", "The Information", "Fortune", "Forbes", "The Verge"];
+  const press = ["The Atlantic", "Business Insider", "The New Yorker", "TechCrunch", "The Guardian", "The Washington Post"];
 
   // Render headline lines: last line gets accent-italic styling.
   const renderHeadline = () => {

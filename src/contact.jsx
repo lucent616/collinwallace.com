@@ -39,7 +39,7 @@ function ContactPage({ go }) {
           {sent ? (
             <div className="capture-success" style={{marginTop: 32, fontSize: 18}}>
               <span style={{fontSize:22}}>✓</span>
-              <span>Message received. I'll reply from collin@lifemademobile.com.</span>
+              <span>Message received. I'll reply by email.</span>
             </div>
           ) : (
             <form onSubmit={submit} style={{marginTop: 36}}>
@@ -96,7 +96,7 @@ function ContactPage({ go }) {
 
               <button type="submit" className="btn btn-primary">Send message <Arrow /></button>
               <p className="tiny" style={{marginTop: 16}}>
-                Or email directly: <a href="mailto:collin@lifemademobile.com" style={{color:"var(--accent-ink)", borderBottom:"1px solid var(--rule-2)"}}>collin@lifemademobile.com</a>
+                Prefer email? <ContactEmail label="Email me directly" className="inline-link" />
               </p>
             </form>
           )}

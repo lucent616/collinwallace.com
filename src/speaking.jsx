@@ -10,6 +10,7 @@ function SpeakingPage({ go }) {
     name: "", email: "", org: "", event: "", date: "", size: "", topic: "", message: ""
   });
   const [sent, setSent] = useStateSpeak(false);
+  const [showAll, setShowAll] = useStateSpeak(false);
   const update = (k) => (e) => setForm({...form, [k]: e.target.value});
   const submit = (e) => {
     e.preventDefault();
@@ -43,32 +44,41 @@ function SpeakingPage({ go }) {
       <section className="section-sm" style={{background:"var(--bg-2)", borderTop:"1px solid var(--rule)", borderBottom:"1px solid var(--rule)"}}>
         <div className="container">
           <div className="eyebrow" style={{marginBottom: 28, textAlign:"center"}}>Past venues</div>
-          <LogoStrip items={venues.items || []} />
+          <div className="logo-strip wide">{(venues.items || []).map((l, i) => <div key={i} className="logo logo-img" aria-label={l.name}><img src={l.logo} alt={l.name} title={l.name} loading="lazy" /></div>)}</div>
         </div>
       </section>
 
       <section id="talks" className="section">
         <div className="container">
-          <SectionHead eyebrow="Signature Talks" title="Five talks, refined over fifty rooms." />
-          <div style={{display:"grid", gridTemplateColumns:"repeat(auto-fill, minmax(320px, 1fr))", gap: 20}}>
-            {(talks.items || []).map((t, i) => (
-              <Reveal key={i} delay={i * 60}>
-                <div className="talk-card">
-                  <div className="talk-number">TALK · {t.number}</div>
-                  <h3 className="talk-title">{t.title}</h3>
-                  <p className="talk-abstract">{t.abstract}</p>
-                  <div className="talk-audience">For: {t.audience}</div>
+          <SectionHead eyebrow={talks.intro_eyebrow || "Selected Engagements"} title={talks.intro_title || "Rooms I've been in recently."} />
+          {talks.intro_caption && <p className="body" style={{marginTop: -20, marginBottom: 36, maxWidth: 620}}>{talks.intro_caption}</p>}
+          <div className="engagements">
+            {(talks.items || []).slice(0, showAll ? undefined : 14).map((t, i) => (
+              <div key={i} className="engagement">
+                <div className="eng-date mono">{t.date}</div>
+                <div className="eng-main">
+                  <div className="eng-title">{t.event}{t.host ? <span className="eng-host"> · {t.host}</span> : null}</div>
+                  {t.topic ? <div className="eng-topic">{t.topic}</div> : null}
                 </div>
-              </Reveal>
+                <div className="eng-meta">
+                  <span className="eng-format">{t.format}</span>
+                  {t.where ? <span className="eng-where">{t.where}</span> : null}
+                </div>
+              </div>
             ))}
           </div>
+          {(talks.items || []).length > 14 && (
+            <button className="btn btn-ghost" style={{marginTop: 28}} onClick={() => setShowAll(!showAll)}>
+              {showAll ? "Show fewer" : `Show all ${(talks.items || []).length} engagements`}
+            </button>
+          )}
         </div>
       </section>
 
       <section className="section" style={{background:"var(--bg-2)", borderTop:"1px solid var(--rule)"}}>
         <div className="container">
           <div className="eyebrow" style={{marginBottom: 28}}>What hosts say</div>
-          <div className="grid-3">
+          <div className="grid-3 quotes-grid">
             {(testimonials.items || []).map((t, i) => (
               <div key={i}>
                 <div className="quote" style={{fontSize: 20, lineHeight: 1.4}}>{t.quote}</div>
@@ -117,7 +127,10 @@ function SpeakingPage({ go }) {
                 <label>Topic interest</label>
                 <select value={form.topic} onChange={update("topic")}>
                   <option value="">Select a talk…</option>
-                  {(talks.items || []).map((t) => <option key={t.number}>{t.title}</option>)}
+                  <option>Perishable Knowledge — the book</option>
+                  <option>The Investor Mindset: What VCs Want</option>
+                  <option>AI, startups and the skills that survive automation</option>
+                  <option>Founder evaluation and early-stage diligence</option>
                   <option>Other / custom</option>
                 </select>
               </div>
@@ -126,7 +139,7 @@ function SpeakingPage({ go }) {
                 <textarea value={form.message} onChange={update("message")} required placeholder="Anything else I should know about your audience, format, or goals." />
               </div>
               <button type="submit" className="btn btn-primary">Send inquiry <Arrow /></button>
-              <p className="tiny" style={{marginTop: 16}}>Submissions route to collin@lifemademobile.com</p>
+              <p className="tiny" style={{marginTop: 16}}>Prefer email? <ContactEmail label="Email me directly" className="inline-link" /></p>
             </form>
           )}
         </div>

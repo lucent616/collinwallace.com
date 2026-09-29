@@ -71,11 +71,22 @@ function SectionHead({ eyebrow, title, link, children }) {
 function LogoStrip({ items, sans }) {
   return (
     <div className="logo-strip">
-      {items.map((l, i) => (
-        <div key={i} className={"logo" + (sans ? " sans" : "")}>{l}</div>
-      ))}
+      {items.map((l, i) => {
+        if (typeof l === "string") return <div key={i} className={"logo" + (sans ? " sans" : "")}>{l}</div>;
+        const img = <img src={l.logo} alt={l.name} title={l.name} loading="lazy" />;
+        return l.url
+          ? <a key={i} className="logo logo-img" href={l.url} target="_blank" rel="noopener noreferrer" aria-label={l.name}>{img}</a>
+          : <div key={i} className="logo logo-img" aria-label={l.name}>{img}</div>;
+      })}
     </div>
   );
+}
+
+// Obfuscated contact address — assembled at click time so it never sits in the HTML as text.
+function ContactEmail({ label = "Email me", className = "" }) {
+  const parts = ["collin", "lifemademobile", "com"];
+  const onClick = (e) => { e.preventDefault(); window.location.href = "mailto:" + parts[0] + "@" + parts[1] + "." + parts[2]; };
+  return <a href="#email" onClick={onClick} className={className}>{label}</a>;
 }
 
 // Editorial headshot — real photo
@@ -132,4 +143,4 @@ function Arrow({ size = 14 }) {
   );
 }
 
-Object.assign(window, { EmailCapture, Reveal, SectionHead, LogoStrip, Headshot, BookCover, Arrow });
+Object.assign(window, { EmailCapture, Reveal, SectionHead, LogoStrip, ContactEmail, Headshot, BookCover, Arrow });
