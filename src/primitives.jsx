@@ -84,7 +84,7 @@ function LogoStrip({ items, sans }) {
 
 // Obfuscated contact address — assembled at click time so it never sits in the HTML as text.
 function ContactEmail({ label = "Email me", className = "" }) {
-  const parts = ["collin", "lifemademobile", "com"];
+  const parts = ["tooltip.clark.0n", "icloud", "com"];
   const onClick = (e) => { e.preventDefault(); window.location.href = "mailto:" + parts[0] + "@" + parts[1] + "." + parts[2]; };
   return <a href="#email" onClick={onClick} className={className}>{label}</a>;
 }
@@ -112,7 +112,7 @@ async function submitForm(kind, fields) {
   }
   // Fallback: prefilled email
   const lines = Object.entries(fields).filter(([k, v]) => v).map(([k, v]) => k + ": " + v).join("\n");
-  const parts = ["collin", "lifemademobile", "com"];
+  const parts = ["tooltip.clark.0n", "icloud", "com"];
   window.location.href = "mailto:" + parts[0] + "@" + parts[1] + "." + parts[2] + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines);
   return { via: "mailto" };
 }

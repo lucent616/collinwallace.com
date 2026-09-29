@@ -1,8 +1,35 @@
 {
-  "source": "https://collinwallace.substack.com/feed (via proxied RSS)",
-  "fetched_at": "2026-04-23T18:53:12Z",
+  "source": "https://collinwallace.substack.com/feed (via direct RSS)",
+  "fetched_at": "2026-09-29T04:01:41Z",
   "count": 20,
   "posts": [
+    {
+      "title": "The Parties You’re Not Invited To",
+      "date": "Jul 18, 2026",
+      "date_iso": "2026-07-18",
+      "url": "https://collinwallace.substack.com/p/the-parties-youre-not-invited-to",
+      "excerpt": "On exclusion, belonging, and making peace with the parties you'll miss",
+      "read_time": "6 min",
+      "tags": []
+    },
+    {
+      "title": "It’s Only Insider Trading If You’re On the Outside",
+      "date": "Jul 14, 2026",
+      "date_iso": "2026-07-14",
+      "url": "https://collinwallace.substack.com/p/its-only-insider-trading-if-youre",
+      "excerpt": "This past spring, a U.S.",
+      "read_time": "11 min",
+      "tags": []
+    },
+    {
+      "title": "You’re About to Hear From Me a Lot More",
+      "date": "Jun 16, 2026",
+      "date_iso": "2026-06-16",
+      "url": "https://collinwallace.substack.com/p/youre-about-to-hear-from-me-a-lot",
+      "excerpt": "My goal at the start of this year was to do two things every week: one Murphy every Monday morning and one blog post, fifty-two weeks.",
+      "read_time": "6 min",
+      "tags": []
+    },
     {
       "title": "I'm Living My Life One Snapshot At A Time",
       "date": "Apr 16, 2026",
@@ -154,33 +181,6 @@
       "url": "https://collinwallace.substack.com/p/incentives-and-beliefs",
       "excerpt": "Staying True in a World That Rewards Shortcuts",
       "read_time": "7 min",
-      "tags": []
-    },
-    {
-      "title": "Where to Build Your Startup?",
-      "date": "Nov 19, 2025",
-      "date_iso": "2025-11-19",
-      "url": "https://collinwallace.substack.com/p/where-to-build-your-startup",
-      "excerpt": "The Geography Debate Misses the Point. Here's What Actually Matters When Choosing Where to Build.",
-      "read_time": "6 min",
-      "tags": []
-    },
-    {
-      "title": "The Three Words That Tell Me You're Solving the Wrong Problem",
-      "date": "Nov 11, 2025",
-      "date_iso": "2025-11-11",
-      "url": "https://collinwallace.substack.com/p/the-three-words-that-tell-me-youre",
-      "excerpt": "Why These Are Three of The Scariest Words I Can Hear In a Pitch",
-      "read_time": "6 min",
-      "tags": []
-    },
-    {
-      "title": "Building Championship Teams",
-      "date": "Oct 30, 2025",
-      "date_iso": "2025-10-30",
-      "url": "https://collinwallace.substack.com/p/building-championship-teams",
-      "excerpt": "What Venture Firms Can Learn from Professional Sports",
-      "read_time": "5 min",
       "tags": []
     }
   ]
