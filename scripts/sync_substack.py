@@ -8,7 +8,11 @@ writes data/essays.json (one JSON array, one object per post).
 
 Output fields per post:
   title, date (human "Apr 16, 2026"), date_iso, url, excerpt,
-  read_time (e.g. "6 min"), tags (list of category strings).
+  read_time (e.g. "6 min"), tags (list of category strings),
+  image (cover image URL on substackcdn.com, or "" if the post has none).
+
+The image URL is stored untransformed; the site inserts a width transform
+at render time (see essayImage() in src/primitives.jsx).
 
 Stdlib only — no pip install needed so the GitHub Action is fast.
 """
@@ -216,6 +220,7 @@ def posts_from_archive_json(base_url: str, via_proxy: bool = False) -> list[dict
             "excerpt": excerpt,
             "read_time": read_time,
             "tags": [],
+            "image": (p.get("cover_image") or "").strip(),
         })
 
     posts.sort(key=lambda p: p["date_iso"] or "", reverse=True)
@@ -252,6 +257,13 @@ def parse_feed(xml_bytes: bytes) -> list[dict]:
             if t:
                 tags.append(t.lower())
 
+        # Substack puts the post's cover image in an <enclosure type="image/…">.
+        image = ""
+        for enc in item.findall("enclosure"):
+            if (enc.get("type") or "").startswith("image/") and enc.get("url"):
+                image = enc.get("url").strip()
+                break
+
         posts.append(
             {
                 "title": html.unescape(title),
@@ -261,6 +273,7 @@ def parse_feed(xml_bytes: bytes) -> list[dict]:
                 "excerpt": excerpt,
                 "read_time": read_time,
                 "tags": tags,
+                "image": image,
             }
         )
 

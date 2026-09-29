@@ -5,18 +5,6 @@ const {
   useEffect: useEffectWriting,
 } = React;
 
-// Normalize whatever shape we have into the one the render expects.
-function normalizeEssay(e) {
-  return {
-    title: e.title || "",
-    date: e.date || "",
-    readTime: e.readTime || e.read_time || "",
-    excerpt: e.excerpt || "",
-    url: e.url || "",
-    tags: Array.isArray(e.tags) ? e.tags : [],
-  };
-}
-
 function WritingPage({ go, tweaks }) {
   const [activeTag, setActiveTag] = useStateWriting("all");
   const [query, setQuery] = useStateWriting("");
@@ -144,23 +132,9 @@ function WritingPage({ go, tweaks }) {
                 No essays match that filter.
               </div>
             )}
-            {filtered.map((e, i) => {
-              const hasUrl = !!e.url;
-              const cardProps = hasUrl
-                ? { href: e.url, target: "_blank", rel: "noopener noreferrer" }
-                : { href: "#", onClick: (ev) => ev.preventDefault() };
-              return (
-                <a key={e.url || i} className="essay-card" {...cardProps}>
-                  <div className="essay-meta">
-                    <span>{e.date}</span>
-                    {e.readTime && <><span className="dot" /><span>{e.readTime}</span></>}
-                    {e.tags[0] && <><span className="dot" /><span>{e.tags[0]}</span></>}
-                  </div>
-                  <h3 className="essay-title">{e.title}</h3>
-                  <p className="essay-excerpt">{e.excerpt}</p>
-                </a>
-              );
-            })}
+            {filtered.map((e, i) => (
+              <EssayCard key={e.url || i} essay={e} />
+            ))}
           </div>
         </div>
       </section>
