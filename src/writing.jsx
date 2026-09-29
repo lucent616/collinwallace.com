@@ -87,7 +87,7 @@ function WritingPage({ go, tweaks }) {
         <div className="container" style={{display:"flex", gap: 24, alignItems:"center", justifyContent:"space-between", flexWrap:"wrap"}}>
           <div className="body" style={{margin: 0, maxWidth: 420, fontSize: 14.5}}>
             {tweaks.subscriberCount && <><strong style={{color:"var(--ink)"}}>31,400+ readers.</strong> </>}
-            New essays every Saturday, delivered to your inbox.
+            New essays every week, delivered to your inbox.
           </div>
           <div style={{flex: "1 1 320px", maxWidth: 460}}>
             <EmailCapture cta="Subscribe" placeholder="Your email address" />
@@ -169,7 +169,7 @@ function WritingPage({ go, tweaks }) {
         <div className="container" style={{position:"relative", zIndex:1}}>
           <div style={{maxWidth: 720}}>
             <h2>Don't miss the next one.</h2>
-            <p>Saturday mornings. One essay. Always specific.</p>
+            <p>One essay a week. Always specific.</p>
             <div style={{maxWidth: 520}}>
               <EmailCapture cta="Subscribe" placeholder="Your email address" />
             </div>

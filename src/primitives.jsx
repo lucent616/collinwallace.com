@@ -15,7 +15,7 @@ function EmailCapture({ placeholder = "you@domain.com", cta = "Subscribe", note,
     return (
       <div className="capture-success">
         <span style={{fontSize:20}}>✓</span>
-        <span>You're on the list. Next essay lands Saturday morning.</span>
+        <span>You're on the list. Next essay lands this week.</span>
       </div>
     );
   }

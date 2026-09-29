@@ -17,7 +17,7 @@ const HOME_FALLBACK = {
   eyebrow: "Perishable Knowledge · Est. 2024",
   headline_lines: ["Writer. Investor.", "Entrepreneur.", "Lecturer at Stanford GSB."],
   lede: "I write about _Perishable Knowledge_ — the idea that the best founders exploit time-bound information advantages. I'm a venture capitalist and a lecturer at Stanford University, and my book by the same name is coming from Harper Business in June 2027.",
-  subscribe_note: "New essay every Tuesday. Unsubscribe in one click.",
+  subscribe_note: "New essay every week. Unsubscribe in one click.",
   subscribe_note_with_count: "31,400+ readers. New essay every week. Unsubscribe in one click.",
   essays_section_eyebrow: "The Newsletter",
   essays_section_title: "Recent essays.",
@@ -265,7 +265,7 @@ function HomePage({ go, tweaks }) {
         <div className="container" style={{position:"relative", zIndex:1}}>
           <div style={{maxWidth: 760}}>
             <div className="eyebrow" style={{color:"color-mix(in oklab, var(--paper) 60%, transparent)", marginBottom: 20}}>PERISHABLE KNOWLEDGE</div>
-            <h2>One essay, every Tuesday morning.</h2>
+            <h2>One essay, every week.</h2>
             <p>
               Short, specific, and always about something that will be out of date soon. {tweaks.subscriberCount && "Join 31,400+ operators, investors, founders, and students already reading."}
             </p>
