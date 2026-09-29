@@ -2,17 +2,6 @@
 const HomeReveal = window.Reveal;
 const { useState: useStateHome, useEffect: useEffectHome } = React;
 
-function normalizeFeaturedEssay(e) {
-  return {
-    title: e.title || "",
-    date: e.date || "",
-    readTime: e.readTime || e.read_time || "",
-    excerpt: e.excerpt || "",
-    url: e.url || "",
-    tags: Array.isArray(e.tags) ? e.tags : [],
-  };
-}
-
 const HOME_FALLBACK = {
   eyebrow: "Perishable Knowledge · Est. 2024",
   headline_lines: ["Writer. Investor.", "Entrepreneur.", "Lecturer at Stanford GSB."],
@@ -34,7 +23,7 @@ function HomePage({ go, tweaks }) {
   const [featured, setFeatured] = useStateHome(
     (window.DATA && window.DATA.essays ? window.DATA.essays : [])
       .slice(0, 3)
-      .map(normalizeFeaturedEssay)
+      .map(normalizeEssay)
   );
   useEffectHome(() => {
     let cancelled = false;
@@ -42,7 +31,7 @@ function HomePage({ go, tweaks }) {
       .then((r) => (r.ok ? r.json() : null))
       .then((payload) => {
         if (cancelled || !payload || !Array.isArray(payload.posts)) return;
-        setFeatured(payload.posts.slice(0, 3).map(normalizeFeaturedEssay));
+        setFeatured(payload.posts.slice(0, 3).map(normalizeEssay));
       })
       .catch(() => {});
     return () => { cancelled = true; };
@@ -159,25 +148,11 @@ function HomePage({ go, tweaks }) {
             link={<a href="#/writing" className="btn-link" onClick={(e)=>{e.preventDefault();go("writing");}}>{home.essays_section_link} <Arrow /></a>}
           />
           <div>
-            {featured.map((e, i) => {
-              const hasUrl = !!e.url;
-              const cardProps = hasUrl
-                ? { href: e.url, target: "_blank", rel: "noopener noreferrer" }
-                : { href: "#", onClick: (ev) => ev.preventDefault() };
-              return (
-                <Reveal key={e.url || i} delay={i * 80}>
-                  <a className="essay-card" {...cardProps}>
-                    <div className="essay-meta">
-                      <span>{e.date}</span>
-                      {e.readTime && <><span className="dot" /><span>{e.readTime}</span></>}
-                      {e.tags[0] && <><span className="dot" /><span>{e.tags[0]}</span></>}
-                    </div>
-                    <h3 className="essay-title">{e.title}</h3>
-                    <p className="essay-excerpt">{e.excerpt}</p>
-                  </a>
-                </Reveal>
-              );
-            })}
+            {featured.map((e, i) => (
+              <Reveal key={e.url || i} delay={i * 80}>
+                <EssayCard essay={e} />
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>

@@ -8,7 +8,11 @@ writes data/essays.json (one JSON array, one object per post).
 
 Output fields per post:
   title, date (human "Apr 16, 2026"), date_iso, url, excerpt,
-  read_time (e.g. "6 min"), tags (list of category strings).
+  read_time (e.g. "6 min"), tags (list of category strings),
+  image (cover image URL on substackcdn.com, or "" if the post has none).
+
+The image URL is stored untransformed; the site inserts a width transform
+at render time (see essayImage() in src/primitives.jsx).
 
 Stdlib only — no pip install needed so the GitHub Action is fast.
 """
@@ -143,15 +147,39 @@ def strip_html(s: str) -> str:
     return s
 
 
+# Words whose trailing period is not a sentence end.
+_ABBREVIATIONS = {"mr", "mrs", "ms", "dr", "prof", "sr", "jr", "st", "vs", "etc",
+                  "inc", "co", "ltd", "no", "fig", "vol", "approx"}
+
+
+def sentence_ends(text: str) -> list[int]:
+    """Offsets just past each real sentence terminator in text, skipping
+    dotted acronyms ("U.S.", "a.m.", "e.g.") and common abbreviations ("Dr.")."""
+    ends: list[int] = []
+    for m in re.finditer(r"[.!?]+[\"'\u201d\u2019)]*(?=\s|$)", text):
+        word = text[: m.start()].rsplit(None, 1)[-1] if text[: m.start()].strip() else ""
+        if re.search(r"(?:^|[^A-Za-z])[A-Za-z](?:\.[A-Za-z])+$", word):
+            continue
+        if word.lower().rstrip(".") in _ABBREVIATIONS:
+            continue
+        ends.append(m.end())
+    return ends
+
+
+def ends_with_sentence(text: str) -> bool:
+    ends = sentence_ends(text.rstrip())
+    return bool(ends) and ends[-1] == len(text.rstrip())
+
+
 def first_sentences(text: str, max_chars: int = 280) -> str:
     text = text.strip()
     if len(text) <= max_chars:
         return text
     cut = text[:max_chars]
     # Prefer ending at the last sentence boundary we found before the limit.
-    m = re.search(r"[.!?](?=[^.!?]*$)", cut)
-    if m and m.end() > max_chars * 0.5:
-        return cut[: m.end()].strip()
+    ends = [e for e in sentence_ends(cut) if e > max_chars * 0.5]
+    if ends:
+        return cut[: ends[-1]].strip()
     # Otherwise cut on the last space and add an ellipsis.
     space = cut.rfind(" ")
     if space > 0:
@@ -216,6 +244,7 @@ def posts_from_archive_json(base_url: str, via_proxy: bool = False) -> list[dict
             "excerpt": excerpt,
             "read_time": read_time,
             "tags": [],
+            "image": (p.get("cover_image") or "").strip(),
         })
 
     posts.sort(key=lambda p: p["date_iso"] or "", reverse=True)
@@ -242,7 +271,16 @@ def parse_feed(xml_bytes: bytes) -> list[dict]:
             pass  # Let them through for now; they'll still render fine.
 
         human_date, iso_date = format_date(pub_date)
-        excerpt = first_sentences(strip_html(description))
+        desc_text = strip_html(description)
+        body_text = strip_html(content_encoded)
+        # With no subtitle, Substack fills the description from the post's
+        # first sentence, and its splitter breaks on abbreviations ("a U.S.").
+        # If the description is an unfinished prefix of the body, rebuild the
+        # excerpt from the body instead.
+        if body_text and desc_text and body_text.startswith(desc_text) and not ends_with_sentence(desc_text):
+            excerpt = first_sentences(body_text)
+        else:
+            excerpt = first_sentences(desc_text)
         body_for_timing = content_encoded or description
         read_time = estimate_read_time(body_for_timing)
 
@@ -251,6 +289,13 @@ def parse_feed(xml_bytes: bytes) -> list[dict]:
             t = (cat.text or "").strip()
             if t:
                 tags.append(t.lower())
+
+        # Substack puts the post's cover image in an <enclosure type="image/…">.
+        image = ""
+        for enc in item.findall("enclosure"):
+            if (enc.get("type") or "").startswith("image/") and enc.get("url"):
+                image = enc.get("url").strip()
+                break
 
         posts.append(
             {
@@ -261,6 +306,7 @@ def parse_feed(xml_bytes: bytes) -> list[dict]:
                 "excerpt": excerpt,
                 "read_time": read_time,
                 "tags": tags,
+                "image": image,
             }
         )
 
