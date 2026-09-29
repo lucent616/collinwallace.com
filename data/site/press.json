@@ -1,40 +1,140 @@
 {
-  "items": [
+  "featured": [
     {
-      "outlet": "Bloomberg",
-      "title": "The investor betting on 'perishable' knowledge.",
-      "quote": "A contrarian read on where edge lives in the AI era.",
-      "url": ""
+      "outlet": "The Atlantic",
+      "title": "The Innovation That's Killing Restaurant Culture",
+      "quote": "What you get is this zero-sum game where you're basically just selling weapons to both sides, but no one's actually better off, because it turns out there's only so much stomach space to go around.",
+      "note": "Ellen Cushing opens the piece with Collin's story — from ordering snacks to a Georgia Tech lecture hall to Grubhub.",
+      "date": "October 2025",
+      "url": "https://www.theatlantic.com/culture/2025/10/food-delivery-america/684700/",
+      "pull": true
+    },
+    {
+      "outlet": "Business Insider",
+      "title": "Tech entrepreneur reflects on sale of mobile-ordering tech to Grubhub",
+      "quote": "Profile of Collin a decade after selling FanGo to Grubhub — and why he came back with a company built to give restaurants a square deal.",
+      "date": "May 2021",
+      "url": "https://www.businessinsider.com/collin-wallace-sold-food-ordering-tech-to-grubhub-2021-5"
+    },
+    {
+      "outlet": "The New Yorker",
+      "title": "The Fight to Rein in Delivery Apps",
+      "quote": "Quoted at length as Grubhub's former head of innovation in Helen Rosner's Q&A on the economics of delivery.",
+      "date": "October 2021",
+      "url": "https://www.newyorker.com/culture/q-and-a/the-fight-to-rein-in-delivery-apps"
     },
     {
       "outlet": "TechCrunch",
-      "title": "From Grubhub to Stanford to Lobby Capital.",
-      "quote": "Wallace's path through startups has produced a distinctive thesis on founder edge.",
-      "url": ""
+      "title": "4 problems venture capital can't solve",
+      "quote": "Op-ed by Collin, written while Managing Director at Techstars and lecturing at Stanford GSB.",
+      "date": "April 2023",
+      "url": "https://techcrunch.com/2023/04/20/4-problems-venture-capital-cant-solve/"
     },
     {
-      "outlet": "The Information",
-      "title": "Vibe investing is not a joke.",
-      "quote": "A surprisingly rigorous frame for a phrase that started as a meme.",
-      "url": ""
+      "outlet": "The Guardian",
+      "title": "Why fast-track grocery delivery apps could soon leave supermarkets on the shelf",
+      "quote": "Op-ed by Collin on the next front of on-demand delivery.",
+      "date": "May 2021",
+      "url": "https://www.theguardian.com/commentisfree/2021/may/24/fast-track-grocery-delivery-apps-supermarkets"
     },
     {
-      "outlet": "Fortune",
-      "title": "The skills AI can't commoditize.",
-      "quote": "Required reading for anyone planning a career across the next decade.",
-      "url": ""
+      "outlet": "The Washington Post",
+      "title": "Restaurants are barely surviving. Delivery apps will kill them.",
+      "quote": "Quoted as Grubhub's former head of innovation on what delivery platforms cost the restaurants they serve.",
+      "date": "May 2020",
+      "url": "https://www.washingtonpost.com/outlook/2020/05/29/delivery-apps-restaurants-coronavirus/"
+    }
+  ],
+  "more": [
+    {
+      "outlet": "The Economist (1843)",
+      "title": "Gulp! The secret economics of food delivery",
+      "date": "2021",
+      "url": "https://www.economist.com/1843/2021/01/26/gulp-the-secret-economics-of-food-delivery"
     },
     {
-      "outlet": "Forbes",
-      "title": "Teaching founders in the age of AI.",
-      "quote": "Wallace is quietly rewriting the Stanford GSB startup curriculum.",
-      "url": ""
+      "outlet": "Inc.",
+      "title": "Elevator Pitch: FanGo",
+      "date": "2011",
+      "url": "https://www.inc.com/magazine/201107/elevator-pitch-fango.html"
     },
     {
-      "outlet": "The Verge",
-      "title": "Why demos stopped meaning anything.",
-      "quote": "A calm, clear-eyed piece on diligence in 2026.",
-      "url": ""
+      "outlet": "Crain's Chicago Business",
+      "title": "A bet on entrepreneurship pays off",
+      "date": "2011",
+      "url": "https://www.chicagobusiness.com/article/20111126/ISSUE02/311269994/a-bet-on-entrepreneurship-pays-off"
+    },
+    {
+      "outlet": "Crain's Chicago Business",
+      "title": "Mind behind Grubhub's new OrderHub service talks innovation",
+      "date": "2012",
+      "url": "https://www.chicagobusiness.com/article/20120515/BLOGS06/120519920/mind-behind-grubhub-s-new-orderhub-service-talks-innovation-and-next-steps"
+    },
+    {
+      "outlet": "TechCrunch",
+      "title": "FanGo lets you avoid long concession stand lines at sports events and concerts",
+      "date": "2010",
+      "url": "https://techcrunch.com/2010/10/10/fango-lets-you-avoid-long-concession-stand-lines-at-sports-events-and-concerts/"
+    },
+    {
+      "outlet": "BBC World Service",
+      "title": "Business Daily: The rise of food delivery apps",
+      "date": "2021",
+      "url": "https://www.bbc.co.uk/programmes/w3csz8p5"
+    },
+    {
+      "outlet": "Vittles",
+      "title": "An interview with Collin Wallace",
+      "date": "2021",
+      "url": "https://www.vittlesmagazine.com/p/an-interview-with-collin-wallace"
+    },
+    {
+      "outlet": "Restaurant Business",
+      "title": "Thanx to acquire data company founded by ex-Grubhub staffers",
+      "date": "2022",
+      "url": "https://www.restaurantbusinessonline.com/technology/thanx-acquire-data-company-founded-ex-grubhub-staffers"
+    },
+    {
+      "outlet": "Food On Demand",
+      "title": "Thanx to acquire marketing automator ZeroStorefront",
+      "date": "2022",
+      "url": "https://foodondemand.com/04062022/thanx-to-acquire-marketing-automator-zerostorefront/"
+    },
+    {
+      "outlet": "eBay Newsroom",
+      "title": "Techstars and eBay launch Techstars Future of Ecommerce",
+      "date": "2023",
+      "url": "https://www.ebayinc.com/stories/news/techstars-and-ebay-announce-partnership-to-launch-techstars-future-of-ecommerce-powered-by-ebay/"
+    },
+    {
+      "outlet": "BIG by Matt Stoller",
+      "title": "Counterfeit capitalism, food delivery apps, and the attack on franchising",
+      "date": "2020",
+      "url": "https://www.thebignewsletter.com/p/counterfeit-capitalism-food-delivery"
+    },
+    {
+      "outlet": "American Economic Liberties Project",
+      "title": "Rescuing Restaurants",
+      "date": "2020",
+      "url": "https://www.economicliberties.us/our-work/rescuing-restaurants-how-to-protect-restaurants-workers-and-communities-from-predatory-delivery-app-corporations/"
+    },
+    {
+      "outlet": "Stanford GSB",
+      "title": "FanGo — teaching case (E743)",
+      "date": "2021",
+      "url": "https://www.gsb.stanford.edu/faculty-research/case-studies/fango"
+    },
+    {
+      "outlet": "Gilman School",
+      "title": "\"You Gotta Go!\" and other insights from serial entrepreneur Collin Wallace '02",
+      "date": "2025",
+      "url": "https://www.gilman.edu/you-gotta-go"
+    },
+    {
+      "outlet": "Georgia Tech Lacrosse",
+      "title": "Collin Wallace following the entrepreneurial path in the Bay Area",
+      "date": "2020",
+      "url": "https://www.gtlacrosse.com/sports/mlax/2019-20/releases/20201218i3v6xm"
     }
   ]
 }

@@ -86,64 +86,11 @@ window.DATA = {
       tags: ["founders"]
     }
   ],
-  talks: [
-    {
-      number: "01",
-      title: "Knowledge Arbitrage: How the Best Founders Exploit Information Advantages.",
-      abstract: "The foundational thesis. Why the edge in startups increasingly comes from time-bound, context-dependent insight the market hasn't priced in yet — and how to build a practice around finding it.",
-      audience: "Founders, early-stage investors, accelerators."
-    },
-    {
-      number: "02",
-      title: "Vibe Investing: Pattern Recognition in the AI Era.",
-      abstract: "What changes when LLMs collapse the cost of analysis and every investor has the same research tools. Why taste, conviction, and founder chemistry matter more, not less.",
-      audience: "LPs, emerging managers, VC firms."
-    },
-    {
-      number: "03",
-      title: "The Skills Layer: What AI Commoditizes and What It Amplifies.",
-      abstract: "Codified knowledge is becoming free; judgment, taste, and relationships are not. A framework for deciding which skills to invest in and which to let the machines eat.",
-      audience: "Executive teams, university programs, future-of-work audiences."
-    },
-    {
-      number: "04",
-      title: "Evaluating Founders When Code Is Cheap.",
-      abstract: "What early-stage diligence looks like when any team can ship an MVP in a weekend. How to separate signal from noise in a market flooded with demos.",
-      audience: "Angel groups, VC platforms, corporate venture."
-    },
-    {
-      number: "05",
-      title: "Teaching Startups at Stanford: What Founders Actually Need to Learn.",
-      abstract: "Drawn from GSB Startup Garage. Which parts of the canonical startup curriculum hold up, which are obsolete, and what gets added when you have AI-native students.",
-      audience: "University programs, corporate L&D, education conferences."
-    }
-  ],
-  venues: [
-    "SaaStr", "TechCrunch Disrupt", "Web Summit", "SXSW", "Stanford GSB", "Techstars"
-  ],
-  press: [
-    { outlet: "Bloomberg", title: "The investor betting on 'perishable' knowledge.", quote: "A contrarian read on where edge lives in the AI era." },
-    { outlet: "TechCrunch", title: "From Grubhub to Stanford to Lobby Capital.", quote: "Wallace's path through startups has produced a distinctive thesis on founder edge." },
-    { outlet: "The Information", title: "Vibe investing is not a joke.", quote: "A surprisingly rigorous frame for a phrase that started as a meme." },
-    { outlet: "Fortune", title: "The skills AI can't commoditize.", quote: "Required reading for anyone planning a career across the next decade." },
-    { outlet: "Forbes", title: "Teaching founders in the age of AI.", quote: "Wallace is quietly rewriting the Stanford GSB startup curriculum." },
-    { outlet: "The Verge", title: "Why demos stopped meaning anything.", quote: "A calm, clear-eyed piece on diligence in 2026." }
-  ],
-  podcasts: [
-    { title: "Acquired", episode: "On Knowledge Arbitrage" },
-    { title: "Invest Like the Best", episode: "The Perishable Edge" },
-    { title: "My First Million", episode: "From Operator to GP" },
-    { title: "Lenny's Podcast", episode: "What AI Changes About PM Work" },
-    { title: "The Startup Podcast", episode: "Diligence When Code Is Cheap" },
-    { title: "Masters of Scale", episode: "Taste as a Skill" }
-  ],
-  testimonials: [
-    { quote: "Collin brought our founders a framework they are still using a year later.", person: "Ashley Mayer", role: "Head of Programs, Techstars" },
-    { quote: "One of the most engaging speakers we have ever hosted at GSB. He makes hard ideas land.", person: "Michael Dearing", role: "Stanford GSB" },
-    { quote: "Practical, candid, and refreshingly free of VC jargon.", person: "Anna Khan", role: "General Partner, CRV" }
-  ],
-  credentials: [
-    "Stanford GSB", "Lobby Capital", "Techstars", "Grubhub", "Zero Storefront", "Y Combinator Demo Day Fund"
-  ],
+  talks: [],
+  venues: [],
+  press: [],
+  podcasts: [],
+  testimonials: [],
+  credentials: [],
   tagList: ["all", "knowledge arbitrage", "venture", "ai", "founders", "skills", "teaching", "writing", "book", "reading", "personal"]
 };

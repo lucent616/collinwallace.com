@@ -1,10 +1,82 @@
 {
   "items": [
-    {"title": "Acquired",              "episode": "On Knowledge Arbitrage",     "url": ""},
-    {"title": "Invest Like the Best",  "episode": "The Perishable Edge",        "url": ""},
-    {"title": "My First Million",      "episode": "From Operator to GP",        "url": ""},
-    {"title": "Lenny's Podcast",       "episode": "What AI Changes About PM Work", "url": ""},
-    {"title": "The Startup Podcast",   "episode": "Diligence When Code Is Cheap", "url": ""},
-    {"title": "Masters of Scale",      "episode": "Taste as a Skill",           "url": ""}
+    {
+      "title": "Full Stack",
+      "episode": "Collin Wallace on Perishable Knowledge and Compounding Curiosity",
+      "host": "Stanford GSB student podcast",
+      "date": "July 2026",
+      "art": "assets/podcasts/full-stack.jpg",
+      "url": "https://podcasters.spotify.com/pod/show/full-stack/episodes/Collin-Wallace-on-Perishable-Knowledge-and-Compounding-Curiosity-e3mos06",
+      "video": "https://www.youtube.com/watch?v=_DqUh0tNFik"
+    },
+    {
+      "title": "START — The Startup Growth Podcast",
+      "episode": "Inside venture funds, why billion-dollar outcomes make sense, and how founders stack the odds",
+      "host": "Fondo · David J. Phillips",
+      "date": "October 2025",
+      "art": "assets/podcasts/start-fondo.jpg",
+      "url": "https://podcasts.apple.com/us/podcast/collin-wallace-inside-venture-funds-why-billion-dollar/id1790754910?i=1000732015980",
+      "video": "https://www.youtube.com/watch?v=yS4QjjwjWWw"
+    },
+    {
+      "title": "Pioneers",
+      "episode": "The AI Edge with Investor and Builder Collin Wallace",
+      "host": "Multimodal · Ankur Patel",
+      "date": "August 2025",
+      "art": "assets/podcasts/pioneers.jpg",
+      "url": "https://www.multimodal.dev/pioneers-content/the-ai-edge-with-collin-wallace",
+      "video": "https://www.youtube.com/watch?v=hs4yHQb8AYk"
+    },
+    {
+      "title": "AJonStartups",
+      "episode": "Perishable Knowledge & the Implications of AI",
+      "host": "AJ Fortier",
+      "date": "April 2025",
+      "art": "assets/podcasts/ajonstartups.jpg",
+      "url": "https://podcasters.spotify.com/pod/show/ajonstartups/episodes/Collin-Wallace--Partner-at-Lobby-Capital-Perishable-Knowledge--The-Implications-of-AI-e31t43g",
+      "video": "https://www.youtube.com/watch?v=bp1K3nL1c-Q"
+    },
+    {
+      "title": "Next Unicorn",
+      "episode": "Are Startup Accelerators Worth It for Founders?",
+      "host": "Sasha Earnheart-Gold",
+      "date": "January 2024",
+      "art": "assets/podcasts/next-unicorn.jpg",
+      "url": "https://podcasts.apple.com/us/podcast/are-startup-accelerators-worth-it-for-founders-collin/id1684314361?i=1000641837876",
+      "video": "https://www.youtube.com/watch?v=sGBS8w0iLv0"
+    },
+    {
+      "title": "The Fabric",
+      "episode": "Collin Wallace, Partner at Lobby Capital — Episode 9",
+      "host": "Lobby Capital · Buddy Arnheim",
+      "date": "October 2023",
+      "art": "assets/podcasts/the-fabric.jpg",
+      "url": "https://open.spotify.com/episode/6RheYuSoXIq4OuE0ggOxkF",
+      "video": "https://www.youtube.com/watch?v=OUI8Zg5DmX4"
+    },
+    {
+      "title": "BBC Business Daily",
+      "episode": "The rise of food delivery apps",
+      "host": "BBC World Service · Manuela Saragosa",
+      "date": "March 2021",
+      "art": "",
+      "url": "https://www.bbc.co.uk/programmes/w3csz8p5"
+    },
+    {
+      "title": "Divergent Unicorns",
+      "episode": "Building Sustainable Startups and Making Exits",
+      "host": "HBCUvc",
+      "date": "July 2020",
+      "art": "assets/podcasts/divergent-unicorns.jpg",
+      "url": "https://open.spotify.com/episode/1i0BUB0FgTAYefNBielQeO"
+    },
+    {
+      "title": "Give an Ovation",
+      "episode": "Building Customer Relationships Online",
+      "host": "Zack Oates",
+      "date": "September 2020",
+      "art": "",
+      "url": "https://go.ovationup.com/2020/09/16/building-customer-relationships-online-with-collin-wallace/"
+    }
   ]
 }
