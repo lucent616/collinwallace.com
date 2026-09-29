@@ -73,10 +73,10 @@ function LogoStrip({ items, sans }) {
     <div className="logo-strip">
       {items.map((l, i) => {
         if (typeof l === "string") return <div key={i} className={"logo" + (sans ? " sans" : "")}>{l}</div>;
-        const img = <img src={l.logo} alt={l.name} title={l.name} loading="lazy" />;
+        const img = <img src={l.logo} alt={l.name} title={l.name} style={l.scale ? {height: (44 * l.scale) + "px", maxHeight: "none"} : undefined} />;
         return l.url
-          ? <a key={i} className="logo logo-img" href={l.url} target="_blank" rel="noopener noreferrer" aria-label={l.name}>{img}</a>
-          : <div key={i} className="logo logo-img" aria-label={l.name}>{img}</div>;
+          ? <a key={i} className={"logo logo-img" + (l.scale ? " tall" : "")} href={l.url} target="_blank" rel="noopener noreferrer" aria-label={l.name}>{img}</a>
+          : <div key={i} className={"logo logo-img" + (l.scale ? " tall" : "")} aria-label={l.name}>{img}</div>;
       })}
     </div>
   );

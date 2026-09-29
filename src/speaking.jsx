@@ -56,7 +56,7 @@ function SpeakingPage({ go }) {
       <section className="section-sm" style={{background:"var(--bg-2)", borderTop:"1px solid var(--rule)", borderBottom:"1px solid var(--rule)"}}>
         <div className="container">
           <div className="eyebrow" style={{marginBottom: 28, textAlign:"center"}}>Past venues</div>
-          <div className="logo-strip wide">{(venues.items || []).map((l, i) => <div key={i} className="logo logo-img" aria-label={l.name}><img src={l.logo} alt={l.name} title={l.name} loading="lazy" /></div>)}</div>
+          <div className="logo-strip wide">{(venues.items || []).map((l, i) => <div key={i} className="logo logo-img" aria-label={l.name}><img src={l.logo} alt={l.name} title={l.name} /></div>)}</div>
         </div>
       </section>
 
