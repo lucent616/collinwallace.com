@@ -147,15 +147,39 @@ def strip_html(s: str) -> str:
     return s
 
 
+# Words whose trailing period is not a sentence end.
+_ABBREVIATIONS = {"mr", "mrs", "ms", "dr", "prof", "sr", "jr", "st", "vs", "etc",
+                  "inc", "co", "ltd", "no", "fig", "vol", "approx"}
+
+
+def sentence_ends(text: str) -> list[int]:
+    """Offsets just past each real sentence terminator in text, skipping
+    dotted acronyms ("U.S.", "a.m.", "e.g.") and common abbreviations ("Dr.")."""
+    ends: list[int] = []
+    for m in re.finditer(r"[.!?]+[\"'\u201d\u2019)]*(?=\s|$)", text):
+        word = text[: m.start()].rsplit(None, 1)[-1] if text[: m.start()].strip() else ""
+        if re.search(r"(?:^|[^A-Za-z])[A-Za-z](?:\.[A-Za-z])+$", word):
+            continue
+        if word.lower().rstrip(".") in _ABBREVIATIONS:
+            continue
+        ends.append(m.end())
+    return ends
+
+
+def ends_with_sentence(text: str) -> bool:
+    ends = sentence_ends(text.rstrip())
+    return bool(ends) and ends[-1] == len(text.rstrip())
+
+
 def first_sentences(text: str, max_chars: int = 280) -> str:
     text = text.strip()
     if len(text) <= max_chars:
         return text
     cut = text[:max_chars]
     # Prefer ending at the last sentence boundary we found before the limit.
-    m = re.search(r"[.!?](?=[^.!?]*$)", cut)
-    if m and m.end() > max_chars * 0.5:
-        return cut[: m.end()].strip()
+    ends = [e for e in sentence_ends(cut) if e > max_chars * 0.5]
+    if ends:
+        return cut[: ends[-1]].strip()
     # Otherwise cut on the last space and add an ellipsis.
     space = cut.rfind(" ")
     if space > 0:
@@ -247,7 +271,16 @@ def parse_feed(xml_bytes: bytes) -> list[dict]:
             pass  # Let them through for now; they'll still render fine.
 
         human_date, iso_date = format_date(pub_date)
-        excerpt = first_sentences(strip_html(description))
+        desc_text = strip_html(description)
+        body_text = strip_html(content_encoded)
+        # With no subtitle, Substack fills the description from the post's
+        # first sentence, and its splitter breaks on abbreviations ("a U.S.").
+        # If the description is an unfinished prefix of the body, rebuild the
+        # excerpt from the body instead.
+        if body_text and desc_text and body_text.startswith(desc_text) and not ends_with_sentence(desc_text):
+            excerpt = first_sentences(body_text)
+        else:
+            excerpt = first_sentences(desc_text)
         body_for_timing = content_encoded or description
         read_time = estimate_read_time(body_for_timing)
 
