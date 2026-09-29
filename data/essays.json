@@ -1,7 +1,7 @@
 {
-  "source": "https://collinwallace.substack.com/feed (via direct RSS)",
-  "fetched_at": "2026-09-29T16:39:17Z",
-  "count": 20,
+  "source": "https://collinwallace.substack.com/feed (via proxied archive JSON)",
+  "fetched_at": "2026-09-29T16:40:37Z",
+  "count": 23,
   "posts": [
     {
       "title": "The Parties You’re Not Invited To",
@@ -18,7 +18,7 @@
       "date": "Jul 14, 2026",
       "date_iso": "2026-07-14",
       "url": "https://collinwallace.substack.com/p/its-only-insider-trading-if-youre",
-      "excerpt": "This past spring, a U.S. Army Special Forces master sergeant named Gannon Ken Van Dyke was arrested and charged with using classified military information to place bets on Polymarket.",
+      "excerpt": "This past spring, a U.S.",
       "read_time": "11 min",
       "tags": [],
       "image": "https://substackcdn.com/image/fetch/$s_!QfJG!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd9405fcb-b2f0-4aa9-a355-feaceec4cd33_1254x1254.png"
@@ -44,12 +44,12 @@
       "image": "https://substackcdn.com/image/fetch/$s_!kZpg!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5c99e6d8-6986-4ebc-be83-a024dfad39bd_1536x1024.png"
     },
     {
-      "title": "Founders Are Being Taught to Treat VCs Like ATMs.",
+      "title": "Founders Are Being Taught to Treat VCs Like ATMs. ",
       "date": "Apr 8, 2026",
       "date_iso": "2026-04-08",
       "url": "https://collinwallace.substack.com/p/founders-are-being-taught-to-treat",
       "excerpt": "But That Will Leave You Without A Real Partner When Things Get Hard.",
-      "read_time": "7 min",
+      "read_time": "6 min",
       "tags": [],
       "image": "https://substackcdn.com/image/fetch/$s_!gz3T!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc95a1eec-278c-44e8-989e-474edaa0a1e2_1024x1024.png"
     },
@@ -79,7 +79,7 @@
       "date_iso": "2026-03-17",
       "url": "https://collinwallace.substack.com/p/counting-cards-in-venture",
       "excerpt": "What the MIT Blackjack Team Can Teach Us About Venture Capital",
-      "read_time": "8 min",
+      "read_time": "7 min",
       "tags": [],
       "image": "https://substackcdn.com/image/fetch/$s_!uYhp!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F29ba828a-f806-45ba-9c74-b4b14e337e88_1536x1024.png"
     },
@@ -89,7 +89,7 @@
       "date_iso": "2026-03-10",
       "url": "https://collinwallace.substack.com/p/you-cant-win-alone",
       "excerpt": "I’ve been watching Alone on Netflix, and it is teaching me a lot about startups and building community.",
-      "read_time": "8 min",
+      "read_time": "7 min",
       "tags": [],
       "image": "https://substackcdn.com/image/fetch/$s_!EmU_!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fac70ff90-e15c-46b1-b837-27e4d949ac24_1024x1024.png"
     },
@@ -99,12 +99,12 @@
       "date_iso": "2026-03-05",
       "url": "https://collinwallace.substack.com/p/everyone-wants-to-be-a-yc-founder",
       "excerpt": "Every generation has its prestige on-ramp — the institutional stamp that signals to the world you are serious, ambitious, and destined for something.",
-      "read_time": "6 min",
+      "read_time": "5 min",
       "tags": [],
       "image": "https://substackcdn.com/image/fetch/$s_!RZGk!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdc80a04c-a415-4f3c-9d0a-aa07c189a4e7_1024x1024.png"
     },
     {
-      "title": "The Skills Layer",
+      "title": "The Skills Layer ",
       "date": "Feb 24, 2026",
       "date_iso": "2026-02-24",
       "url": "https://collinwallace.substack.com/p/the-skills-layer",
@@ -114,7 +114,7 @@
       "image": "https://substackcdn.com/image/fetch/$s_!nxQY!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0f317f2a-4623-424c-8188-90630f1c3119_1024x1024.png"
     },
     {
-      "title": "Rockefeller Didn’t Drill for Oil",
+      "title": "Rockefeller Didn’t Drill for Oil ",
       "date": "Feb 17, 2026",
       "date_iso": "2026-02-17",
       "url": "https://collinwallace.substack.com/p/rockefeller-didnt-drill-for-oil",
@@ -144,7 +144,7 @@
       "image": "https://substackcdn.com/image/fetch/$s_!tlWY!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ffec30f41-0eab-46b7-b05b-87c24ceff0c3_1024x1024.png"
     },
     {
-      "title": "The Rooms You’re Not In",
+      "title": "The Rooms You’re Not In ",
       "date": "Jan 27, 2026",
       "date_iso": "2026-01-27",
       "url": "https://collinwallace.substack.com/p/the-rooms-youre-not-in",
@@ -159,7 +159,7 @@
       "date_iso": "2026-01-13",
       "url": "https://collinwallace.substack.com/p/ruthless-capitalism-and-the-death",
       "excerpt": "What We Lose When You Have Already Won, And Just Keep Scoring",
-      "read_time": "7 min",
+      "read_time": "8 min",
       "tags": [],
       "image": "https://substackcdn.com/image/fetch/$s_!5a3V!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd6ad55d0-4a95-41c5-86c6-2e8f929fcc76_1536x1024.png"
     },
@@ -202,6 +202,36 @@
       "read_time": "7 min",
       "tags": [],
       "image": "https://substackcdn.com/image/fetch/$s_!63G5!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F692135ff-d982-4525-9c5d-579b822a2a0a_1536x1024.png"
+    },
+    {
+      "title": "Where to Build Your Startup?",
+      "date": "Nov 19, 2025",
+      "date_iso": "2025-11-19",
+      "url": "https://collinwallace.substack.com/p/where-to-build-your-startup",
+      "excerpt": "The Geography Debate Misses the Point. Here's What Actually Matters When Choosing Where to Build.",
+      "read_time": "6 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!gPfh!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcaff58fe-8111-493c-881a-39c3bd4ff0b7_1536x1024.png"
+    },
+    {
+      "title": "The Three Words That Tell Me You're Solving the Wrong Problem",
+      "date": "Nov 11, 2025",
+      "date_iso": "2025-11-11",
+      "url": "https://collinwallace.substack.com/p/the-three-words-that-tell-me-youre",
+      "excerpt": "Why These Are Three of The Scariest Words I Can Hear In a Pitch",
+      "read_time": "6 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!2E3q!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1d51ae14-513f-4b4f-929e-c04a56420c61_1024x1536.png"
+    },
+    {
+      "title": "Building Championship Teams",
+      "date": "Oct 30, 2025",
+      "date_iso": "2025-10-30",
+      "url": "https://collinwallace.substack.com/p/building-championship-teams",
+      "excerpt": "What Venture Firms Can Learn from Professional Sports",
+      "read_time": "5 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!iZym!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F223a21a4-68e3-4eaf-9ac3-63a36b0b853b_1024x1536.png"
     }
   ]
 }
