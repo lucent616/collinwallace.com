@@ -1,7 +1,7 @@
 {
-  "source": "https://collinwallace.substack.com/feed (via direct RSS)",
-  "fetched_at": "2026-09-29T04:01:41Z",
-  "count": 20,
+  "source": "https://collinwallace.substack.com/feed (via proxied archive JSON)",
+  "fetched_at": "2026-09-29T16:40:37Z",
+  "count": 23,
   "posts": [
     {
       "title": "The Parties You’re Not Invited To",
@@ -10,7 +10,8 @@
       "url": "https://collinwallace.substack.com/p/the-parties-youre-not-invited-to",
       "excerpt": "On exclusion, belonging, and making peace with the parties you'll miss",
       "read_time": "6 min",
-      "tags": []
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!ZZUk!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbf4b5e10-e727-4907-a383-05b8ea713a1f_1536x1024.png"
     },
     {
       "title": "It’s Only Insider Trading If You’re On the Outside",
@@ -19,7 +20,8 @@
       "url": "https://collinwallace.substack.com/p/its-only-insider-trading-if-youre",
       "excerpt": "This past spring, a U.S.",
       "read_time": "11 min",
-      "tags": []
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!QfJG!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd9405fcb-b2f0-4aa9-a355-feaceec4cd33_1254x1254.png"
     },
     {
       "title": "You’re About to Hear From Me a Lot More",
@@ -28,7 +30,8 @@
       "url": "https://collinwallace.substack.com/p/youre-about-to-hear-from-me-a-lot",
       "excerpt": "My goal at the start of this year was to do two things every week: one Murphy every Monday morning and one blog post, fifty-two weeks.",
       "read_time": "6 min",
-      "tags": []
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!Pl9d!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6c037e66-f974-4411-a64b-54acbd59ab04_1536x1024.png"
     },
     {
       "title": "I'm Living My Life One Snapshot At A Time",
@@ -37,16 +40,18 @@
       "url": "https://collinwallace.substack.com/p/im-living-my-life-one-snapshot-at",
       "excerpt": "There is a particular kind of anxiety that comes from trying to live a life that trends in the right direction.",
       "read_time": "6 min",
-      "tags": []
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!kZpg!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5c99e6d8-6986-4ebc-be83-a024dfad39bd_1536x1024.png"
     },
     {
-      "title": "Founders Are Being Taught to Treat VCs Like ATMs.",
+      "title": "Founders Are Being Taught to Treat VCs Like ATMs. ",
       "date": "Apr 8, 2026",
       "date_iso": "2026-04-08",
       "url": "https://collinwallace.substack.com/p/founders-are-being-taught-to-treat",
       "excerpt": "But That Will Leave You Without A Real Partner When Things Get Hard.",
-      "read_time": "7 min",
-      "tags": []
+      "read_time": "6 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!gz3T!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc95a1eec-278c-44e8-989e-474edaa0a1e2_1024x1024.png"
     },
     {
       "title": "I Can Now Do Infinite Things. That's the Problem.",
@@ -55,7 +60,8 @@
       "url": "https://collinwallace.substack.com/p/i-can-now-do-infinite-things-thats",
       "excerpt": "What Mario Kart Is Teaching Me About Working With AI",
       "read_time": "6 min",
-      "tags": []
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!RfA4!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3c7e82c7-78d6-4e09-aeb9-7bac74f46642_1024x1024.png"
     },
     {
       "title": "Software Is the New Restaurant — And That Changes Everything",
@@ -64,7 +70,8 @@
       "url": "https://collinwallace.substack.com/p/software-is-the-new-smb-and-that",
       "excerpt": "AI is collapsing the cost of building software and the type of founder who starts a software company is about to change dramatically.",
       "read_time": "6 min",
-      "tags": []
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!vG3H!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1f13475a-bab9-4171-9abf-b0b34ecd9a38_1024x868.png"
     },
     {
       "title": "Counting Cards in Venture",
@@ -72,8 +79,9 @@
       "date_iso": "2026-03-17",
       "url": "https://collinwallace.substack.com/p/counting-cards-in-venture",
       "excerpt": "What the MIT Blackjack Team Can Teach Us About Venture Capital",
-      "read_time": "8 min",
-      "tags": []
+      "read_time": "7 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!uYhp!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F29ba828a-f806-45ba-9c74-b4b14e337e88_1536x1024.png"
     },
     {
       "title": "You Can’t Win Alone",
@@ -81,8 +89,9 @@
       "date_iso": "2026-03-10",
       "url": "https://collinwallace.substack.com/p/you-cant-win-alone",
       "excerpt": "I’ve been watching Alone on Netflix, and it is teaching me a lot about startups and building community.",
-      "read_time": "8 min",
-      "tags": []
+      "read_time": "7 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!EmU_!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fac70ff90-e15c-46b1-b837-27e4d949ac24_1024x1024.png"
     },
     {
       "title": "Everyone Wants to Be a YC Founder. That's Exactly the Problem.",
@@ -90,26 +99,29 @@
       "date_iso": "2026-03-05",
       "url": "https://collinwallace.substack.com/p/everyone-wants-to-be-a-yc-founder",
       "excerpt": "Every generation has its prestige on-ramp — the institutional stamp that signals to the world you are serious, ambitious, and destined for something.",
-      "read_time": "6 min",
-      "tags": []
+      "read_time": "5 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!RZGk!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdc80a04c-a415-4f3c-9d0a-aa07c189a4e7_1024x1024.png"
     },
     {
-      "title": "The Skills Layer",
+      "title": "The Skills Layer ",
       "date": "Feb 24, 2026",
       "date_iso": "2026-02-24",
       "url": "https://collinwallace.substack.com/p/the-skills-layer",
       "excerpt": "Why the Real Value in AI Might Not Be Where You Think",
       "read_time": "9 min",
-      "tags": []
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!nxQY!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0f317f2a-4623-424c-8188-90630f1c3119_1024x1024.png"
     },
     {
-      "title": "Rockefeller Didn’t Drill for Oil",
+      "title": "Rockefeller Didn’t Drill for Oil ",
       "date": "Feb 17, 2026",
       "date_iso": "2026-02-17",
       "url": "https://collinwallace.substack.com/p/rockefeller-didnt-drill-for-oil",
       "excerpt": "And That Might Be The Most Important Lesson for AI.",
       "read_time": "8 min",
-      "tags": []
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!XDVL!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F86564cd8-a67b-478b-b505-d10700495970_1024x1024.png"
     },
     {
       "title": "No One Wants Software",
@@ -118,7 +130,8 @@
       "url": "https://collinwallace.substack.com/p/no-one-ever-wanted-software",
       "excerpt": "Much of the market is debating the death of Saas. Think that is the wrong questions. No one ever wanted software. They just wanted a job done.",
       "read_time": "5 min",
-      "tags": []
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!HbV8!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7dc608cb-1b10-4f95-8c24-be19a2dd61f2_1024x1024.png"
     },
     {
       "title": "Prediction Markets Are Digital OxyContin",
@@ -127,16 +140,18 @@
       "url": "https://collinwallace.substack.com/p/prediction-markets-are-digital-oxycontin",
       "excerpt": "How We're Repeating the Purdue Pharma Playbook in Real Time.",
       "read_time": "6 min",
-      "tags": []
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!tlWY!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ffec30f41-0eab-46b7-b05b-87c24ceff0c3_1024x1024.png"
     },
     {
-      "title": "The Rooms You’re Not In",
+      "title": "The Rooms You’re Not In ",
       "date": "Jan 27, 2026",
       "date_iso": "2026-01-27",
       "url": "https://collinwallace.substack.com/p/the-rooms-youre-not-in",
       "excerpt": "Why Your Next Big Break Might Not Come From Your Performance",
       "read_time": "7 min",
-      "tags": []
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!ZI9Q!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F40de6359-3d97-4ed5-90c6-7a5659b85bed_1536x1024.png"
     },
     {
       "title": "Ruthless Capitalism and the Death of the Mercy Rule",
@@ -144,8 +159,9 @@
       "date_iso": "2026-01-13",
       "url": "https://collinwallace.substack.com/p/ruthless-capitalism-and-the-death",
       "excerpt": "What We Lose When You Have Already Won, And Just Keep Scoring",
-      "read_time": "7 min",
-      "tags": []
+      "read_time": "8 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!5a3V!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd6ad55d0-4a95-41c5-86c6-2e8f929fcc76_1536x1024.png"
     },
     {
       "title": "Being Right Is Not a Strategy",
@@ -154,7 +170,8 @@
       "url": "https://collinwallace.substack.com/p/being-right-is-not-a-strategy",
       "excerpt": "The Most Dangerous Assumption in Business (And Life)",
       "read_time": "6 min",
-      "tags": []
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!lewP!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ffa1ca319-0eba-4ede-be9b-c2543434c9c9_1536x1024.png"
     },
     {
       "title": "\"AI Slop\" Might Just Be Your Bad Work Unfiltered (And That's Probably Good News)",
@@ -163,7 +180,8 @@
       "url": "https://collinwallace.substack.com/p/ai-slop-might-just-be-your-bad-work",
       "excerpt": "Why Every Creative Transition Faces the Same Criticism",
       "read_time": "8 min",
-      "tags": []
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!P1v4!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F094f3f1e-7684-4991-ba3c-e9fdf40e78c2_1024x1024.png"
     },
     {
       "title": "Two Of My Favorite Professors Died This Month. And They Managed To Teach Me the Same Final Lesson.",
@@ -172,7 +190,8 @@
       "url": "https://collinwallace.substack.com/p/two-of-my-favorite-professors-died",
       "excerpt": "There Are A Lot Of Ways To Win At Life.",
       "read_time": "7 min",
-      "tags": []
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!BFPE!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F279618aa-2991-4915-b4c3-8d7e398f678b_1536x1024.png"
     },
     {
       "title": "Incentives and Beliefs",
@@ -181,7 +200,38 @@
       "url": "https://collinwallace.substack.com/p/incentives-and-beliefs",
       "excerpt": "Staying True in a World That Rewards Shortcuts",
       "read_time": "7 min",
-      "tags": []
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!63G5!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F692135ff-d982-4525-9c5d-579b822a2a0a_1536x1024.png"
+    },
+    {
+      "title": "Where to Build Your Startup?",
+      "date": "Nov 19, 2025",
+      "date_iso": "2025-11-19",
+      "url": "https://collinwallace.substack.com/p/where-to-build-your-startup",
+      "excerpt": "The Geography Debate Misses the Point. Here's What Actually Matters When Choosing Where to Build.",
+      "read_time": "6 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!gPfh!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcaff58fe-8111-493c-881a-39c3bd4ff0b7_1536x1024.png"
+    },
+    {
+      "title": "The Three Words That Tell Me You're Solving the Wrong Problem",
+      "date": "Nov 11, 2025",
+      "date_iso": "2025-11-11",
+      "url": "https://collinwallace.substack.com/p/the-three-words-that-tell-me-youre",
+      "excerpt": "Why These Are Three of The Scariest Words I Can Hear In a Pitch",
+      "read_time": "6 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!2E3q!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1d51ae14-513f-4b4f-929e-c04a56420c61_1024x1536.png"
+    },
+    {
+      "title": "Building Championship Teams",
+      "date": "Oct 30, 2025",
+      "date_iso": "2025-10-30",
+      "url": "https://collinwallace.substack.com/p/building-championship-teams",
+      "excerpt": "What Venture Firms Can Learn from Professional Sports",
+      "read_time": "5 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!iZym!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F223a21a4-68e3-4eaf-9ac3-63a36b0b853b_1024x1536.png"
     }
   ]
 }

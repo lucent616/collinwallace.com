@@ -171,4 +171,68 @@ function Arrow({ size = 14 }) {
   );
 }
 
-Object.assign(window, { EmailCapture, Reveal, SectionHead, LogoStrip, ContactEmail, submitForm, Headshot, BookCover, Arrow });
+// Substack cover images come from substackcdn.com as Cloudinary-style
+// "fetch" URLs: https://substackcdn.com/image/fetch/<transforms>/<encoded src>.
+// Inserting a w_<px> transform gets a resized copy straight from their CDN,
+// so we never serve the full 1536px original for a thumbnail. Unknown URL
+// shapes are passed through untouched.
+const SUBSTACK_FETCH = /^(https:\/\/substackcdn\.com\/image\/fetch\/)([^/]+)(\/.+)$/;
+function essayImage(url, width) {
+  if (!url) return "";
+  const m = url.match(SUBSTACK_FETCH);
+  if (!m) return url;
+  const transforms = m[2].split(",").filter((t) => !/^(w|h|c)_/.test(t));
+  return m[1] + ["w_" + width, ...transforms].join(",") + m[3];
+}
+
+// Normalize a post from data/essays.json (snake_case) or the inline
+// fallback in src/data.jsx (camelCase) into the shape EssayCard renders.
+function normalizeEssay(e) {
+  return {
+    title: e.title || "",
+    date: e.date || "",
+    readTime: e.readTime || e.read_time || "",
+    excerpt: e.excerpt || "",
+    url: e.url || "",
+    image: e.image || "",
+    tags: Array.isArray(e.tags) ? e.tags : [],
+  };
+}
+
+// One essay row: meta / title / excerpt, with the Substack cover as a
+// fixed-crop thumbnail beside it. Falls back to text-only when there is no
+// image or it fails to load (e.g. the CDN URL goes stale).
+function EssayCard({ essay: e }) {
+  const [thumbOk, setThumbOk] = useState(true);
+  const hasThumb = !!e.image && thumbOk;
+  const cardProps = e.url
+    ? { href: e.url, target: "_blank", rel: "noopener noreferrer" }
+    : { href: "#", onClick: (ev) => ev.preventDefault() };
+  return (
+    <a className={"essay-card" + (hasThumb ? " has-thumb" : "")} {...cardProps}>
+      <div className="essay-body">
+        <div className="essay-meta">
+          <span>{e.date}</span>
+          {e.readTime && <><span className="dot" /><span>{e.readTime}</span></>}
+          {e.tags[0] && <><span className="dot" /><span>{e.tags[0]}</span></>}
+        </div>
+        <h3 className="essay-title">{e.title}</h3>
+        <p className="essay-excerpt">{e.excerpt}</p>
+      </div>
+      {hasThumb && (
+        <div className="essay-thumb">
+          <img
+            src={essayImage(e.image, 480)}
+            srcSet={`${essayImage(e.image, 480)} 1x, ${essayImage(e.image, 960)} 2x`}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            onError={() => setThumbOk(false)}
+          />
+        </div>
+      )}
+    </a>
+  );
+}
+
+Object.assign(window, { EmailCapture, Reveal, SectionHead, LogoStrip, ContactEmail, submitForm, Headshot, BookCover, Arrow, essayImage, normalizeEssay, EssayCard });

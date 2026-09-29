@@ -8,7 +8,11 @@ writes data/essays.json (one JSON array, one object per post).
 
 Output fields per post:
   title, date (human "Apr 16, 2026"), date_iso, url, excerpt,
-  read_time (e.g. "6 min"), tags (list of category strings).
+  read_time (e.g. "6 min"), tags (list of category strings),
+  image (cover image URL on substackcdn.com, or "" if the post has none).
+
+The image URL is stored untransformed; the site inserts a width transform
+at render time (see essayImage() in src/primitives.jsx).
 
 Stdlib only — no pip install needed so the GitHub Action is fast.
 """
@@ -95,30 +99,42 @@ def fetch_with_retry(url: str, accept: str) -> bytes:
 # Cloudflare blocks GitHub Actions' IP range from hitting Substack directly,
 # so these are the primary route when running on CI.
 PROXY_TEMPLATES = [
+    "https://api.allorigins.win/raw?url={enc}",
     "https://cors.eu.org/{url}",
     "https://api.codetabs.com/v1/proxy?quest={url}",
 ]
+PROXY_ATTEMPTS = 3          # each proxy is tried this many times (they 522 intermittently)
+PROXY_BACKOFF_SECONDS = 8
+
+
+def _looks_like_error(data: bytes) -> bool:
+    head = data[:200].lstrip().lower()
+    return (not data) or head.startswith(b"error code") or b"<!doctype html" in head[:40]
 
 
 def fetch_via_proxy(url: str, accept: str) -> bytes:
+    """Fetch through public CORS proxies, each retried a few times with backoff."""
     last_exc: Exception | None = None
-    for template in PROXY_TEMPLATES:
-        proxied = template.format(url=url)
-        try:
-            # Proxies don't need the full bot-evasion header set; keep it simple.
-            req = urllib.request.Request(
-                proxied,
-                headers={"User-Agent": USER_AGENTS[0], "Accept": accept},
-            )
-            with urllib.request.urlopen(req, timeout=30) as resp:
-                data = resp.read()
-                if not data:
-                    raise RuntimeError("empty response")
+    enc = urllib.parse.quote(url, safe="")
+    for attempt in range(PROXY_ATTEMPTS):
+        for template in PROXY_TEMPLATES:
+            proxied = template.format(url=url, enc=enc)
+            host = template.split("/")[2]
+            try:
+                req = urllib.request.Request(
+                    proxied,
+                    headers={"User-Agent": USER_AGENTS[attempt % len(USER_AGENTS)], "Accept": accept},
+                )
+                with urllib.request.urlopen(req, timeout=30) as resp:
+                    data = resp.read()
+                if _looks_like_error(data):
+                    raise RuntimeError(f"proxy returned an error page ({data[:40]!r})")
                 return data
-        except Exception as e:
-            last_exc = e
-            print(f"  proxy {template.split('/')[2]} failed: {e}", file=sys.stderr)
-            continue
+            except Exception as e:
+                last_exc = e
+                print(f"  proxy {host} failed (attempt {attempt + 1}): {e}", file=sys.stderr)
+                continue
+        time.sleep(PROXY_BACKOFF_SECONDS * (attempt + 1))
     assert last_exc is not None
     raise last_exc
 
@@ -131,15 +147,39 @@ def strip_html(s: str) -> str:
     return s
 
 
+# Words whose trailing period is not a sentence end.
+_ABBREVIATIONS = {"mr", "mrs", "ms", "dr", "prof", "sr", "jr", "st", "vs", "etc",
+                  "inc", "co", "ltd", "no", "fig", "vol", "approx"}
+
+
+def sentence_ends(text: str) -> list[int]:
+    """Offsets just past each real sentence terminator in text, skipping
+    dotted acronyms ("U.S.", "a.m.", "e.g.") and common abbreviations ("Dr.")."""
+    ends: list[int] = []
+    for m in re.finditer(r"[.!?]+[\"'\u201d\u2019)]*(?=\s|$)", text):
+        word = text[: m.start()].rsplit(None, 1)[-1] if text[: m.start()].strip() else ""
+        if re.search(r"(?:^|[^A-Za-z])[A-Za-z](?:\.[A-Za-z])+$", word):
+            continue
+        if word.lower().rstrip(".") in _ABBREVIATIONS:
+            continue
+        ends.append(m.end())
+    return ends
+
+
+def ends_with_sentence(text: str) -> bool:
+    ends = sentence_ends(text.rstrip())
+    return bool(ends) and ends[-1] == len(text.rstrip())
+
+
 def first_sentences(text: str, max_chars: int = 280) -> str:
     text = text.strip()
     if len(text) <= max_chars:
         return text
     cut = text[:max_chars]
     # Prefer ending at the last sentence boundary we found before the limit.
-    m = re.search(r"[.!?](?=[^.!?]*$)", cut)
-    if m and m.end() > max_chars * 0.5:
-        return cut[: m.end()].strip()
+    ends = [e for e in sentence_ends(cut) if e > max_chars * 0.5]
+    if ends:
+        return cut[: ends[-1]].strip()
     # Otherwise cut on the last space and add an ellipsis.
     space = cut.rfind(" ")
     if space > 0:
@@ -164,13 +204,13 @@ def estimate_read_time(html_body: str) -> str:
     return f"{minutes} min"
 
 
-def posts_from_archive_json(base_url: str) -> list[dict]:
+def posts_from_archive_json(base_url: str, via_proxy: bool = False) -> list[dict]:
     """Fallback: Substack's public /api/v1/archive returns JSON and is usually
     less aggressively rate-limited than /feed.
     """
     base = base_url.rstrip("/").replace("/feed", "")
     url = f"{base}/api/v1/archive?sort=new&limit=50"
-    raw = fetch_with_retry(url, "application/json")
+    raw = fetch_via_proxy(url, "application/json") if via_proxy else fetch_with_retry(url, "application/json")
     data = json.loads(raw.decode("utf-8"))
 
     posts: list[dict] = []
@@ -204,6 +244,7 @@ def posts_from_archive_json(base_url: str) -> list[dict]:
             "excerpt": excerpt,
             "read_time": read_time,
             "tags": [],
+            "image": (p.get("cover_image") or "").strip(),
         })
 
     posts.sort(key=lambda p: p["date_iso"] or "", reverse=True)
@@ -230,7 +271,16 @@ def parse_feed(xml_bytes: bytes) -> list[dict]:
             pass  # Let them through for now; they'll still render fine.
 
         human_date, iso_date = format_date(pub_date)
-        excerpt = first_sentences(strip_html(description))
+        desc_text = strip_html(description)
+        body_text = strip_html(content_encoded)
+        # With no subtitle, Substack fills the description from the post's
+        # first sentence, and its splitter breaks on abbreviations ("a U.S.").
+        # If the description is an unfinished prefix of the body, rebuild the
+        # excerpt from the body instead.
+        if body_text and desc_text and body_text.startswith(desc_text) and not ends_with_sentence(desc_text):
+            excerpt = first_sentences(body_text)
+        else:
+            excerpt = first_sentences(desc_text)
         body_for_timing = content_encoded or description
         read_time = estimate_read_time(body_for_timing)
 
@@ -239,6 +289,13 @@ def parse_feed(xml_bytes: bytes) -> list[dict]:
             t = (cat.text or "").strip()
             if t:
                 tags.append(t.lower())
+
+        # Substack puts the post's cover image in an <enclosure type="image/…">.
+        image = ""
+        for enc in item.findall("enclosure"):
+            if (enc.get("type") or "").startswith("image/") and enc.get("url"):
+                image = enc.get("url").strip()
+                break
 
         posts.append(
             {
@@ -249,6 +306,7 @@ def parse_feed(xml_bytes: bytes) -> list[dict]:
                 "excerpt": excerpt,
                 "read_time": read_time,
                 "tags": tags,
+                "image": image,
             }
         )
 
@@ -267,7 +325,8 @@ def main() -> int:
     # scripted clients from CI IP ranges (Azure / GitHub Actions). In order:
     #   1. Direct fetch of /feed with browser-looking headers (works locally).
     #   2. Direct fetch of /api/v1/archive (JSON, sometimes less blocked).
-    #   3. Public CORS proxy chain (cors.eu.org, codetabs) as a last resort.
+    #   3. Public CORS proxy chain, archive JSON first (small payload; the big
+    #      RSS body gets truncated by some proxies), each proxy retried with backoff.
     posts: list[dict] = []
     source_used = args.feed
     accept_rss = "application/rss+xml,application/xml,text/xml,*/*;q=0.8"
@@ -277,6 +336,8 @@ def main() -> int:
          lambda: parse_feed(fetch_with_retry(args.feed, accept_rss))),
         ("direct archive JSON",
          lambda: posts_from_archive_json(args.feed)),
+        ("proxied archive JSON",
+         lambda: posts_from_archive_json(args.feed, via_proxy=True)),
         ("proxied RSS",
          lambda: parse_feed(fetch_via_proxy(args.feed, accept_rss))),
     ]
@@ -303,6 +364,17 @@ def main() -> int:
         "count": len(posts),
         "posts": posts,
     }
+
+    # Skip the write when nothing but the timestamp would change, so scheduled
+    # runs don't create a commit every day.
+    try:
+        with open(args.out, encoding="utf-8") as f:
+            existing = json.load(f)
+        if existing.get("posts") == posts:
+            print(f"no change — {len(posts)} posts already current in {args.out}", file=sys.stderr)
+            return 0
+    except (OSError, ValueError):
+        pass
 
     os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as f:
