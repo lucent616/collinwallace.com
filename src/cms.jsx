@@ -13,7 +13,7 @@ function useCmsData(path, fallback) {
       return;
     }
     let cancelled = false;
-    fetch(path, { cache: "no-store" })
+    fetch(path)
       .then((r) => (r.ok ? r.json() : null))
       .then((json) => {
         if (cancelled || !json) return;

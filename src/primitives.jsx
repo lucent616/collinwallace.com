@@ -95,7 +95,7 @@ function ContactEmail({ label = "Email me", className = "" }) {
 async function submitForm(kind, fields) {
   let cfg = window.__CMS_CACHE["data/site/forms.json"];
   if (!cfg) {
-    try { cfg = await fetch("data/site/forms.json", { cache: "no-store" }).then(r => r.ok ? r.json() : null); } catch (e) { cfg = null; }
+    try { cfg = await fetch("data/site/forms.json").then(r => r.ok ? r.json() : null); } catch (e) { cfg = null; }
     if (cfg) window.__CMS_CACHE["data/site/forms.json"] = cfg;
   }
   const key = cfg && cfg.web3forms_access_key;
@@ -119,13 +119,13 @@ async function submitForm(kind, fields) {
 
 // Editorial headshot — real photo
 const PHOTOS = {
-  hero: "assets/hero-postit.jpg",
-  portrait: "assets/portrait-postit.jpg",
-  wide: "assets/hero-wide.jpg",
-  full: "assets/full-length.jpg",
-  podium: "assets/speaking-podium.jpg",
-  podiumAlt: "assets/speaking-podium-alt.jpg",
-  teaching: "assets/teaching-whiteboard.jpg"
+  hero: "assets/img/hero-postit.webp",
+  portrait: "assets/img/portrait-postit.webp",
+  wide: "assets/img/hero-wide.webp",
+  full: "assets/img/full-length.webp",
+  podium: "assets/img/speaking-podium.webp",
+  podiumAlt: "assets/img/speaking-podium-alt.webp",
+  teaching: "assets/img/teaching-whiteboard.webp"
 };
 function Headshot({ src = "hero", label, alt = "Collin Wallace", objectPosition = "center" }) {
   const url = PHOTOS[src] || src;
@@ -156,7 +156,7 @@ function BookCover({ small }) {
       boxShadow: "0 1px 0 rgba(31,27,23,0.04), 0 24px 50px -20px rgba(31,27,23,0.35), -6px 0 0 -3px rgba(0,0,0,0.18)",
       maxWidth: small ? 220 : "100%"
     }}>
-      <img src="assets/book-cover.jpg" alt="Perishable Knowledge — book cover"
+      <img src="assets/img/book-cover.webp" alt="Perishable Knowledge — book cover"
         style={{width:"100%", height:"100%", objectFit:"cover", display:"block"}} />
     </div>
   );

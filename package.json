@@ -1,0 +1,14 @@
+{
+  "name": "collinwallace.com",
+  "private": true,
+  "description": "collinwallace.com — static site. `npm run build` compiles src/*.jsx into dist/app.js (committed).",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "watch": "node scripts/build.mjs --watch"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-react": "^7.26.0",
+    "terser": "^5.36.0"
+  }
+}
