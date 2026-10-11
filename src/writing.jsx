@@ -74,7 +74,7 @@ function WritingPage({ go, tweaks }) {
       <section style={{background: "var(--bg-2)", padding: "24px 0", borderTop: "1px solid var(--rule)", borderBottom: "1px solid var(--rule)"}}>
         <div className="container" style={{display:"flex", gap: 24, alignItems:"center", justifyContent:"space-between", flexWrap:"wrap"}}>
           <div className="body" style={{margin: 0, maxWidth: 420, fontSize: 14.5}}>
-            {tweaks.subscriberCount && <><strong style={{color:"var(--ink)"}}>31,400+ readers.</strong> </>}
+            {tweaks.subscriberCount && <><strong style={{color:"var(--ink)"}}>31,400+ reads.</strong> </>}
             New essays every week, delivered to your inbox.
           </div>
           <div style={{flex: "1 1 320px", maxWidth: 460}}>

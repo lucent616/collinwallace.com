@@ -1,7 +1,7 @@
 {
-  "source": "https://collinwallace.substack.com/feed (via proxied archive JSON)",
-  "fetched_at": "2026-09-29T16:40:37Z",
-  "count": 23,
+  "source": "https://collinwallace.substack.com/feed (via direct archive JSON)",
+  "fetched_at": "2026-10-01T13:43:12Z",
+  "count": 54,
   "posts": [
     {
       "title": "The Parties You’re Not Invited To",
@@ -18,7 +18,7 @@
       "date": "Jul 14, 2026",
       "date_iso": "2026-07-14",
       "url": "https://collinwallace.substack.com/p/its-only-insider-trading-if-youre",
-      "excerpt": "This past spring, a U.S.",
+      "excerpt": "This past spring, a U.S. Army Special Forces master sergeant named Gannon Ken Van Dyke was arrested and charged with using classified military information to place bets on Polymarket.",
       "read_time": "11 min",
       "tags": [],
       "image": "https://substackcdn.com/image/fetch/$s_!QfJG!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd9405fcb-b2f0-4aa9-a355-feaceec4cd33_1254x1254.png"
@@ -44,7 +44,7 @@
       "image": "https://substackcdn.com/image/fetch/$s_!kZpg!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5c99e6d8-6986-4ebc-be83-a024dfad39bd_1536x1024.png"
     },
     {
-      "title": "Founders Are Being Taught to Treat VCs Like ATMs. ",
+      "title": "Founders Are Being Taught to Treat VCs Like ATMs.",
       "date": "Apr 8, 2026",
       "date_iso": "2026-04-08",
       "url": "https://collinwallace.substack.com/p/founders-are-being-taught-to-treat",
@@ -104,7 +104,7 @@
       "image": "https://substackcdn.com/image/fetch/$s_!RZGk!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdc80a04c-a415-4f3c-9d0a-aa07c189a4e7_1024x1024.png"
     },
     {
-      "title": "The Skills Layer ",
+      "title": "The Skills Layer",
       "date": "Feb 24, 2026",
       "date_iso": "2026-02-24",
       "url": "https://collinwallace.substack.com/p/the-skills-layer",
@@ -114,7 +114,7 @@
       "image": "https://substackcdn.com/image/fetch/$s_!nxQY!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0f317f2a-4623-424c-8188-90630f1c3119_1024x1024.png"
     },
     {
-      "title": "Rockefeller Didn’t Drill for Oil ",
+      "title": "Rockefeller Didn’t Drill for Oil",
       "date": "Feb 17, 2026",
       "date_iso": "2026-02-17",
       "url": "https://collinwallace.substack.com/p/rockefeller-didnt-drill-for-oil",
@@ -144,7 +144,7 @@
       "image": "https://substackcdn.com/image/fetch/$s_!tlWY!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ffec30f41-0eab-46b7-b05b-87c24ceff0c3_1024x1024.png"
     },
     {
-      "title": "The Rooms You’re Not In ",
+      "title": "The Rooms You’re Not In",
       "date": "Jan 27, 2026",
       "date_iso": "2026-01-27",
       "url": "https://collinwallace.substack.com/p/the-rooms-youre-not-in",
@@ -232,6 +232,316 @@
       "read_time": "5 min",
       "tags": [],
       "image": "https://substackcdn.com/image/fetch/$s_!iZym!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F223a21a4-68e3-4eaf-9ac3-63a36b0b853b_1024x1536.png"
+    },
+    {
+      "title": "Humans Are A Lot Harder Than Tech",
+      "date": "Oct 28, 2025",
+      "date_iso": "2025-10-28",
+      "url": "https://collinwallace.substack.com/p/humans-are-a-lot-harder-than-tech",
+      "excerpt": "Why the AI Revolution Will Be Won or Lost on Culture, Not Code",
+      "read_time": "6 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!aoc_!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F56059449-9a74-4f0a-933c-ca303d40c356_1024x1536.png"
+    },
+    {
+      "title": "The One Question Type That Separates Successful Founders From Everyone Else",
+      "date": "Oct 15, 2025",
+      "date_iso": "2025-10-15",
+      "url": "https://collinwallace.substack.com/p/the-one-question-type-that-separates",
+      "excerpt": "How to Boundary Questions Can Turn Information Into Perishable Knowledge",
+      "read_time": "6 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!SrCG!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F003c7fa5-6d95-4f15-9ff0-f338c36df69e_1536x1024.png"
+    },
+    {
+      "title": "The Chess Theory of Customer Discovery",
+      "date": "Oct 8, 2025",
+      "date_iso": "2025-10-08",
+      "url": "https://collinwallace.substack.com/p/the-chess-theory-of-customer-discovery",
+      "excerpt": "Why You Should Move Like a Rook, Not a Bishop",
+      "read_time": "6 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!tCQO!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb9d71969-b683-49c8-898d-1968ab6bd86d_1024x1536.png"
+    },
+    {
+      "title": "Your Job Won't Survive AI—But Your AI-Powered Business Will",
+      "date": "Sep 30, 2025",
+      "date_iso": "2025-09-30",
+      "url": "https://collinwallace.substack.com/p/your-job-wont-survive-aibut-your",
+      "excerpt": "If there is one thing that is obvious from all the most recent AI headlines, it is that we stand at the edge of the most significant economic transformation in human history.",
+      "read_time": "6 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!q-yt!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F98ef872f-1423-4154-8533-9ae594a51df7_1536x1024.png"
+    },
+    {
+      "title": "The $1 Trillion Secret: Why Netflix, Amazon, DoorDash And The Best Investors Don't Care If You Like Them",
+      "date": "Sep 9, 2025",
+      "date_iso": "2025-09-09",
+      "url": "https://collinwallace.substack.com/p/the-1-trillion-secret-why-netflix",
+      "excerpt": "I recently had the chance to spend some time with Michael Siebel the former President of YCombinator (my former group partner), co-founder of Twitch and overall Yoda of the startup world.",
+      "read_time": "5 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!n1GD!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F915b9f98-ddc5-4a23-bc6d-9c2f5b0987ec_1024x1024.png"
+    },
+    {
+      "title": "Stop selling 'savings.' Start selling this instead.",
+      "date": "Sep 2, 2025",
+      "date_iso": "2025-09-02",
+      "url": "https://collinwallace.substack.com/p/stop-selling-savings-start-selling",
+      "excerpt": "Stripe, Shopify, and Slack all used this same strategy. Here's why most founders miss it.",
+      "read_time": "6 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!ot4z!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F872086a3-52c8-4175-bfc8-7c8de1f5554a_1024x1536.png"
+    },
+    {
+      "title": "You Can't Hire Trust",
+      "date": "Aug 26, 2025",
+      "date_iso": "2025-08-26",
+      "url": "https://collinwallace.substack.com/p/you-cant-hire-trust",
+      "excerpt": "Why Early-Stage Startups Have To Rely on Existing Relationships",
+      "read_time": "5 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!-6Iy!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0bc283bf-8dac-4d9b-95fa-b45c664e3c10_1024x1024.png"
+    },
+    {
+      "title": "I Had The Chance To Build Uber Before Uber Existed. Here's Why I Didn't (And Why I'm Glad)",
+      "date": "Aug 19, 2025",
+      "date_iso": "2025-08-19",
+      "url": "https://collinwallace.substack.com/p/i-had-the-chance-to-build-uber-before",
+      "excerpt": "What Are You Willing To Do To Succeed?",
+      "read_time": "7 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!g0M-!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F56d1103a-db79-45b5-96d3-f96f548793ca_1024x1024.png"
+    },
+    {
+      "title": "We Laughed at the 'Idea Guys' for 10 Years. Now They're Becoming the Most Valuable Founders in Tech",
+      "date": "Aug 12, 2025",
+      "date_iso": "2025-08-12",
+      "url": "https://collinwallace.substack.com/p/we-laughed-at-the-idea-guys-for-10",
+      "excerpt": "How AI is Reshaping the Startup Hierarchy and Bringing Back the Idea Guy/Gal",
+      "read_time": "6 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!otxT!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7b0dcd8f-65c0-4c95-ae1a-fb2bfdb8135f_1024x1024.png"
+    },
+    {
+      "title": "Did Anthropic Bring A Knife To A Gun Fight?",
+      "date": "Aug 7, 2025",
+      "date_iso": "2025-08-07",
+      "url": "https://collinwallace.substack.com/p/did-anthropic-bring-a-knife-to-a",
+      "excerpt": "Why Amazon May Acquire Anthropic In The Next 18-months",
+      "read_time": "7 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!Zk5J!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa4f7dbe8-e8d4-41e7-8a42-fe4547599512_1536x1024.png"
+    },
+    {
+      "title": "The Hidden Reason Your Startup Ideas Keep Failing",
+      "date": "Aug 5, 2025",
+      "date_iso": "2025-08-05",
+      "url": "https://collinwallace.substack.com/p/the-hidden-reason-your-startup-ideas",
+      "excerpt": "Why You Might Be Optimizing for the Wrong Thing",
+      "read_time": "6 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!a4rs!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff5f23f35-5772-4d85-a0c2-7b3b698c4f29_1024x1024.png"
+    },
+    {
+      "title": "\"There Are Only Two Times To Sell A Company...\"",
+      "date": "Jul 29, 2025",
+      "date_iso": "2025-07-29",
+      "url": "https://collinwallace.substack.com/p/there-are-only-two-times-to-sell",
+      "excerpt": "An exceptional young founder called me recently, wrestling with a decision that would fundamentally change her life.",
+      "read_time": "7 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!rdN1!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdb9c9081-a0ce-4e51-835c-cbd442cbba57_1024x1024.png"
+    },
+    {
+      "title": "Perplexity Isn't Just Better Google—It's the Death of SaaS",
+      "date": "Jul 22, 2025",
+      "date_iso": "2025-07-22",
+      "url": "https://collinwallace.substack.com/p/perplexity-isnt-just-better-googleits",
+      "excerpt": "How AI is Shifting Software From Process Oriented SaaS to Goal Oriented Agents",
+      "read_time": "5 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!cz-m!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4d3e7058-d192-49db-89a4-79275d1e466b_1024x1024.png"
+    },
+    {
+      "title": "Start With The Best Idea You Have",
+      "date": "Jul 15, 2025",
+      "date_iso": "2025-07-15",
+      "url": "https://collinwallace.substack.com/p/start-with-the-best-idea-you-have",
+      "excerpt": "Why Perfect Ideas Don't Exist",
+      "read_time": "6 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!Wo_E!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9f6a3eeb-fbd8-433d-b6a3-15c1a7c3876a_1024x1536.png"
+    },
+    {
+      "title": "Carry Me Out Feet First",
+      "date": "Jul 1, 2025",
+      "date_iso": "2025-07-01",
+      "url": "https://collinwallace.substack.com/p/carry-me-out-feet-first",
+      "excerpt": "A Final Lesson from My 97 year-old Grandmother",
+      "read_time": "10 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!j7ok!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7e233229-06d5-4f99-8666-9128c88a973e_1024x1024.png"
+    },
+    {
+      "title": "Revenue 'MaxQ' for AI Startups",
+      "date": "Jun 24, 2025",
+      "date_iso": "2025-06-24",
+      "url": "https://collinwallace.substack.com/p/revenue-maxq-for-ai-startups",
+      "excerpt": "Navigating the Transition From Pilots to Profitability",
+      "read_time": "4 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!TXBD!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3cb9a1f0-73ff-487c-9046-62467ccd6315_1024x1024.png"
+    },
+    {
+      "title": "The Bluster Trap...",
+      "date": "Jun 17, 2025",
+      "date_iso": "2025-06-17",
+      "url": "https://collinwallace.substack.com/p/the-bluster-trap",
+      "excerpt": "Why Admitting Flaws Makes You More Fundable",
+      "read_time": "5 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!UmSk!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F534b5719-444c-4900-99c9-0a041aaa7894_1024x1024.png"
+    },
+    {
+      "title": "'There Are No Stupid Questions' Was Always a Lie. Now It Might Be Killing Your Career.",
+      "date": "Jun 12, 2025",
+      "date_iso": "2025-06-12",
+      "url": "https://collinwallace.substack.com/p/there-are-no-stupid-questions-was",
+      "excerpt": "Knowledge, AI and the Role of Good Questions in Getting Smarter",
+      "read_time": "4 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!TEpy!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe6f9960b-1cda-4146-86b3-fdf75b77e653_1536x1024.png"
+    },
+    {
+      "title": "Orientation vs. Optimization",
+      "date": "Jun 10, 2025",
+      "date_iso": "2025-06-10",
+      "url": "https://collinwallace.substack.com/p/orientation-vs-optimization",
+      "excerpt": "Why Trajectory Is More Important Than Scale",
+      "read_time": "7 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!CpPA!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F619f29a5-a8b5-45fc-b73f-98123652f2e1_1024x1024.png"
+    },
+    {
+      "title": "What If It All Works Out?",
+      "date": "Jun 5, 2025",
+      "date_iso": "2025-06-05",
+      "url": "https://collinwallace.substack.com/p/what-if-it-all-works-out",
+      "excerpt": "Shifting focus, the upside of not fixating on the downside.",
+      "read_time": "5 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!5zQo!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa949258f-2527-4755-ae67-8c49f911ae9f_1024x1024.png"
+    },
+    {
+      "title": "The Currency of Time: What We Trade and What We Keep",
+      "date": "Jun 3, 2025",
+      "date_iso": "2025-06-03",
+      "url": "https://collinwallace.substack.com/p/the-currency-of-time-what-we-trade",
+      "excerpt": "Life, legacy and the limited time we all get.",
+      "read_time": "5 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!POvj!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2fb625b6-c66a-4a11-95b8-fb86b9d89f6f_1536x1024.png"
+    },
+    {
+      "title": "Timing...",
+      "date": "May 28, 2025",
+      "date_iso": "2025-05-28",
+      "url": "https://collinwallace.substack.com/p/timing",
+      "excerpt": "Why Being Late Might Be The Best Move",
+      "read_time": "4 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!OCuu!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F373f9fec-cd0c-410b-acc2-264b83686596_1920x1920.png"
+    },
+    {
+      "title": "An MBA Is About to Mean Something Completely Different",
+      "date": "May 22, 2025",
+      "date_iso": "2025-05-22",
+      "url": "https://collinwallace.substack.com/p/part-1-in-the-age-of-ai-an-mba-may",
+      "excerpt": "The MBA of tomorrow may demand an entirely new skillset and may instead signify one's ability to \"Master of Bot Administration.\"",
+      "read_time": "8 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!tEOh!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F948c3cd6-5b45-4e98-9ccb-73487d135c25_1536x1024.png"
+    },
+    {
+      "title": "The Investor Alignment Checklist: What Founders Should Believe Before Taking My Capital",
+      "date": "May 20, 2025",
+      "date_iso": "2025-05-20",
+      "url": "https://collinwallace.substack.com/p/what-founders-need-to-believe-before",
+      "excerpt": "Trust, Alignment And Seeing Through Bad Acting",
+      "read_time": "6 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!7mf5!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd13b2dbd-f11c-48e9-8fcd-8d89ec3ba027_1024x1024.png"
+    },
+    {
+      "title": "The Rise of \"Vibe Investing\"",
+      "date": "May 15, 2025",
+      "date_iso": "2025-05-15",
+      "url": "https://collinwallace.substack.com/p/the-rise-of-vibe-investing",
+      "excerpt": "When AI Meets Venture Capital",
+      "read_time": "7 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!PcIl!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F58e316bb-ea19-4d4e-adc7-d29fa486da9c_1536x1024.png"
+    },
+    {
+      "title": "What Do I Need to Believe to Invest in You?",
+      "date": "May 13, 2025",
+      "date_iso": "2025-05-13",
+      "url": "https://collinwallace.substack.com/p/what-i-need-to-believe-to-invest",
+      "excerpt": "A Framework for Founders",
+      "read_time": "5 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!a0_e!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6b530b4a-c322-4bae-9c42-5a8f342f3553_1536x1024.png"
+    },
+    {
+      "title": "Meritocracy in the Age of AI",
+      "date": "May 8, 2025",
+      "date_iso": "2025-05-08",
+      "url": "https://collinwallace.substack.com/p/meritocracy-in-the-age-of-ai",
+      "excerpt": "Who Gets to Define What Merit Is?",
+      "read_time": "7 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!aLYX!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F10a51d79-d3e2-4818-a78b-0125a2079d49_1024x1024.png"
+    },
+    {
+      "title": "Rocking Chair Metrics: Motion Without Movement",
+      "date": "May 6, 2025",
+      "date_iso": "2025-05-06",
+      "url": "https://collinwallace.substack.com/p/rocking-chair-metrics-motion-without",
+      "excerpt": "What types of metrics actually get you somewhere when building a business?",
+      "read_time": "4 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!Jy9o!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fed88edd1-de84-4b1f-b4e7-50d4f50c1912_1536x1024.png"
+    },
+    {
+      "title": "Telling Your Startup Story with ABS",
+      "date": "Apr 29, 2025",
+      "date_iso": "2025-04-29",
+      "url": "https://collinwallace.substack.com/p/telling-your-startup-story-with-abs",
+      "excerpt": "And, But, So...",
+      "read_time": "4 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!baYJ!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe1e9f045-b367-4ebf-903f-6dbee0487335_1536x1024.png"
+    },
+    {
+      "title": "The Two Essential Elements of a Great Pitch",
+      "date": "Apr 22, 2025",
+      "date_iso": "2025-04-22",
+      "url": "https://collinwallace.substack.com/p/the-two-essential-elements-of-a-great",
+      "excerpt": "In the high-stakes world of fundraising, founders often overcomplicate what makes a pitch successful. A great pitches boil down to just two critical elements: numbers and a story.",
+      "read_time": "4 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!oi_z!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff3dca48d-8154-4e2c-846a-982a364b3bde_1024x1024.png"
+    },
+    {
+      "title": "Why I'm Starting a Blog: Knowledge Arbitrage",
+      "date": "Apr 15, 2025",
+      "date_iso": "2025-04-15",
+      "url": "https://collinwallace.substack.com/p/why-im-starting-a-blog-knowledge",
+      "excerpt": "In a world where everyone has a blog or podcast, why add one more voice to the chorus? It's a fair question, and one I've asked myself. But I believe there's value in sharing perspectives from unique intersections of experience—and that's what I hope to bring to the table.",
+      "read_time": "2 min",
+      "tags": [],
+      "image": "https://substackcdn.com/image/fetch/$s_!H0E_!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc3a841da-8ba0-461e-8447-e2ae8a5502d6_1536x1024.png"
     }
   ]
 }

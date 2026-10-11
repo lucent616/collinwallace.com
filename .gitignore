@@ -3,3 +3,6 @@ __pycache__/
 
 # local scratch
 Claude outputs/
+
+# dependencies (dist/ IS committed)
+node_modules/

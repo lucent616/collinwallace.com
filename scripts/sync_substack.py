@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
-"""Fetch the Substack RSS feed and emit data/essays.json.
+"""Fetch the full Substack post list and emit data/essays.json.
 
-Usage: python3 scripts/sync_substack.py [--feed URL] [--out PATH]
+Usage: python3 scripts/sync_substack.py [--feed URL] [--out PATH] [--prune]
 
-Defaults: fetches https://collinwallace.substack.com/feed,
-writes data/essays.json (one JSON array, one object per post).
+Defaults: reads https://collinwallace.substack.com, writes data/essays.json
+({source, fetched_at, count, posts: [one object per post]}).
+
+The complete list comes from Substack's paged /api/v1/archive endpoint. The
+RSS feed (/feed) only ever carries the 20 newest posts, so it is used as a
+fallback that can add new posts but never removes older ones. As a safety
+net, a run never drops more than MAX_AUTO_DROP posts that are already in the
+output file unless --prune is passed.
 
 Output fields per post:
   title, date (human "Apr 16, 2026"), date_iso, url, excerpt,
@@ -101,7 +107,8 @@ def fetch_with_retry(url: str, accept: str) -> bytes:
 PROXY_TEMPLATES = [
     "https://api.allorigins.win/raw?url={enc}",
     "https://cors.eu.org/{url}",
-    "https://api.codetabs.com/v1/proxy?quest={url}",
+    # Encoded, so the target's own "&limit=…&offset=…" isn't read as proxy params.
+    "https://api.codetabs.com/v1/proxy?quest={enc}",
 ]
 PROXY_ATTEMPTS = 3          # each proxy is tried this many times (they 522 intermittently)
 PROXY_BACKOFF_SECONDS = 8
@@ -204,18 +211,53 @@ def estimate_read_time(html_body: str) -> str:
     return f"{minutes} min"
 
 
-def posts_from_archive_json(base_url: str, via_proxy: bool = False) -> list[dict]:
-    """Fallback: Substack's public /api/v1/archive returns JSON and is usually
-    less aggressively rate-limited than /feed.
+ARCHIVE_PAGE_SIZE = 50    # Substack answers 400 to anything larger
+ARCHIVE_MAX_PAGES = 40    # runaway guard
+
+
+def fetch_archive_items(base: str, via_proxy: bool = False) -> list[dict]:
+    """Every post in the publication's archive, newest first.
+
+    Pages with offset until an EMPTY page comes back. A short page is not the
+    end: Substack routinely returns fewer items than `limit` (23 of 50 on the
+    first page as of Oct 2026), which is how older posts used to go missing.
     """
+    items: list[dict] = []
+    seen: set = set()
+    offset = 0
+    for _ in range(ARCHIVE_MAX_PAGES):
+        url = f"{base}/api/v1/archive?sort=new&limit={ARCHIVE_PAGE_SIZE}&offset={offset}"
+        raw = fetch_via_proxy(url, "application/json") if via_proxy else fetch_with_retry(url, "application/json")
+        page = json.loads(raw.decode("utf-8"))
+        if not isinstance(page, list):
+            raise RuntimeError(f"archive returned {type(page).__name__}, expected a list")
+        if not page:
+            return items
+        fresh = 0
+        for p in page:
+            key = p.get("id") or p.get("slug") or p.get("canonical_url")
+            if key in seen:
+                continue
+            seen.add(key)
+            items.append(p)
+            fresh += 1
+        if fresh == 0:
+            # Same page twice: something (a proxy) dropped the offset. Treat the
+            # list as incomplete rather than pretend this is everything.
+            raise RuntimeError(f"archive paging stalled at offset {offset}")
+        offset += len(page)
+        time.sleep(1)
+    raise RuntimeError(f"archive did not end after {ARCHIVE_MAX_PAGES} pages")
+
+
+def posts_from_archive_json(base_url: str, via_proxy: bool = False) -> list[dict]:
+    """The complete post list, from Substack's public /api/v1/archive JSON."""
     base = base_url.rstrip("/").replace("/feed", "")
-    url = f"{base}/api/v1/archive?sort=new&limit=50"
-    raw = fetch_via_proxy(url, "application/json") if via_proxy else fetch_with_retry(url, "application/json")
-    data = json.loads(raw.decode("utf-8"))
+    data = fetch_archive_items(base, via_proxy)
 
     posts: list[dict] = []
     for p in data:
-        title = p.get("title") or ""
+        title = (p.get("title") or "").strip()
         slug = p.get("slug") or ""
         canon = p.get("canonical_url") or (f"{base}/p/{slug}" if slug else "")
         pub = p.get("post_date") or p.get("published_at") or ""
@@ -227,9 +269,19 @@ def posts_from_archive_json(base_url: str, via_proxy: bool = False) -> list[dict
         except Exception:
             human_date, iso_date = pub, ""
 
-        # Archive items don't carry full body, but they have description / subtitle.
+        # Archive items don't carry the full body, but they have description /
+        # subtitle plus the opening of the body. Same rule as parse_feed(): if
+        # the description is an unfinished prefix of the body ("a U.S."), rebuild
+        # the excerpt from the body text. Also use the body when there is no
+        # description or subtitle at all.
         excerpt_src = p.get("description") or p.get("subtitle") or ""
-        excerpt = first_sentences(strip_html(excerpt_src))
+        desc_text = strip_html(excerpt_src)
+        body_text = strip_html(p.get("truncated_body_text") or "")
+        unfinished = bool(desc_text) and body_text.startswith(desc_text) and not ends_with_sentence(desc_text)
+        if body_text and (not desc_text or unfinished):
+            excerpt = first_sentences(body_text)
+        else:
+            excerpt = first_sentences(desc_text)
         wordcount = p.get("wordcount") or 0
         if wordcount:
             read_time = f"{max(1, round(wordcount / WPM))} min"
@@ -315,40 +367,65 @@ def parse_feed(xml_bytes: bytes) -> list[dict]:
     return posts
 
 
+def _post_key(post: dict) -> str:
+    return (post.get("url") or "").split("?")[0].rstrip("/")
+
+
+def _by_date(posts: list[dict]) -> list[dict]:
+    return sorted(posts, key=lambda p: p.get("date_iso") or "", reverse=True)
+
+
+# A complete (archive) listing may remove at most this many already-published
+# posts in one run. More than that is far likelier a fetch problem than Collin
+# unpublishing essays, so they are kept unless --prune is passed.
+MAX_AUTO_DROP = 2
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--feed", default=DEFAULT_FEED)
     ap.add_argument("--out", default=DEFAULT_OUT)
+    ap.add_argument("--prune", action="store_true",
+                    help="let this run remove any number of posts that are no longer on Substack")
     args = ap.parse_args()
+
+    try:
+        with open(args.out, encoding="utf-8") as f:
+            existing_posts = json.load(f).get("posts") or []
+    except (OSError, ValueError):
+        existing_posts = []
 
     # Strategy cascade — Substack is fronted by Cloudflare and aggressively blocks
     # scripted clients from CI IP ranges (Azure / GitHub Actions). In order:
-    #   1. Direct fetch of /feed with browser-looking headers (works locally).
-    #   2. Direct fetch of /api/v1/archive (JSON, sometimes less blocked).
+    #   1. Direct /api/v1/archive, paged (JSON; the only route that lists every post).
+    #   2. Direct /feed with browser-looking headers (20 newest posts only).
     #   3. Public CORS proxy chain, archive JSON first (small payload; the big
     #      RSS body gets truncated by some proxies), each proxy retried with backoff.
+    # The third field says whether the route returns the complete list.
     posts: list[dict] = []
+    complete = False
     source_used = args.feed
     accept_rss = "application/rss+xml,application/xml,text/xml,*/*;q=0.8"
 
     strategies = [
-        ("direct RSS",
-         lambda: parse_feed(fetch_with_retry(args.feed, accept_rss))),
         ("direct archive JSON",
-         lambda: posts_from_archive_json(args.feed)),
+         lambda: posts_from_archive_json(args.feed), True),
+        ("direct RSS",
+         lambda: parse_feed(fetch_with_retry(args.feed, accept_rss)), False),
         ("proxied archive JSON",
-         lambda: posts_from_archive_json(args.feed, via_proxy=True)),
+         lambda: posts_from_archive_json(args.feed, via_proxy=True), True),
         ("proxied RSS",
-         lambda: parse_feed(fetch_via_proxy(args.feed, accept_rss))),
+         lambda: parse_feed(fetch_via_proxy(args.feed, accept_rss)), False),
     ]
 
     last_err: Exception | None = None
-    for label, run in strategies:
+    for label, run, is_complete in strategies:
         try:
             print(f"trying: {label}…", file=sys.stderr)
             posts = run()
             if not posts:
                 raise RuntimeError("strategy returned 0 posts")
+            complete = is_complete
             source_used = f"{args.feed} (via {label})"
             print(f"  → {label} got {len(posts)} posts", file=sys.stderr)
             break
@@ -357,6 +434,31 @@ def main() -> int:
             print(f"  → {label} failed: {e}", file=sys.stderr)
     else:
         raise RuntimeError(f"all fetch strategies failed; last: {last_err}")
+
+    fetched = {_post_key(p) for p in posts}
+    missing = [p for p in existing_posts if _post_key(p) and _post_key(p) not in fetched]
+
+    if not complete:
+        # RSS is a 20-post window, not the full list: it may only ADD posts.
+        # Everything already in the file stays exactly as it is, so falling back
+        # to RSS never shrinks the list (and never churns existing entries).
+        known = {_post_key(p) for p in existing_posts}
+        added = [p for p in posts if _post_key(p) not in known]
+        if existing_posts:
+            posts = _by_date(added + existing_posts)
+            source_used += f"; {len(added)} new, {len(existing_posts)} kept from previous sync"
+            print(f"  RSS window: {len(added)} new post(s), {len(existing_posts)} existing kept",
+                  file=sys.stderr)
+    elif missing:
+        titles = "; ".join(p.get("title", "?") for p in missing[:5])
+        if len(missing) > MAX_AUTO_DROP and not args.prune:
+            posts = _by_date(posts + missing)
+            source_used += f"; kept {len(missing)} posts missing from the archive"
+            print(f"WARNING: {len(missing)} existing posts are missing from the archive listing "
+                  f"({titles}…). Keeping them; re-run with --prune if they really were removed.",
+                  file=sys.stderr)
+        else:
+            print(f"  removing {len(missing)} post(s) no longer on Substack: {titles}", file=sys.stderr)
 
     payload = {
         "source": source_used,
@@ -367,14 +469,9 @@ def main() -> int:
 
     # Skip the write when nothing but the timestamp would change, so scheduled
     # runs don't create a commit every day.
-    try:
-        with open(args.out, encoding="utf-8") as f:
-            existing = json.load(f)
-        if existing.get("posts") == posts:
-            print(f"no change — {len(posts)} posts already current in {args.out}", file=sys.stderr)
-            return 0
-    except (OSError, ValueError):
-        pass
+    if existing_posts == posts:
+        print(f"no change — {len(posts)} posts already current in {args.out}", file=sys.stderr)
+        return 0
 
     os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as f:
