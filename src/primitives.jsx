@@ -2,34 +2,60 @@
 
 const { useState, useEffect, useRef } = React;
 
-function EmailCapture({ placeholder = "you@domain.com", cta = "Subscribe", note, tag, compact, dark }) {
+// Where the newsletter actually lives. Every signup ends up here.
+const SUBSTACK_URL = "https://collinwallace.substack.com";
+function substackSubscribeUrl(email) {
+  return SUBSTACK_URL + "/subscribe?email=" + encodeURIComponent(email) + "&utm_source=collinwallace.com";
+}
+
+// Newsletter / book-waitlist signup.
+//   1. Relays the address to Web3Forms (so there is always a record in the inbox,
+//      tagged "subscribe" or "waitlist"), then
+//   2. hands the visitor to Substack with the address prefilled to finish the subscription.
+// The Substack hand-off happens even if the relay fails, so a signup is never silently dropped.
+// `kind` defaults from the CTA: "Join waitlist" → waitlist, anything else → subscribe.
+function EmailCapture({ placeholder = "you@domain.com", cta = "Subscribe", note, tag, compact, dark, kind }) {
   const [email, setEmail] = useState("");
+  const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
-  const submit = (e) => {
+  const [bot, setBot] = useState(false);
+  const formKind = kind || (/waitlist/i.test(cta) ? "waitlist" : "subscribe");
+  const submit = async (e) => {
     e.preventDefault();
-    if (!email || !/.+@.+\..+/.test(email)) return;
+    if (sending || !email || !/.+@.+\..+/.test(email)) return;
+    if (bot) return;
+    setSending(true);
+    try {
+      await submitForm(formKind, { email, page: (window.location.hash || "#/home").replace(/^#\/?/, "") }, { noMailto: true });
+    } catch (err) {
+      // Relay failed — still hand off to Substack below so the signup isn't lost.
+      console.error("subscribe relay failed", err);
+    }
     setDone(true);
-    setTimeout(() => { setDone(false); setEmail(""); }, 4200);
+    window.location.assign(substackSubscribeUrl(email));
   };
   if (done) {
     return (
-      <div className="capture-success">
+      <div className="capture-success" data-form-success={formKind}>
         <span style={{fontSize:20}}>✓</span>
-        <span>You're on the list. Next essay lands this week.</span>
+        <span>One more step — confirm on Substack. <a className="inline-link" href={substackSubscribeUrl(email)}>Continue →</a></span>
       </div>
     );
   }
   return (
     <div>
-      <form className="capture" onSubmit={submit}>
+      <form className="capture" onSubmit={submit} data-form={formKind}>
         <input
           type="email"
+          name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={placeholder}
           required
+          disabled={sending}
         />
-        <button type="submit">{cta}</button>
+        <input type="checkbox" name="botcheck" tabIndex="-1" autoComplete="off" style={{display:"none"}} onChange={(e) => setBot(e.target.checked)} />
+        <button type="submit" disabled={sending}>{sending ? "One sec…" : cta}</button>
       </form>
       {note && <div className="capture-note">{note}</div>}
     </div>
@@ -92,7 +118,7 @@ function ContactEmail({ label = "Email me", className = "" }) {
 
 // Form relay. Posts to Web3Forms when an access key is configured in data/site/forms.json;
 // otherwise falls back to opening a prefilled email so a message is never silently dropped.
-async function submitForm(kind, fields) {
+async function submitForm(kind, fields, opts = {}) {
   let cfg = window.__CMS_CACHE["data/site/forms.json"];
   if (!cfg) {
     try { cfg = await fetch("data/site/forms.json").then(r => r.ok ? r.json() : null); } catch (e) { cfg = null; }
@@ -110,6 +136,8 @@ async function submitForm(kind, fields) {
     if (!res.ok || json.success === false) throw new Error(json.message || "Submission failed");
     return { via: "relay" };
   }
+  // No relay key configured. Callers that can't use a mailto hand-off (the subscribe box) say so.
+  if (opts.noMailto) throw new Error("No form relay configured (data/site/forms.json)");
   // Fallback: prefilled email
   const lines = Object.entries(fields).filter(([k, v]) => v).map(([k, v]) => k + ": " + v).join("\n");
   const parts = ["tooltip.clark.0n", "icloud", "com"];
