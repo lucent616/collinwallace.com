@@ -6,3 +6,7 @@ Claude outputs/
 
 # dependencies (dist/ IS committed)
 node_modules/
+
+# Playwright
+test-results/
+playwright-report/
